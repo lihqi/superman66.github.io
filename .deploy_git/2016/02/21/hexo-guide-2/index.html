@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/21/hexo-guide-2/index.html">
 <meta property="og:site_name" content="Superman的博客">
 <meta property="og:description" content="本文主要介绍如何对Hexo博客站点进行个性化的设置、如何安装主题以及主题的设置。">
-<meta property="og:updated_time" content="2016-02-22T13:30:38.224Z">
+<meta property="og:updated_time" content="2016-02-22T14:07:48.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客搭建教程（二）：Hexo博客的配置、使用">
 <meta name="twitter:description" content="本文主要介绍如何对Hexo博客站点进行个性化的设置、如何安装主题以及主题的设置。">
@@ -165,12 +165,12 @@
 
       <div class="body-wrap"><article id="post-hexo-guide-2" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/02/21/hexo-guide-2/" class="article-date">
+        <div class="article-meta">
+        <a href="/2016/02/21/hexo-guide-2/" class="article-date">
   	<time datetime="2016-02-21T14:41:24.000Z" itemprop="datePublished">2016-02-21</time>
 </a>
-    </div>
-  
+        </div>
+      
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -204,7 +204,7 @@
 <a id="more"></a>
 <p>经过上一篇文章，我们已经学会如何搭建Hexo博客以及将博客部署到github上了。这篇文章主要讲如何对自己的博客站点进行个性化配置以及如何发表新文章。<br>博客的配置一个是站点的配置:<code>d:\hexo\_config.yml</code>，一个是主题的配置:<code>d:\hexo\themes\yilia\_config.yml</code></p>
 <h2 id="站点的配置"><a href="#站点的配置" class="headerlink" title="站点的配置"></a>站点的配置</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Hexo Configuration&#10;## Docs: https://hexo.io/docs/configuration.html&#10;## Source: https://github.com/hexojs/hexo/&#10;&#10;# Site&#10;title: Superman&#30340;&#21338;&#23458; #&#31449;&#23450;&#30340;&#21517;&#31216;&#10;subtitle: &#36229;&#20154;&#19981;&#20250;&#39134; #&#31449;&#28857;&#30340;&#21103;&#26631;&#39064;&#10;description: &#36229;&#20154;&#21069;&#31471;&#23398;&#20064;&#21338;&#23458; #&#31449;&#28857;&#30340;&#25551;&#36848;&#10;author: Superman &#10;email: supermanchc@gmail.com&#10;language: zh-Hans # &#35821;&#35328; &#20351;&#29992;&#20013;&#25991;&#38656;&#35201;&#20351;&#29992;zh-Hans&#10;timezone:  #&#40664;&#35748;&#25805;&#20316;&#31995;&#32479;&#30340;&#26102;&#38388;&#10;&#10;# URL&#10;## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;&#10;##url &#22312;&#27809;&#26377;&#32465;&#23450;&#22495;&#21517;&#21069;&#65292;&#19981;&#38656;&#35201;&#22635;&#20889;&#10;url: http://yoursite.com&#10;root: /&#10;permalink: :year/:month/:day/:title/&#10;permalink_defaults:&#10;&#10;# Directory &#30446;&#24405;&#26684;&#24335;&#65292;&#19981;&#20462;&#25913;&#10;source_dir: source&#10;public_dir: public&#10;tag_dir: tags&#10;archive_dir: archives&#10;category_dir: categories&#10;code_dir: downloads/code&#10;i18n_dir: :lang&#10;skip_render:&#10;&#10;# Writing &#20889;&#20316;&#24067;&#23616;&#65292;&#19981;&#20462;&#25913;&#10;new_post_name: :title.md # File name of new posts&#10;default_layout: post&#10;titlecase: false # Transform title into titlecase&#10;external_link: true # Open external links in new tab&#10;filename_case: 0&#10;render_drafts: false&#10;post_asset_folder: false&#10;relative_link: false&#10;future: true&#10;highlight:&#10;  enable: true&#10;  line_number: true&#10;  auto_detect: false&#10;  tab_replace:&#10;&#10;# Category &#38; Tag&#10;default_category: uncategorized&#10;category_map:&#10;tag_map:&#10;# Archives &#40664;&#35748;&#20540;&#20026;2&#65292;&#36825;&#37324;&#37117;&#20462;&#25913;&#20026;1&#65292;&#30456;&#24212;&#39029;&#38754;&#23601;&#21482;&#20250;&#21015;&#20986;&#26631;&#39064;&#65292;&#32780;&#38750;&#20840;&#25991;&#10;## 2: Enable pagination&#10;## 1: Disable pagination&#10;## 0: Fully Disable&#10;archive: 1&#10;category: 1&#10;tag: 1&#10;# Date / Time format&#10;## Hexo uses Moment.js to parse and display date&#10;## You can customize the date format as defined in&#10;## http://momentjs.com/docs/#/displaying/format/&#10;date_format: YYYY-MM-DD&#10;time_format: HH:mm:ss&#10;&#10;# Pagination&#10;## Set per_page to 0 to disable pagination&#10;per_page: 5&#10;pagination_dir: page&#10;&#10;# Extensions &#37197;&#32622;&#20027;&#39064;&#10;## Plugins: https://hexo.io/plugins/&#10;## Themes: https://hexo.io/themes/&#10;theme: yilia&#10;&#10;# Deployment &#37197;&#32622;&#37096;&#32626;github&#31449;&#28857;&#65292;&#25913;&#20026;&#33258;&#24049;&#30340;github repository&#10;## Docs: https://hexo.io/docs/deployment.html&#10;deploy:&#10;  type: git&#10;  repository: https://github.com/superman66/superman66.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
-<h2 id="安装新主题"><a href="#安装新主题" class="headerlink" title="安装新主题"></a>安装新主题</h2><p>Hexo此时用的是默认的主题，如果需要更换主题，可以去<a href="https://hexo.io/themes/" target="_blank" rel="external">主题市场</a>挑选自己喜爱的主题。这里以安装<code>yilia</code>主题为例。</p>
+<h2 id="安装新主题"><a href="#安装新主题" class="headerlink" title="安装新主题"></a>安装新主题</h2><p>Hexo此时用的是默认的主题，如果需要更换主题，可以去<a href="https://github.com/tommy351/hexo/wiki/Themes" target="_blank" rel="external">主题市场</a>挑选自己喜爱的主题。这里以安装<code>yilia</code>主题为例。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>修改hexo根目录下 <code>_config.yml</code> 的themes:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Extensions &#37197;&#32622;&#20027;&#39064;&#10;## Plugins: https://hexo.io/plugins/&#10;## Themes: https://hexo.io/themes/&#10;theme: yilia</span><br></pre></td></tr></table></figure></p>
 <h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/yilia</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
@@ -217,6 +217,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/02/22/hexo-guide-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hexo博客搭建教程（三）：Hexo博客代码版本控制
+        
+      </div>
+    </a>
   
   
     <a href="/2016/02/21/hexo-guide-1/" id="article-nav-older" class="article-nav-link-wrap">

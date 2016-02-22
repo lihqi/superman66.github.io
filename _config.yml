@@ -71,7 +71,7 @@ pagination_dir: page
 # Extensions 配置主题
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia1
+theme: yilia
 
 # Deployment 配置部署github站点，改为自己的github repository
 ## Docs: https://hexo.io/docs/deployment.html

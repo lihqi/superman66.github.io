@@ -41,5 +41,10 @@ git push origin source
 ```bash
 hexo generate -d
 ```
-#Bug记录
-如果你使用了第三方主题，那么进行代码提交的时候，是无法将第三方主题提交到你的github repository中。
+# Bug记录
+如果你使用了第三方主题，在进行代码提交的时候，是无法将第三方主题提交到你的github repository中，会出现 `untracked content`的提示。
+这是因为第三方主题本身也是一个git项目。你无法将别人的git项目直接通过add 和commit的方式提交到你自己的git repository。
+也就说，你无法提交处于 `untracked`状态的文件。
+解决办法：
+* 添加 `submodule`的方式，将主题作为submodule提交到你的git repository
+* 删除主题文件夹下的`.git`文件夹。如果这时候还不能提交，可以新建个文件夹，随便命名，将主题文件夹内的东西复制到新建的文件夹。再通过`git add`提交就可以了。

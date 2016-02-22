@@ -308,6 +308,9 @@ a {
   #container .article-header h1 {
     margin-bottom: 10px;
   }
+  #container .header-menu {
+    min-height: 55px !important;
+  }
   #container .header-subtitle {
     padding: 0 24px;
   }
@@ -320,6 +323,7 @@ a {
     margin: 0;
     padding-top: 10px;
     border: none;
+    position: relative;
   }
   #container .article-more-link a {
     float: right;
@@ -339,15 +343,16 @@ a {
   }
   #container .article .article-title {
     font-size: 18px;
-    max-width: 185px;
+    max-width: 100%;
     display: block;
     margin: 0;
   }
   #container .article .article-meta {
     width: auto;
     height: 30px;
-    margin-top: -5px;
+    top: 16px;
     position: ralative;
+    display: none;
   }
   #container .article .article-meta .article-date {
     font-size: 12px;
