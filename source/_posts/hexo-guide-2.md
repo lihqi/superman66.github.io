@@ -93,7 +93,7 @@ deploy:
   branch: master
 ```
 ## 安装新主题
-Hexo此时用的是默认的主题，如果需要更换主题，可以去[主题市场](https://hexo.io/themes/)挑选自己喜爱的主题。这里以安装`yilia`主题为例。
+Hexo此时用的是默认的主题，如果需要更换主题，可以去[主题市场](https://github.com/tommy351/hexo/wiki/Themes)挑选自己喜爱的主题。这里以安装`yilia`主题为例。
 #### 安装
 
 ``` bash
