@@ -28,6 +28,7 @@ archive_type: 'monthly'
 show_count: false
 
 # Miscellaneous
+cnzz_tongji: true
 google_analytics:
 favicon: /favicon.png
 twitter:

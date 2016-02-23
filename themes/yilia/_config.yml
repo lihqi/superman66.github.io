@@ -31,8 +31,9 @@ animate: true
 open_in_new: false
 
 # Miscellaneous
+cnzz_tongji: true  # 开启cnzz统计
 google_analytics: ''
-favicon: "img/favicon.ico"
+favicon: "/img/favicon.ico"
 
 #你的头像url
 avatar: "/img/avatar.png"
