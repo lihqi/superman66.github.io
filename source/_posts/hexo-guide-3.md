@@ -9,7 +9,7 @@ tags: Hexo
 # 解决思路
 实现Hexo博客代码版本控制以及备份的思路如下：
 通过新建一个`source`分支用于专门存放hexo代码。原先的`master`分支依然不变，作为hexo 部署的分支。
-每次在部署前，先把代码提交到`source`分支，再执行部署命令。
+每次在部署后，再把代码提交到`source`分支。
 # 实现步骤
 ## 1、本地创建git 仓库
 ```bash
@@ -30,18 +30,14 @@ git commit -m 'message'
 git push origin source 
 ```
 其中`source`为分支名称。
-这样就建立了代码控制分支。因此，博客在部署到github之前，需要先把代码push到`source`分支，再执行部署命令。如下：
-push 代码到`souce`分支
+
+这样就建立了代码版本控制分支。之后只要将博客在部署到github之后，将代码push到`source`分支上。代码如下：
 ```bash
 git add *
-git commit -m "msg"
+git commit -m "udpate site"
 git push origin source
 ```
-## 部署到github
-```bash
-hexo generate -d
-```
-# Bug记录
+# 问题记录
 如果你使用了第三方主题，在进行代码提交的时候，是无法将第三方主题提交到你的github repository中，会出现 `untracked content`的提示。
 这是因为第三方主题本身也是一个git项目。你无法将别人的git项目直接通过add 和commit的方式提交到你自己的git repository。
 也就说，你无法提交处于 `untracked`状态的文件。

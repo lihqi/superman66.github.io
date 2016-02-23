@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/22/hexo-guide-3/index.html">
 <meta property="og:site_name" content="Superman的博客">
 <meta property="og:description" content="由于Hexo只会将生成后的public文件夹部署到github上，导致无法对博客进行代码版本控制。同时如果需要备份代码的话，只能通过其他手段来实现。本文介绍了如何利用github分支对代码进行版本控制，同时起到备份代码的作用。">
-<meta property="og:updated_time" content="2016-02-22T15:37:42.822Z">
+<meta property="og:updated_time" content="2016-02-23T15:24:06.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客搭建教程（三）：Hexo博客代码版本控制">
 <meta name="twitter:description" content="由于Hexo只会将生成后的public文件夹部署到github上，导致无法对博客进行代码版本控制。同时如果需要备份代码的话，只能通过其他手段来实现。本文介绍了如何利用github分支对代码进行版本控制，同时起到备份代码的作用。">
@@ -24,7 +24,7 @@
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
-	<script src="http://s4.cnzz.com/z_stat.php?id=1257616456&web_id=1257616456" language="JavaScript"></script>
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
 
 </head>
 
@@ -204,14 +204,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>由于Hexo只会将生成后的public文件夹部署到github上，导致无法对博客进行代码版本控制。同时如果需要备份代码的话，只能通过其他手段来实现。<br>本文介绍了如何利用github分支对代码进行版本控制，同时起到备份代码的作用。<br><a id="more"></a></p>
-<h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>实现Hexo博客代码版本控制以及备份的思路如下：<br>通过新建一个<code>source</code>分支用于专门存放hexo代码。原先的<code>master</code>分支依然不变，作为hexo 部署的分支。<br>每次在部署前，先把代码提交到<code>source</code>分支，再执行部署命令。</p>
+<h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>实现Hexo博客代码版本控制以及备份的思路如下：<br>通过新建一个<code>source</code>分支用于专门存放hexo代码。原先的<code>master</code>分支依然不变，作为hexo 部署的分支。<br>每次在部署后，再把代码提交到<code>source</code>分支。</p>
 <h1 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h1><h2 id="1、本地创建git-仓库"><a href="#1、本地创建git-仓库" class="headerlink" title="1、本地创建git 仓库"></a>1、本地创建git 仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <h2 id="2、添加远程库"><a href="#2、添加远程库" class="headerlink" title="2、添加远程库"></a>2、添加远程库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;git repository url&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="3、创建source分支"><a href="#3、创建source分支" class="headerlink" title="3、创建source分支"></a>3、创建source分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
 <h2 id="4、提交文件及分支，并push到远程仓库"><a href="#4、提交文件及分支，并push到远程仓库" class="headerlink" title="4、提交文件及分支，并push到远程仓库"></a>4、提交文件及分支，并push到远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">'message'</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>source</code>为分支名称。<br>这样就建立了代码控制分支。因此，博客在部署到github之前，需要先把代码push到<code>source</code>分支，再执行部署命令。如下：<br>push 代码到<code>souce</code>分支<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">"msg"</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate <span class="operator">-d</span></span><br></pre></td></tr></table></figure>
-<h1 id="Bug记录"><a href="#Bug记录" class="headerlink" title="Bug记录"></a>Bug记录</h1><p>如果你使用了第三方主题，在进行代码提交的时候，是无法将第三方主题提交到你的github repository中，会出现 <code>untracked content</code>的提示。<br>这是因为第三方主题本身也是一个git项目。你无法将别人的git项目直接通过add 和commit的方式提交到你自己的git repository。<br>也就说，你无法提交处于 <code>untracked</code>状态的文件。<br>解决办法：</p>
+<p>其中<code>source</code>为分支名称。</p>
+<p>这样就建立了代码版本控制分支。之后只要将博客在部署到github之后，将代码push到<code>source</code>分支上。代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">"udpate site"</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h1><p>如果你使用了第三方主题，在进行代码提交的时候，是无法将第三方主题提交到你的github repository中，会出现 <code>untracked content</code>的提示。<br>这是因为第三方主题本身也是一个git项目。你无法将别人的git项目直接通过add 和commit的方式提交到你自己的git repository。<br>也就说，你无法提交处于 <code>untracked</code>状态的文件。<br>解决办法：</p>
 <ul>
 <li>添加 <code>submodule</code>的方式，将主题作为submodule提交到你的git repository</li>
 <li>删除主题文件夹下的<code>.git</code>文件夹。如果这时候还不能提交，可以新建个文件夹，随便命名，将主题文件夹内的东西复制到新建的文件夹。再通过<code>git add</code>提交就可以了。</li>
@@ -229,7 +229,7 @@
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Hexo博客搭建教程（三）：Hexo优化与个性化
+          Hexo博客搭建教程（四）：Hexo优化与个性化
         
       </div>
     </a>

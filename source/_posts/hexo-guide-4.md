@@ -1,5 +1,5 @@
 ---
-title: Hexo博客搭建教程（三）：Hexo优化与个性化
+title: Hexo博客搭建教程（四）：Hexo优化与个性化
 date: 2016-02-23 22:24:11
 tags: Hexo
 ---
