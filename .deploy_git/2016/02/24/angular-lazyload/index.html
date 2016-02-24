@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>AngularJS动态加载模块和依赖 | Superman的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于AngularJS是单页面应用框架，在正常的情况下，会在访问页面的时候将所有的CSS、JavaScript文件都加载进来。文件不多的时候，页面启动速度倒不会影响太多。但是一旦文件数太多或者加载的第三方库比较大的时候，就会影响页面启动速度。因此对于应用规模大、文件数比较多或者加载的第三方库比较大的时候，采用动态加载JS或者动态加载模块会极大提升页面的启动速度。本文将介绍如何利用ocLazyLoa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS动态加载模块和依赖">
+<meta property="og:url" content="http://yoursite.com/2016/02/24/angular-lazyload/index.html">
+<meta property="og:site_name" content="Superman的博客">
+<meta property="og:description" content="由于AngularJS是单页面应用框架，在正常的情况下，会在访问页面的时候将所有的CSS、JavaScript文件都加载进来。文件不多的时候，页面启动速度倒不会影响太多。但是一旦文件数太多或者加载的第三方库比较大的时候，就会影响页面启动速度。因此对于应用规模大、文件数比较多或者加载的第三方库比较大的时候，采用动态加载JS或者动态加载模块会极大提升页面的启动速度。本文将介绍如何利用ocLazyLoa">
+<meta property="og:updated_time" content="2016-02-24T14:47:59.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS动态加载模块和依赖">
+<meta name="twitter:description" content="由于AngularJS是单页面应用框架，在正常的情况下，会在访问页面的时候将所有的CSS、JavaScript文件都加载进来。文件不多的时候，页面启动速度倒不会影响太多。但是一旦文件数太多或者加载的第三方库比较大的时候，就会影响页面启动速度。因此对于应用规模大、文件数比较多或者加载的第三方库比较大的时候，采用动态加载JS或者动态加载模块会极大提升页面的启动速度。本文将介绍如何利用ocLazyLoa">
+  
+    <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Superman</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">超人不会飞</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Superman</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Superman</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">超人不会飞</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-angular-lazyload" class="article article-type-post" itemscope itemprop="blogPost">
+  
+        <div class="article-meta">
+        <a href="/2016/02/24/angular-lazyload/" class="article-date">
+  	<time datetime="2016-02-24T14:23:54.000Z" itemprop="datePublished">Feb 24</time>
+</a>
+        </div>
+      
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AngularJS动态加载模块和依赖
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态加载/">动态加载</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于AngularJS是单页面应用框架，在正常的情况下，会在访问页面的时候将所有的CSS、JavaScript文件都加载进来。文件不多的时候，页面启动速度倒不会影响太多。但是一旦文件数太多或者加载的第三方库比较大的时候，就会影响页面启动速度。因此对于应用规模大、文件数比较多或者加载的第三方库比较大的时候，采用动态加载JS或者动态加载模块会极大提升页面的启动速度。本文将介绍如何利用ocLazyLoad实现动态加载。<br><a id="more"></a><br>AngularJS动态加载依赖第三方库：<a href="https://oclazyload.readme.io/docs" target="_blank" rel="external">ocLazyLoad</a>。ocLazyLoad是一个第三方库，支持AngularJS动态加载<code>module</code>、<code>service</code>、<code>directive</code>以及静态文件。</p>
+<h3 id="安装ocLazyLoad"><a href="#安装ocLazyLoad" class="headerlink" title="安装ocLazyLoad"></a>安装ocLazyLoad</h3><p>可通过npm或者bower进行安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install oclazyload</span><br><span class="line">bower install oclazyload</span><br></pre></td></tr></table></figure></p>
+<h3 id="将ocLazyLoad-module-添加到你的应用中"><a href="#将ocLazyLoad-module-添加到你的应用中" class="headerlink" title="将ocLazyLoad module 添加到你的应用中"></a>将<code>ocLazyLoad</code> module 添加到你的应用中</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'myApp'</span>,[<span class="string">'oc.lazyLoad'</span>]);</span><br></pre></td></tr></table></figure>
+<h3 id="配置-ocLazyLoad"><a href="#配置-ocLazyLoad" class="headerlink" title="配置 ocLazyLoad"></a>配置 <code>ocLazyLoad</code></h3><p>你可以在 <code>config</code>函数中配置 <code>$ocLazyLoadProvider</code>,配置文件如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.config([<span class="string">'$ocLazyLoadProvider'</span>, <span class="keyword">function</span>(<span class="variable">$ocLazyLoadProvider</span>)&#123;</span><br><span class="line">    <span class="variable">$ocLazyLoadProvider</span>.config(&#123;</span><br><span class="line">        debug: <span class="literal">true</span>,</span><br><span class="line">        events: <span class="literal">true</span>,</span><br><span class="line">        modules: [</span><br><span class="line">            &#123;</span><br><span class="line">                name: <span class="string">'TestModule'</span>,</span><br><span class="line">                files: [<span class="string">'test.js'</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>debug: 用来开启debug模式。布尔值，默认是false。当开启debug模式时，$ocLazyLoad会打印出所有的错误到console控制台上。</li>
+<li>events：当你动态加载了module的时候，$ocLazyLoad会广播相应的事件。布尔值，默认为false。</li>
+<li>modules：用于定义你需要动态加载的模块。定义每个模块的名字需要唯一。<br>modules必须要用<strong>数组</strong>的形式，其中files也必须以<strong>数组</strong>的形式存在，哪怕只需要加载一个文件</li>
+</ul>
+<h3 id="在路由当中加载module"><a href="#在路由当中加载module" class="headerlink" title="在路由当中加载module"></a>在路由当中加载module</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.config([<span class="string">'$routeProvider'</span>, <span class="keyword">function</span>(<span class="variable">$routeProvider</span>) &#123;</span><br><span class="line">    <span class="variable">$routeProvider</span>.otherwise(<span class="string">'/index'</span>);</span><br><span class="line">    <span class="variable">$routeProvider</span>.when(<span class="string">'/index'</span>, &#123;</span><br><span class="line">        templateUrl: <span class="string">'index.html'</span>,</span><br><span class="line">        controller: <span class="string">'IndexController'</span>,</span><br><span class="line">        resolve: &#123; //  resolve 里的属性如果返回的是 promise对象，那么resolve将会在view加载之前执行</span><br><span class="line">            loadMyCtrl: [<span class="string">'$ocLazyLoad'</span>, <span class="keyword">function</span>(<span class="variable">$ocLazyLoad</span>) &#123;</span><br><span class="line">                // 在这里可以延迟加载任何文件或者刚才预定义的modules</span><br><span class="line">                <span class="built_in">return</span> <span class="variable">$ocLazyLoad</span>.load(<span class="string">'TestModule'</span>); //加载刚才定义的TestModule</span><br><span class="line">                /*<span class="built_in">return</span> <span class="variable">$ocLazyLoad</span>.load([   // 如果要加载多个module，需要写成数组的形式</span><br><span class="line">                    <span class="string">'TestModule'</span>,</span><br><span class="line">                    <span class="string">'MainModule'</span></span><br><span class="line">                    ]);*/</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p>resolve设置的属性可以被注入到Controller当中。如果resolve返回的是promise对象的话，那么它们将在控制器加载以及$routeChangeSuccess被触发之前执行。<br><strong>$ocLazyLoad就是利用这个原理hack，进行动态加载</strong>。<br><code>resolve</code>的值可以是：</p>
+<ul>
+<li>key，the value of key 是会被注入到Controller的依赖的名字；</li>
+<li>factory，即可以是一个service的名字，也可以是一个返回值，它是会被注入到控制器中的函<br>数或可以被resolve的promise对象。</li>
+</ul>
+<p>通过这样的配置，就可以实现了AngularJS动态加载模块和依赖。但是$ocLazyLoad提供的功能更加丰富，不止动态加载模块和依赖，还能动态加载service，diretive等。更多的功能，可以访问<a href="https://oclazyload.readme.io" target="_blank" rel="external">$ocLazyLoad官网</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/02/23/hexo-guide-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客搭建教程（四）：Hexo优化与个性化</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="angular-lazyload" data-title="AngularJS动态加载模块和依赖" data-url="http://yoursite.com/2016/02/24/angular-lazyload/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"superman66"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Superman
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

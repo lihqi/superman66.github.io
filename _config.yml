@@ -7,7 +7,8 @@ title: Superman的博客 #站定的名称
 subtitle: 超人不会飞 #站点的副标题
 description: 超人前端学习博客 #站点的描述
 author: Superman 
-email: supermanchc@gmail.com
+email: 673318522@qq.com
+keywords: "前端,js,jquery,javascript,html5,开发者,程序猿,html,css,css3"
 language: zh-Hans # 语言 使用中文需要使用zh-Hans
 timezone:  #默认操作系统的时间
 
@@ -60,8 +61,9 @@ tag: 1
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
-time_format: HH:mm:ss
+
+date_format: MMM D
+time_format: H:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination

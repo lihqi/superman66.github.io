@@ -32,3 +32,14 @@ google_analytics: ''
 <% _partial/cnzz_tongji.ejs%>
 ```
 添加后便可以去[CNZZ数据专家](http://www.cnzz.com/)查看博客的访问数据统计了。
+
+# 添加多说评论功能
+##登录多说，获取key，并将key添加到配置文件中
+如下图：箭头所指的就是你的多说的key
+![](http://7xr6yj.com1.z0.glb.clouddn.com/hexo_duoshuo_example.png)
+将你的域名填写到`themes/yilia/_config.yml`中
+```
+#是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo-key
+#若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
+duoshuo: your-key
+```
