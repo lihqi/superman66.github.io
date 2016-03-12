@@ -3,7 +3,7 @@ title: 关于AngularJS的一些坑
 date: 2016-02-29 21:45:39
 tags: AngularJS
 ---
-本文是搜集学习AngularJS和开发中收集的一些坑。
+本文是搜集学习AngularJS和开发中收集的一些坑。持续更新。
 <!-- more -->
 ## 1、select第一行出现空白
 在使用带有angular数据绑定功能的HTML SELECT 元素时，如果不指定default value的话，第一个option会出现空白，如下图：

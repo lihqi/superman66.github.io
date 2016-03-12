@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>关于AngularJS的一些坑 | Superman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文是搜集学习AngularJS和开发中收集的一些坑。">
+  <meta name="description" content="本文是搜集学习AngularJS和开发中收集的一些坑。持续更新。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于AngularJS的一些坑">
 <meta property="og:url" content="http://yoursite.com/2016/02/29/angular-collect/index.html">
 <meta property="og:site_name" content="Superman的博客">
-<meta property="og:description" content="本文是搜集学习AngularJS和开发中收集的一些坑。">
-<meta property="og:updated_time" content="2016-02-29T13:58:32.143Z">
+<meta property="og:description" content="本文是搜集学习AngularJS和开发中收集的一些坑。持续更新。">
+<meta property="og:updated_time" content="2016-03-12T14:09:01.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于AngularJS的一些坑">
-<meta name="twitter:description" content="本文是搜集学习AngularJS和开发中收集的一些坑。">
+<meta name="twitter:description" content="本文是搜集学习AngularJS和开发中收集的一些坑。持续更新。">
   
     <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
   
@@ -106,7 +106,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 15px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/Javascript学习笔记/" style="font-size: 10px;">Javascript学习笔记</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 15px;">面向对象</a>
+						<a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JavaScript学习笔记/" style="font-size: 10px;">JavaScript学习笔记</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 15px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/JavaSript学习笔记/" style="font-size: 10px;">JavaSript学习笔记</a> <a href="/tags/rem布局/" style="font-size: 10px;">rem布局</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 15px;">面向对象</a>
 					</div>
 				</section>
 				
@@ -203,7 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文是搜集学习AngularJS和开发中收集的一些坑。<br><a id="more"></a></p>
+        <p>本文是搜集学习AngularJS和开发中收集的一些坑。持续更新。<br><a id="more"></a></p>
 <h2 id="1、select第一行出现空白"><a href="#1、select第一行出现空白" class="headerlink" title="1、select第一行出现空白"></a>1、select第一行出现空白</h2><p>在使用带有angular数据绑定功能的HTML SELECT 元素时，如果不指定default value的话，第一个option会出现空白，如下图：</p>
 <p>解决办法：<br><code>为select添加 一个 默认的option</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select ng-model=<span class="string">"myColor"</span> ng-options=<span class="string">"d.id for d in data"</span>&gt;</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="title">option</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
 <h2 id="2、AngularJS在IE的XHR请求存在Bug。"><a href="#2、AngularJS在IE的XHR请求存在Bug。" class="headerlink" title="2、AngularJS在IE的XHR请求存在Bug。"></a>2、AngularJS在IE的XHR请求存在Bug。</h2><p>IE只会在第一次才会从服务器中去请求XHR数据，之后的XHR请求都是从缓存中取。<br>解决办法：禁用IE对ajax的缓存<br><a href="http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http" target="_blank" rel="external">http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http</a><br>具体代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">myModule.config([<span class="string">'$httpProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$httpProvider</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//initialize get if not there</span></span><br><span class="line">    <span class="keyword">if</span> (!$httpProvider.defaults.headers.get) &#123;</span><br><span class="line">        $httpProvider.defaults.headers.get = &#123;&#125;;  </span><br><span class="line">    &#125;  </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Answer edited to include suggestions from comments</span></span><br><span class="line">    <span class="comment">// because previous version of code introduced browser-related errors</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">//disable IE ajax request caching</span></span><br><span class="line">    $httpProvider.defaults.headers.get[<span class="string">'If-Modified-Since'</span>] = <span class="string">'Mon, 26 Jul 1997 05:00:00 GMT'</span>;</span><br><span class="line">    <span class="comment">// extra</span></span><br><span class="line">    $httpProvider.defaults.headers.get[<span class="string">'Cache-Control'</span>] = <span class="string">'no-cache'</span>;</span><br><span class="line">    $httpProvider.defaults.headers.get[<span class="string">'Pragma'</span>] = <span class="string">'no-cache'</span>;&#125;]);</span><br></pre></td></tr></table></figure></p>

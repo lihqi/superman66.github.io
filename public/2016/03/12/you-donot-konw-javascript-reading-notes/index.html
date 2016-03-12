@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>【你不知道的JavasSript(上)读书笔记】第一章：作用域 | Superman的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【你不知道的JavasSript(上)读书笔记】第一章：作用域">
+<meta property="og:url" content="http://yoursite.com/2016/03/12/you-donot-konw-javascript-reading-notes/index.html">
+<meta property="og:site_name" content="Superman的博客">
+<meta property="og:description" content="该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。">
+<meta property="og:image" content="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_JavaScript%E5%8F%98%E9%87%8F%E7%BC%96%E8%AF%91.png">
+<meta property="og:updated_time" content="2016-03-12T15:50:56.375Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【你不知道的JavasSript(上)读书笔记】第一章：作用域">
+<meta name="twitter:description" content="该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。">
+  
+    <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Superman</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">超人不会飞</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JavaScript学习笔记/" style="font-size: 10px;">JavaScript学习笔记</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 15px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/JavaSript学习笔记/" style="font-size: 10px;">JavaSript学习笔记</a> <a href="/tags/rem布局/" style="font-size: 10px;">rem布局</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 15px;">面向对象</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Superman</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Superman</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">超人不会飞</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-you-donot-konw-javascript-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  
+        <div class="article-meta">
+        <a href="/2016/03/12/you-donot-konw-javascript-reading-notes/" class="article-date">
+  	<time datetime="2016-03-12T14:11:54.000Z" itemprop="datePublished">Mar 12</time>
+</a>
+        </div>
+      
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【你不知道的JavasSript(上)读书笔记】第一章：作用域
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaSript学习笔记/">JavaSript学习笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。<br><a id="more"></a></p>
+<h1 id="一、JavaScript编译原理"><a href="#一、JavaScript编译原理" class="headerlink" title="一、JavaScript编译原理"></a>一、JavaScript编译原理</h1><p>传统的语言编译一般经历三个过程：</p>
+<ul>
+<li>分词/词法分析</li>
+<li>解析/语法分析</li>
+<li>代码生成<br>而JavaScript引擎则要复杂得多了。简单来说就是任何JavaScript代码在执行前都要进行<strong>编译</strong>（通常在代码执行前）。<h1 id="二、理解作用域"><a href="#二、理解作用域" class="headerlink" title="二、理解作用域"></a>二、理解作用域</h1>要理解作用域之前需要了解下什么是作用域，它有什么作用？同时还需要了解JavaScript引擎和编译器是什么？</li>
+<li>引擎<br>  从头到尾负责整个JavaScript程序的编译及执行过程。</li>
+<li>编译器<br>  负责语法分析及代码生成</li>
+<li>作用域<br> 负责收集并维护由所有声明的标识符（及变量）组成的一系列<strong>查询</strong>，并实施一套<strong>规则</strong>，确定当前执行的代码对这些标识符的<strong>访问权限</strong>（简而言之就是规定了谁有权限访问哪些变量）。<br>现在以<code>var a = 2</code>这个简单的变量命名过程来分析，JavaScript引擎会将其看做两步<code>var a;</code>和<code>a = 2</code>两步进行。详见下面的流程图<br><img src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_JavaScript%E5%8F%98%E9%87%8F%E7%BC%96%E8%AF%91.png" alt="JavaScript变量编译流程图"><br>总结：变量的赋值操作会执行两个动作，首先编译器会在当前作用域声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域查找该变量，如果能够找到便对它进行赋值。<h3 id="关于变量查找的类型"><a href="#关于变量查找的类型" class="headerlink" title="关于变量查找的类型"></a>关于变量查找的类型</h3>编译器在编译过程，会对变量进行查询。一种是LHS查询，另外一种查找的类型是RHS。</li>
+<li>LHS 当变量出现在赋值操作的左侧时进行LHS查询 （赋值操作的目标是谁）</li>
+<li>RHS 当变量出现在赋值操作的非左侧时，进行RHS查询（谁是赋值操作的源头，取到这个变量的源值）<br>试着找出下面的例子各有多少个LHS和RHS<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b = a;</span><br><span class="line">    <span class="keyword">return</span> b+a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> c = foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>答案在结尾</em></p>
+<h1 id="三、作用域嵌套"><a href="#三、作用域嵌套" class="headerlink" title="三、作用域嵌套"></a>三、作用域嵌套</h1><p>所谓作用域嵌套就是当一个块或函数嵌套在另外一个块或函数中，就发生了作用域的嵌套。因此在当前作用域无法找到该变量时，就会往外层嵌套作用域中继续寻找，直到找到该变量或者抵达最外层的作用域（也就是全局作用域）为止。</p>
+<h1 id="四、异常"><a href="#四、异常" class="headerlink" title="四、异常"></a>四、异常</h1><p>前面提到的LHS和RHS两种查询，如何区分它们是非常重要的一件事。<br>因为在变量尚未声明之前，二者的查询行为是不一样的。如下面例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(b+a);</span><br><span class="line">    b = a;</span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
+<p>想一下，输出的值应该是什么？<br>答案：<code>Uncaught ReferenceError: b is not defined(…)</code>，结果会报错。因为<code>b</code>并没有被定义，因此引擎就抛出<code>ReferenceError</code>异常。<br>为什么会导致这样的结果呢？这是因为在对变量<code>b</code>进行RHS查询的时候，如果在作用域中没有找到该变量，也就是说明这是一个“未声明”的变量，这时候引擎就会抛出<code>ReferenceError</code>异常。<br>相比较之下，如果是对变量<code>b</code>进行LHS查询的时候，如果在全局作用域也没有找到该变量的话，<strong>全局作用域便会自动创建该变量</strong>，前提是在非严格模式下。<strong>这就是LHS和RHS的两种查询类型的区别</strong>。<br>同样，在JavaScript中，也有两种异常类型。一种就是刚刚说到的<code>ReferenceError</code>，另外一种则是<code>TypeError</code>。那这二者有什么区别吗？</p>
+<ul>
+<li><code>ReferenceError</code>指的是同作用域判别失败相关，简单说就是在作用域找不到该变量。</li>
+<li><code>TypeError</code>指的是作用域判别成功，但对结果的操作是非法或者不合理的。简单说就是在作用域找到该变量，但是该变量的值不符合。</li>
+</ul>
+<p><strong>前面问题的答案</strong><br>LHS</p>
+<ul>
+<li><code>c=</code></li>
+<li><code>a=2</code></li>
+<li><code>b=</code>。<br>RHS</li>
+<li><code>foo(2)</code></li>
+<li><code>=a</code></li>
+<li><code>a</code>（return的时候要去查找a的值）   </li>
+<li><code>b</code>（return的时候要去查找b的值）</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/12/project-summary-uular/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">优乐健身移动端页面制作总结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="you-donot-konw-javascript-reading-notes" data-title="【你不知道的JavasSript(上)读书笔记】第一章：作用域" data-url="http://yoursite.com/2016/03/12/you-donot-konw-javascript-reading-notes/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"superman66"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Superman
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

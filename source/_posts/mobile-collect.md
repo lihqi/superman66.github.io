@@ -3,7 +3,7 @@ title: 收集移动端代码
 date: 2016-02-29 21:44:05
 tags: 移动端
 ---
-收集了移动端的一些代码
+收集了移动端的一些代码，持续更新。
 <!-- more -->
 ## 1、input输入框更改placeholder样式
 ```cpp
@@ -35,4 +35,8 @@ input:: -webkit-inner-spin-button{
 input[type="numer"]{
     -moz-appearance: textfield;
 }
+```
+### 4、手机网页中点击链接自动拨打电话
+```
+<a href=”tel://110 ”>电话</a>
 ```
