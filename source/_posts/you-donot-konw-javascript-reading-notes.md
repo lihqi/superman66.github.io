@@ -1,9 +1,9 @@
 ---
-title: 【你不知道的JavasSript(上)读书笔记】第一章：作用域
+title: 【你不知道的JavasSript(上)读书笔记】第1章：作用域
 date: 2016-03-12 22:11:54
 tags:
 - JavaScript
-- JavaSript学习笔记
+- JavaScript学习笔记
 ---
 该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。
 <!-- more -->

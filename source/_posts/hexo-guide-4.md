@@ -29,13 +29,13 @@ google_analytics: ''
 ## 将`cnzz_tongji.ejs`添加到`head.ejs`
 打开位于`themes/yilia/layout/_partial/`文件夹下的`head.ejs`，在`</head>`之前添加以下代码，将统计代码添加到页面中
 ```ejs
-<% _partial/cnzz_tongji.ejs%>
+<%- partial/cnzz_tongji%>
 ```
 添加后便可以去[CNZZ数据专家](http://www.cnzz.com/)查看博客的访问数据统计了。
 
 # 添加多说评论功能
 ##登录多说，获取key，并将key添加到配置文件中
-如下图：箭头所指的就是你的多说的key
+如下图：箭头所指的就是你的多说的key(注意:后面的.duoshuo.com不需要)
 ![](http://7xr6yj.com1.z0.glb.clouddn.com/hexo_duoshuo_example.png)
 将你的域名填写到`themes/yilia/_config.yml`中
 ```
