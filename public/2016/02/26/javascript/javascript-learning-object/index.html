@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="baidu-site-verification" content="K0rl5m0huo" />
+  <title>【JavaScript高程学习笔记】面向对象的程序设计之对象 | Superman的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本篇文章是学习《Javascript高级程序设计》中关于对象这一部分的学习笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【JavaScript高程学习笔记】面向对象的程序设计之对象">
+<meta property="og:url" content="http://yoursite.com/2016/02/26/javascript/javascript-learning-object/index.html">
+<meta property="og:site_name" content="Superman的博客">
+<meta property="og:description" content="本篇文章是学习《Javascript高级程序设计》中关于对象这一部分的学习笔记。">
+<meta property="og:updated_time" content="2016-03-05T17:29:59.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【JavaScript高程学习笔记】面向对象的程序设计之对象">
+<meta name="twitter:description" content="本篇文章是学习《Javascript高级程序设计》中关于对象这一部分的学习笔记。">
+  
+    <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Superman</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="http://66superman.lofter.com/">相册</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Git规范/" style="font-size: 10px;">Git规范</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/JavaScript学习笔记/" style="font-size: 17.5px;">JavaScript学习笔记</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 12.5px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/rem布局/" style="font-size: 10px;">rem布局</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/机械键盘/" style="font-size: 10px;">机械键盘</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/读书笔记/" style="font-size: 12.5px;">读书笔记</a> <a href="/tags/读后感/" style="font-size: 10px;">读后感</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 12.5px;">面向对象</a> <a href="/tags/面试总结/" style="font-size: 10px;">面试总结</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Superman</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Superman</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="http://66superman.lofter.com/">相册</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-javascript/javascript-learning-object" class="article article-type-post" itemscope itemprop="blogPost">
+  
+        <div class="article-meta">
+        <a href="/2016/02/26/javascript/javascript-learning-object/" class="article-date">
+  	<time datetime="2016-02-25T16:45:53.000Z" itemprop="datePublished">Feb 26</time>
+</a>
+        </div>
+      
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【JavaScript高程学习笔记】面向对象的程序设计之对象
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript高级程序设计学习笔记/">JavaScript高级程序设计学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象/">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面向对象/">面向对象</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇文章是学习《Javascript高级程序设计》中关于对象这一部分的学习笔记。<br><a id="more"></a></p>
+<h1 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h1><ul>
+<li>理解并创建对象</li>
+<li>理解继承<h1 id="一、理解对象"><a href="#一、理解对象" class="headerlink" title="一、理解对象"></a>一、理解对象</h1>对象本质是一组散列表由key-value值组成。而value可以是数据或者函数。可以使用<strong>对象字面量</strong>方法创建对象。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'superman'</span>,</span><br><span class="line">    age: <span class="number">29</span>,</span><br><span class="line">    sayName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>对象优化建议：</em></p>
+<ul>
+<li><strong>不使用delete操作符，如需要删除属性，直接对属性进行<code>null</code>赋值。因为在FF和chrome中，<code>null</code>赋值会快99%。</strong></li>
+<li><strong>不要添加属性。定义好对象后，不要随便给对象添加属性，而是一开始就应该定义好对象的结构。这样的运行速度会快很多（FF快100%，Chrome快89%）。</strong></li>
+</ul>
+<h1 id="二、创建对象"><a href="#二、创建对象" class="headerlink" title="二、创建对象"></a>二、创建对象</h1><p>创建对象有以下几种模式：</p>
+<ul>
+<li>工厂模式</li>
+<li>构造函数模式</li>
+<li>原型模式</li>
+<li>组合使用构造函数模式和原型模式</li>
+<li>动态原型模式</li>
+<li>寄生构造函数模式</li>
+<li>稳妥构造函数模式<br><strong>要求能熟练掌握每种模式的写法，以及他们之间的区别。</strong><h2 id="1、工厂模式"><a href="#1、工厂模式" class="headerlink" title="1、工厂模式"></a>1、工厂模式</h2>工厂模式是软件工厂领域一种广为人知的设计模式。特点是抽象了创建具体对象的过程。<strong>工厂模式创建函数的例子</strong>：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//工厂模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">//需要显式创建对象，并在最后返回该对象</span></span><br><span class="line">    obj.name = name;</span><br><span class="line">    obj.age = age;</span><br><span class="line">    obj.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> obj; <span class="comment">//返回该对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = createPerson(); <span class="comment">//实例化</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>工厂模式解决了创建多个相似对象的问题，却没有解决对象识别的问题(即怎么知道一个对象的类型)。因此出现了构造函数模式。</p>
+<h2 id="2、构造函数模式"><a href="#2、构造函数模式" class="headerlink" title="2、构造函数模式"></a>2、构造函数模式</h2><p>就好比Object和Array这种原生的构造函数，可以使用构造函数来创建对象。因此也可以创建自定义的构造函数，从而定义自定义对象类型的属性和方法。<strong>构造函数模式的例子</strong>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构造函数模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实例化</span></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<p><em>构造函数与工厂模式的区别</em></p>
+<ul>
+<li>无需显式创建对象；</li>
+<li>没有return语句 ；</li>
+<li>直接将属性和方法赋给了this对象。</li>
+</ul>
+<p><em>使用 <code>new</code>调用构造函数会经历以下四个步骤</em>：</p>
+<ul>
+<li>创建一个新对象；</li>
+<li>将构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li>
+<li>执行构造函数中的代码（为这个新对象添加属性）</li>
+<li>返回新对象</li>
+</ul>
+<p><em>构造函数存在的问题</em><br>使用构造函数时，每个方法都要在每个实例上重新创建一遍。这样会导致创建了多个完成相同任务的function。没有这个必要。因此有了原型模式来解决构造函数所产生的这些问题。</p>
+<h2 id="3、原型模式"><a href="#3、原型模式" class="headerlink" title="3、原型模式"></a>3、原型模式</h2><p>我们创建的每个函数都有一个 <code>prototype(原型)</code>属性，这个属性是<em>一个指针，指向一个对象</em>，而这个对象的用途是包含可以由特定类型的<em>所有实例共享的属性和方法</em>。因此为了解决构造函数模式存在的问题，我们可以将通用的方法添加到prototype中，如下面的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原型模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">     name : <span class="string">'superman'</span>,</span><br><span class="line">     age : <span class="number">29</span>,</span><br><span class="line">     sayName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;     </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(person1.sayName == person2.sayName); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>通过原型模式创建的对象，由于<code>sayName()</code>函数是加到<code>Person.prototype</code>上，所有的Person对象实例的<code>sayName()</code>都是共享的，因此都属于同一个实例。<br><em>原型对象存在的问题</em>：<br>1、它省略了为构造函数传递初始化参数这一环节，结果所有实例在默认情况下都取得相同的值。<br>2、最大的问题是由于其共享的本性所导致的。由于原型中的属性都是被实例共享的，在属性为基本值的时候倒不会产生太大的问题。但如果属性是引用类型的时候，问题就凸显了。以下面的例子说明：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">funtion Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: Person,</span><br><span class="line">    name: <span class="string">'superman'</span>,</span><br><span class="line">    friends: [<span class="string">'superman'</span>, <span class="string">'spiderman'</span>],</span><br><span class="line">    sayName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.friends.push(<span class="string">'Van'</span>); <span class="comment">//由于friends方法被所有实例共享，因此任何一个实例操作这个方法，都会影响到所有的实例调用这个方法。</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.friends);     <span class="comment">//superman, spiderman, Van</span></span><br><span class="line"><span class="built_in">console</span>.log(person2.friends);     <span class="comment">//superman, spiderman, Van</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.friends === person2.friends);  <span class="comment">// true;</span></span><br></pre></td></tr></table></figure></p>
+<p>这就是原型模式最大的问题。任何实例对原型上的方法进行操作都会影响的到所有实例对该方法的调用。<br>因此引入了下面的这种模式：<strong>组合使用构造函数模式和原型模式</strong></p>
+<h2 id="4、组合使用构造函数模式和原型模式"><a href="#4、组合使用构造函数模式和原型模式" class="headerlink" title="4、组合使用构造函数模式和原型模式"></a>4、组合使用构造函数模式和原型模式</h2><p>这种模式是创建自定义类型的最常见方式。构造函数用于定义实例属性，原型模式用于定义方法和共享的属性。这样模式的优点便是，每个实例都会有自己的一份<strong>实例属性的副本</strong>，但同时又<strong>共享着对方法的引用</strong>，<strong>最大限度地节省了内存</strong>。同时这种模式还支持向构造函数传递参数，可谓急两种模式之长。如下面例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">funtion Person(name, age)&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.friends = [<span class="string">"a"</span>, <span class="string">"b"</span>];</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: person,</span><br><span class="line">    sayName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种构造函数和原型混成的模式，是目前使用最广泛的一种创建自定义类型的方法。</p>
+<h2 id="5、动态原型模式"><a href="#5、动态原型模式" class="headerlink" title="5、动态原型模式"></a>5、动态原型模式</h2><p>所谓动态原型模式就是<strong>把所有的信息都封装在构造函数中，而通过在构造函数中初始化原型</strong>，又保持了同时使用构造函数和原型的优点。如下面例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName !=  <span class="string">"function"</span>)&#123; <span class="comment">//通过判断某个应该存在的方法是否有效，来决定是否需要初始化原型。</span></span><br><span class="line">        Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> friend = <span class="keyword">new</span> Person(<span class="string">'Nicholas'</span>, <span class="number">29</span>);</span><br><span class="line">friend.sayName();          <span class="comment">//Nicholas</span></span><br></pre></td></tr></table></figure></p>
+<p>动态原型模式可谓非常完美！仅在方法不存在时，才会将它添加到原型中。</p>
+<h2 id="6、寄生构造函数模式"><a href="#6、寄生构造函数模式" class="headerlink" title="6、寄生构造函数模式"></a>6、寄生构造函数模式</h2><p>写法与工厂模式一模一样，区别是在创建实例的时候，是通过<code>new</code>来创建，与构造函数的实例对象方法一致。这种模式可以在特殊情况下用来为对象创建构造函数。如下面例子：我们可以创建一个具有额外特殊方法的特殊数组。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">functio SpecialArray()&#123;</span><br><span class="line">    <span class="comment">//创建数组</span></span><br><span class="line">    <span class="keyword">var</span> values = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    <span class="comment">// 添加值</span></span><br><span class="line">    values.push.apply(values, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">//添加方法</span></span><br><span class="line">    values,toPipedString = funtion()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.join(<span class="string">"|"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> values;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> SpecialArray(<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"black"</span>);</span><br><span class="line">alert(colors,toPipedString());    <span class="comment">//"red|blue|green"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7、稳妥构造函数模式"><a href="#7、稳妥构造函数模式" class="headerlink" title="7、稳妥构造函数模式"></a>7、稳妥构造函数模式</h2><p>所谓稳妥对象，指的是没有公共属性，而且其方法也不引用this对象。<br>稳妥对象适用场景：一些安全环境或者在防止数据被其他应用篡改。如下面例子：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;   &#10;    //&#21019;&#24314;&#35201;&#36820;&#22238;&#23545;&#35937;&#10;    var o = new Object();&#10;    //&#23450;&#20041;&#31169;&#26377;&#21464;&#37327;&#21644;&#20989;&#25968;&#10;    o.sayName = function()&#123;&#10;        alert(name);    &#10;    &#125;&#10;    return o;&#10;&#125;&#10;&#10;var person = Person(); //&#19981;&#20351;&#29992;new&#26469;&#23454;&#20363;&#21270;&#23545;&#35937;&#65292;&#36319;&#24037;&#21378;&#27169;&#24335;&#19968;&#26679;&#10;friend.sayName();</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/29/mobile/mobile-collect/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          收集移动端代码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/24/angular/angular-lazyload/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AngularJS动态加载模块和依赖</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="javascript/javascript-learning-object" data-title="【JavaScript高程学习笔记】面向对象的程序设计之对象" data-url="http://yoursite.com/2016/02/26/javascript/javascript-learning-object/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"superman66"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Superman
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

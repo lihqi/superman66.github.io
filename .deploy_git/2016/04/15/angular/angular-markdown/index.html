@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="baidu-site-verification" content="K0rl5m0huo" />
+  <title>基于AngularJS的markdown编辑器 | Superman的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于AngularJS实现了一个在线markdown编辑器的功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于AngularJS的markdown编辑器">
+<meta property="og:url" content="http://yoursite.com/2016/04/15/angular/angular-markdown/index.html">
+<meta property="og:site_name" content="Superman的博客">
+<meta property="og:description" content="基于AngularJS实现了一个在线markdown编辑器的功能">
+<meta property="og:image" content="http://7xr6yj.com1.z0.glb.clouddn.com/angular-markdown-1.png">
+<meta property="og:image" content="http://7xr6yj.com1.z0.glb.clouddn.com/angular.gif">
+<meta property="og:image" content="http://7xr6yj.com1.z0.glb.clouddn.com/angular-markdown.gif">
+<meta property="og:updated_time" content="2016-04-14T16:25:35.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于AngularJS的markdown编辑器">
+<meta name="twitter:description" content="基于AngularJS实现了一个在线markdown编辑器的功能">
+  
+    <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Superman</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="http://66superman.lofter.com/">相册</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Git规范/" style="font-size: 10px;">Git规范</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/JavaScript学习笔记/" style="font-size: 17.5px;">JavaScript学习笔记</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 12.5px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/rem布局/" style="font-size: 10px;">rem布局</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/机械键盘/" style="font-size: 10px;">机械键盘</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/读书笔记/" style="font-size: 12.5px;">读书笔记</a> <a href="/tags/读后感/" style="font-size: 10px;">读后感</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 12.5px;">面向对象</a> <a href="/tags/面试总结/" style="font-size: 10px;">面试总结</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Superman</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Superman</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="http://66superman.lofter.com/">相册</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-angular/angular-markdown" class="article article-type-post" itemscope itemprop="blogPost">
+  
+        <div class="article-meta">
+        <a href="/2016/04/15/angular/angular-markdown/" class="article-date">
+  	<time datetime="2016-04-14T16:08:41.000Z" itemprop="datePublished">Apr 15</time>
+</a>
+        </div>
+      
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于AngularJS的markdown编辑器
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>基于AngularJS实现了一个在线markdown编辑器的功能<br><a id="more"></a><br>由于这段时间已经是变成了markdown重度使用者了，因此就想着自己折腾一个markdown编辑器，发布在github pages上面。这样就可以实现了一个在线markdown编辑器。</p>
+<h1 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h1><ul>
+<li>AngularJS：这个就不用过多介绍了；</li>
+<li>marked.js（<a href="https://github.com/chjj/marked）：" target="_blank" rel="external">https://github.com/chjj/marked）：</a> 将markdown代码编译成HTML的插件；</li>
+<li>highlight.js：代码高亮插件<h1 id="实现的目标"><a href="#实现的目标" class="headerlink" title="实现的目标"></a>实现的目标</h1></li>
+<li>在线编辑markdown，实时生成预览</li>
+<li>实现语法高亮显示（未完成）</li>
+<li>实现黑色主题（未完成）</li>
+<li>实现下载markdown文件和HTML文件（未完成）</li>
+<li>gulp构建网站发布到git-pages<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1>编译markdown代码，我选择<code>marked.js</code>， 当然你也可以选择其他插件，也是一样能将markdown代码编译成HTML。<br>由于AngularJS双向绑定的机制，因此可以非常方便得实现了实时生成预览。话不多说，用代码来讲解整个过程。<h2 id="界面实现"><a href="#界面实现" class="headerlink" title="界面实现"></a>界面实现</h2>参照现有的在线markdown编辑器，大多数采用的都是左右分栏的布局，左边是编辑器，右边是预览区。因此我也采用了这样的布局模式。<br><img src="http://7xr6yj.com1.z0.glb.clouddn.com/angular-markdown-1.png" alt=""><br>此外，还需要对右边预览区添加必要的CSS样式，比如<code>h1</code>~<code>h6</code>元素样式的定义、代码样式<code>pre</code>  <code>code</code>的定义等。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">h1</span>, <span class="tag">h2</span>, <span class="tag">h3</span>, <span class="tag">h4</span>, <span class="tag">h5</span>, <span class="tag">h6</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'Old Standard TT'</span>, serif</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> bold</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="tag">pre</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">white-space</span>:<span class="value"> pre-wrap</span></span>; <span class="comment">/* css-3 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">white-space</span>:<span class="value"> -moz-pre-wrap</span></span>; <span class="comment">/* Mozilla, since 1999 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">white-space</span>:<span class="value"> -pre-wrap</span></span>; <span class="comment">/* Opera 4-6 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">white-space</span>:<span class="value"> -o-pre-wrap</span></span>; <span class="comment">/* Opera 7 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">word-wrap</span>:<span class="value"> break-word</span></span>; <span class="comment">/* Internet Explorer 5.5+ */</span></span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#f8f8f8</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#dfdfdf</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">1.5em</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">margin-bottom</span>:<span class="value"> <span class="number">1.5em</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.125rem</span> <span class="number">0.3125rem</span> <span class="number">0.0625rem</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">pre</span> <span class="tag">code</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> transparent</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="markdown实时预览"><a href="#markdown实时预览" class="headerlink" title="markdown实时预览"></a>markdown实时预览</h2><p>给左边的<code>textarea</code>绑定一个<code>ng-model</code>，这样就可以实时获取到输入的值，并且可以实时显示在右边的预览区。如下面代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-controller</span>=<span class="value">"EditorController as vm"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span>基于angular的markdown编辑器<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">textarea</span> <span class="attribute">id</span>=<span class="value">"editor"</span> <span class="attribute">ng-model</span>=<span class="value">"vm.editor"</span>&gt;</span><span class="tag">&lt;/<span class="title">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"preview"</span> &gt;</span>&#123;&#123;vm.editor&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就可以实现左边的编辑器和右边的预览区实时同步了。那么接下来我们还需要做的就是将预览区的markdown代码编译成HTML代码。由于需要实时监听左边的输入框，因此我们可以在预览区的变量中添加一个过滤器：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"preview"</span> &gt;</span>&#123;&#123;vm.editor  | render&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在过滤器<code>render</code>中，我们调用<code>marked.js</code>将输入的markdown代码转换为html代码。<code>marked.js</code>的使用也非常简单，<code>marked.js</code>会启用下面的默认配置（所以不需要你再手动配置）<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">marked.setOptions(&#123;&#10;  renderer: new marked.Renderer(),&#10;  gfm: true,&#10;  tables: true,&#10;  breaks: false,&#10;  pedantic: false,&#10;  sanitize: true,&#10;  smartLists: true,&#10;  smartypants: false&#10;&#125;);&#10;document.getElementById(&#39;content&#39;).innerHTML =&#10;      marked(&#39;# Marked in browser\n\nRendered by **marked**.&#39;);  //&#22312;&#27983;&#35272;&#22120;&#20013;&#21487;&#20197;&#36825;&#20040;&#20351;&#29992;</span><br></pre></td></tr></table></figure></p>
+<p>因此我们就可以这么在过滤器中调用<code>marked.js</code>的方法，如下面<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.filter(&#39;render&#39;, [ function () &#123;&#10;        return function (input) &#123;&#10;            if (input.length != 0) &#123;&#10;                input = marked(input);&#10;            &#125;&#10;            return input;&#10;        &#125;&#10;    &#125;])</span><br></pre></td></tr></table></figure></p>
+<p>那么到这里是不是就可以将markdown代码编译成HTML代码了呢？当然不是的。会出现下面的这种情况，显示出HTML代码：<br><img src="http://7xr6yj.com1.z0.glb.clouddn.com/angular.gif" alt=""><br>由于<code>marked</code>方法返回的是HTML代码，而在AngularJS中，出于安全考虑，会转义发现的任何HTML内容以阻止HTML注入攻击。因此如果要正常显示的话，需要对HTML进行处理。这样采用AngularJS自带的<code>$sce</code>服务：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.filter(<span class="string">'render'</span>, [<span class="string">'$sce'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$sce</span>) </span>&#123;    <span class="comment">//依赖注入$sce</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (input.length != <span class="number">0</span>) &#123;</span><br><span class="line">                input = marked(input);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> $sce.trustAsHtml(input);    <span class="comment">//返回值用trustAsHtml()处理</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;])</span><br></pre></td></tr></table></figure></p>
+<p>同时，HTML中也需要更改：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"preview"</span> <span class="attribute">ng-bind-html</span>=<span class="value">"vm.editor | render"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>    //使用指令ng-bind-html来绑定变量</span><br></pre></td></tr></table></figure></p>
+<p>到这里，一个markdown编辑器就打造完成了。来看看效果吧！<br><img src="http://7xr6yj.com1.z0.glb.clouddn.com/angular-markdown.gif" alt=""><br>也可以点击<a href="http://superman66.github.io/angular-markdown/app/#/editor" target="_blank" rel="external">在线演示</a>，查看效果。<br>项目github地址：<a href="https://github.com/superman66/angular-markdown" target="_blank" rel="external">https://github.com/superman66/angular-markdown</a></p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>实现起来比较简单，主要是利用了<code>marked.js</code>插件。</p>
+<h2 id="待优化"><a href="#待优化" class="headerlink" title="待优化"></a>待优化</h2><ul>
+<li>还需要添加代码高亮的优化</li>
+<li>支持以<code>md</code>格式和<code>html</code>格保存文件到本地</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/19/essays/article-review-insight/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          《如何培养技术洞见力》-读后感
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/09/git/git-standard/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git规范</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="angular/angular-markdown" data-title="基于AngularJS的markdown编辑器" data-url="http://yoursite.com/2016/04/15/angular/angular-markdown/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"superman66"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Superman
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
