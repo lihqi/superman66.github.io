@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="baidu-site-verification" content="K0rl5m0huo" />
+  <title>基于localStorage和AngularJS的markdown简易笔记本 | Superman的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于localStorage和AngularJS的markdown简易笔记本">
+<meta property="og:url" content="http://yoursite.com/2016/05/04/angular/angular-markdown-note/index.html">
+<meta property="og:site_name" content="Superman的博客">
+<meta property="og:description" content="这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。">
+<meta property="og:image" content="http://yoursite.com/images/angular-markdown-note.gif">
+<meta property="og:image" content="http://yoursite.com/images/angluar-markdown-note-1.png">
+<meta property="og:image" content="http://yoursite.com/images/angluar-markdown-note-2.png">
+<meta property="og:image" content="http://yoursite.com/images/angluar-markdown-note-3.png">
+<meta property="og:updated_time" content="2016-05-04T14:50:45.483Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于localStorage和AngularJS的markdown简易笔记本">
+<meta name="twitter:description" content="这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。">
+  
+    <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Superman</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/" class="">主页</a></li>
+				        
+							<li><a href="/archives" class="">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔/" class="">随笔</a></li>
+				        
+							<li><a href="http://66superman.lofter.com/" class="">相册</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AngularJS/" style="font-size: 17.5px;">AngularJS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Git规范/" style="font-size: 10px;">Git规范</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/JavaScript学习笔记/" style="font-size: 17.5px;">JavaScript学习笔记</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 12.5px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/rem布局/" style="font-size: 10px;">rem布局</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/机械键盘/" style="font-size: 10px;">机械键盘</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/读书笔记/" style="font-size: 12.5px;">读书笔记</a> <a href="/tags/读后感/" style="font-size: 10px;">读后感</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 12.5px;">面向对象</a> <a href="/tags/面试总结/" style="font-size: 10px;">面试总结</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Superman</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Superman</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="http://66superman.lofter.com/">相册</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-angular/angular-markdown-note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+        <div class="article-meta">
+        <a href="/2016/05/04/angular/angular-markdown-note/" class="article-date">
+  	<time datetime="2016-05-04T14:36:21.000Z" itemprop="datePublished">May 4</time>
+</a>
+        </div>
+      
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于localStorage和AngularJS的markdown简易笔记本
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。<br><a id="more"></a><br>在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。<br>上一篇基于AngularJS打造的markdown笔记本<a href="http://superman66.github.io/2016/04/15/angular/angular-markdown/" target="_blank" rel="external">点击这里查看</a><br>先来看效果图：<br><img src="/images/angular-markdown-note.gif" alt="angular"></p>
+<h1 id="已完成功能列表"><a href="#已完成功能列表" class="headerlink" title="已完成功能列表"></a>已完成功能列表</h1><ul>
+<li>添加和删除分类</li>
+<li>添加和删除笔记本</li>
+<li>笔记本编辑与保存</li>
+<li>支持全屏编辑</li>
+<li>笔记本可以添加多个标签、删除标签<h1 id="功能待完善列表"><a href="#功能待完善列表" class="headerlink" title="功能待完善列表"></a>功能待完善列表</h1></li>
+<li>支持分类和笔记本的右键菜单（菜单包括：重命名、删除、添加）</li>
+<li>支持多级分类</li>
+<li>支持移动端布局</li>
+</ul>
+<h1 id="知识点记录"><a href="#知识点记录" class="headerlink" title="知识点记录"></a>知识点记录</h1><h2 id="CSS布局"><a href="#CSS布局" class="headerlink" title="CSS布局"></a>CSS布局</h2><h5 id="1、左边两列固定宽度，右边一列宽度自适应。如下图所示"><a href="#1、左边两列固定宽度，右边一列宽度自适应。如下图所示" class="headerlink" title="1、左边两列固定宽度，右边一列宽度自适应。如下图所示"></a>1、左边两列固定宽度，右边一列宽度自适应。如下图所示</h5><p><img src="/images/angluar-markdown-note-1.png" alt="angular"><br>代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">       *<span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.sub</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.extra</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;	</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.main</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">500px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;	</span><br><span class="line">&#125;</span></span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span>&gt;</span>sub<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"extra"</span>&gt;</span>extra<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"main"</span>&gt;</span>main<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>左边两列通过float属性使其固定在左边。最右边一列设置padding值为左边两列的宽度和，同时设置宽度为100%。这样就可以实现了左边两列固定宽度，右边一列宽度自适应。</p>
+<h5 id="2、左右两列固定，中间一列自适应，如下图所示"><a href="#2、左右两列固定，中间一列自适应，如下图所示" class="headerlink" title="2、左右两列固定，中间一列自适应，如下图所示"></a>2、左右两列固定，中间一列自适应，如下图所示</h5><p><img src="/images/angluar-markdown-note-2.png" alt="angular"><br>代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">*<span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.sub</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.extra</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value"> right</span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#444</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;	</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.main</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#888</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;	</span><br><span class="line">&#125;</span></span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span>&gt;</span>sub<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"extra"</span>&gt;</span>extra<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"main"</span>&gt;</span>main<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>第二种布局html部分并没有改变，只对CSS进行了改变。去掉<code>.main</code>的padding-left属性值，<code>.extra</code>的float属性值由left改为right。</p>
+<h5 id="3、左边一列自适应，右边两列固定宽度。如下图所示"><a href="#3、左边一列自适应，右边两列固定宽度。如下图所示" class="headerlink" title="3、左边一列自适应，右边两列固定宽度。如下图所示"></a>3、左边一列自适应，右边两列固定宽度。如下图所示</h5><p><img src="/images/angluar-markdown-note-3.png" alt="angular"><br>代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">       *<span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.sub</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value"> right</span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.extra</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value"> right</span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;	</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.main</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">padding-right</span>:<span class="value"> <span class="number">500px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#eee</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ddd</span></span></span>;	</span><br><span class="line">&#125;</span></span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"sub"</span>&gt;</span>sub<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"extra"</span>&gt;</span>extra<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"main"</span>&gt;</span>main<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这种布局与第一种布局类似，HTML结构依然保持不变，只不过是<code>.sub</code>和<code>,extra</code>的float属性改为right，<code>.main</code>的padding值改为<code>padding-right:500px</code></p>
+<h2 id="基于localStorage存储数据"><a href="#基于localStorage存储数据" class="headerlink" title="基于localStorage存储数据"></a>基于localStorage存储数据</h2><p>由于没有接入数据库，因此采用的是localStorage本地存储。localStorage是基于key-value的JSON格式进行存储，类似于NoSql数据库。为了模拟后台的增删改查API，写了一个data-Service来封装增删改查的方法。<br>在写Service的过程中，思维一直受到之前关系型数据库的影响，总是想采用关系型数据库那套增删改查的方法来实现。对比一下，有几个差异点：</p>
+<ul>
+<li>自增长id<br>  之前在使用MySQL数据库的时候，每条记录会有一个自增长id的，而且这个自增长id是不可逆的，删除了这条记录后，这个id也不会被回收。后续再添加的记录的id是在之前id的基础上递增的。而在localStorage中，则没有自增长id的机制。因此必须模拟实现自增长id。实现机制：每次要添加数据的时候，先去遍历该列表，获取该列表的长度length。如果length不等于的话，则id=length+1。如果length=0，id=1；</li>
+<li><p>读取数据<br>  基于JSON的存储，在存储列表数据时一般采用数组，而数组里面再包含一个个对象来存储数据。如果需要根据id来获取相对应对象所在的值，就需要通过先通过查找该id在整个数组中的索引值，再通过这个索引值去得到该对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"id"</span>: <span class="number">4</span>,    <span class="comment">//标识该条记录的唯一id</span></span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"4"</span>,</span><br><span class="line">  <span class="string">"noteList"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">"title"</span>: <span class="string">"4-1"</span>,</span><br><span class="line">      <span class="string">"createTime"</span>: <span class="string">"2016-04-26 22:52:59"</span>,</span><br><span class="line">      <span class="string">"updateTime"</span>: <span class="string">"2016-04-26 22:52:59"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"id"</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="string">"title"</span>: <span class="string">"4-2"</span>,</span><br><span class="line">      <span class="string">"createTime"</span>: <span class="string">"2016-04-26 22:54:09"</span>,</span><br><span class="line">      <span class="string">"updateTime"</span>: <span class="string">"2016-04-26 22:54:09"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据<br>  删除数据则是采用了数组的方法splice。因为使用splice()删除数据，数组会根据需要减小它们的索引值，并自动减少数组的长度，可以避免产生稀疏数组。</p>
+</li>
+</ul>
+<h2 id="ECMAScript5的数组方法"><a href="#ECMAScript5的数组方法" class="headerlink" title="ECMAScript5的数组方法"></a>ECMAScript5的数组方法</h2><p>在操作localStorage数据的过程中，使用到了ECMAScript5的一些方法，比如forEach()，filter()等。之前也是没有接触过。具体关于JavaScript数组将会在另外一篇文章中详细说明。</p>
+<ul>
+<li>forEach()</li>
+<li>map()</li>
+<li>filter()</li>
+<li>every()和some()</li>
+<li>reduce()和reduceRight()</li>
+<li>indexOf()和lastIndexOf()</li>
+</ul>
+<p>项目地址：<a href="http://superman66.github.io/angular-markdown/app/index.html#/index" target="_blank" rel="external">http://superman66.github.io/angular-markdown/app/index.html#/index</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/30/essays/darktime-reading-note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《暗时间》读书笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="angular/angular-markdown-note" data-title="基于localStorage和AngularJS的markdown简易笔记本" data-url="http://yoursite.com/2016/05/04/angular/angular-markdown-note/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"superman66"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Superman
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
