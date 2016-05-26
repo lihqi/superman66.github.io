@@ -5,8 +5,6 @@ tags:
 - AngularJS
 - markdown
 ---
-这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。
-<!-- more -->
 在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。
 上一篇基于AngularJS打造的markdown笔记本[点击这里查看](http://superman66.github.io/2016/04/15/angular/angular-markdown/)
 先来看效果图：

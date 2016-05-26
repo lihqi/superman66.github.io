@@ -2,7 +2,7 @@
 title: 【JavaScript高程学习笔记】面向对象的程序设计之对象
 date: 2016-02-26 00:45:53
 tags: 
-- JavaScript高级程序设计学习笔记
+- JavaScript学习笔记
 - 面向对象
 - 对象
 ---

@@ -5,8 +5,6 @@ tags:
 - AngularJS
 - markdown
 ---
-基于AngularJS实现了一个在线markdown编辑器的功能
-<!-- more -->
 由于这段时间已经是变成了markdown重度使用者了，因此就想着自己折腾一个markdown编辑器，发布在github pages上面。这样就可以实现了一个在线markdown编辑器。
 # 技术栈
 * AngularJS：这个就不用过多介绍了；

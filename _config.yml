@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Superman的博客 #站定的名称
+title: Superman #站定的名称
 subtitle: 前端开发 / 摄影爱好者 / ... #站点的副标题
-description: 超人前端学习博客 #站点的描述
+description: 前端开发 / 摄影爱好者 / ... #站点的描述
 author: Superman 
 email: 673318522@qq.com
 keywords: "前端,js,jquery,javascript,html5,开发者,程序猿,html,css,css3"
@@ -56,7 +56,7 @@ tag_map:
 ## 0: Fully Disable
 archive: 1
 category: 1
-tag: 1
+tag: 2
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions 配置主题
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment 配置部署github站点，改为自己的github repository
 ## Docs: https://hexo.io/docs/deployment.html

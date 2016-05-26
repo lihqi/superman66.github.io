@@ -1,218 +1,321 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="baidu-site-verification" content="K0rl5m0huo" />
-  <title>基于localStorage和AngularJS的markdown简易笔记本 | Superman的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。">
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJS,markdown," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。上一篇基于AngularJS打造的markdown笔记本点击这里查看先来看效果图：
+已完成功能列表
+添加和删除分类
+添加和删除笔记本
+笔记本编辑与保存
+支持全屏编辑
+笔记本可以添加多个标签、删除标签功能待完善列表
+支持分类和笔记本的右键菜单（菜单包括：重命名、删除、添加）
+支持多级分类
+支持">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于localStorage和AngularJS的markdown简易笔记本">
 <meta property="og:url" content="http://yoursite.com/2016/05/04/angular/angular-markdown-note/index.html">
-<meta property="og:site_name" content="Superman的博客">
-<meta property="og:description" content="这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。">
+<meta property="og:site_name" content="Superman">
+<meta property="og:description" content="在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。上一篇基于AngularJS打造的markdown笔记本点击这里查看先来看效果图：
+已完成功能列表
+添加和删除分类
+添加和删除笔记本
+笔记本编辑与保存
+支持全屏编辑
+笔记本可以添加多个标签、删除标签功能待完善列表
+支持分类和笔记本的右键菜单（菜单包括：重命名、删除、添加）
+支持多级分类
+支持">
 <meta property="og:image" content="http://yoursite.com/images/angular-markdown-note.gif">
 <meta property="og:image" content="http://yoursite.com/images/angluar-markdown-note-1.png">
 <meta property="og:image" content="http://yoursite.com/images/angluar-markdown-note-2.png">
 <meta property="og:image" content="http://yoursite.com/images/angluar-markdown-note-3.png">
-<meta property="og:updated_time" content="2016-05-04T14:50:45.483Z">
+<meta property="og:updated_time" content="2016-05-06T14:58:40.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于localStorage和AngularJS的markdown简易笔记本">
-<meta name="twitter:description" content="这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。">
-  
-    <link rel="alternative" href="/atom.xml" title="Superman的博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
-	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display: none' id='cnzz_stat_icon_1257616456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257616456' type='text/javascript'%3E%3C/script%3E"));</script>
+<meta name="twitter:description" content="在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。上一篇基于AngularJS打造的markdown笔记本点击这里查看先来看效果图：
+已完成功能列表
+添加和删除分类
+添加和删除笔记本
+笔记本编辑与保存
+支持全屏编辑
+笔记本可以添加多个标签、删除标签功能待完善列表
+支持分类和笔记本的右键菜单（菜单包括：重命名、删除、添加）
+支持多级分类
+支持">
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 基于localStorage和AngularJS的markdown简易笔记本 | Superman </title>
 </head>
 
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
-			
-		</a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Superman</a></h1>
-		</hgroup>
+  
 
-		
-		<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
-		
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						
-					</ul>
-				</div>
-			</div>
-		
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/" class="">主页</a></li>
-				        
-							<li><a href="/archives" class="">所有文章</a></li>
-				        
-							<li><a href="/tags/随笔/" class="">随笔</a></li>
-				        
-							<li><a href="http://66superman.lofter.com/" class="">相册</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AngularJS/" style="font-size: 17.5px;">AngularJS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Git规范/" style="font-size: 10px;">Git规范</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/JavaScript学习笔记/" style="font-size: 17.5px;">JavaScript学习笔记</a> <a href="/tags/JavaScript高级程序设计学习笔记/" style="font-size: 12.5px;">JavaScript高级程序设计学习笔记</a> <a href="/tags/markdown/" style="font-size: 12.5px;">markdown</a> <a href="/tags/rem布局/" style="font-size: 10px;">rem布局</a> <a href="/tags/动态加载/" style="font-size: 10px;">动态加载</a> <a href="/tags/对象/" style="font-size: 10px;">对象</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/机械键盘/" style="font-size: 10px;">机械键盘</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/读书笔记/" style="font-size: 12.5px;">读书笔记</a> <a href="/tags/读后感/" style="font-size: 10px;">读后感</a> <a href="/tags/阅读书单/" style="font-size: 10px;">阅读书单</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a> <a href="/tags/面向对象/" style="font-size: 12.5px;">面向对象</a> <a href="/tags/面试总结/" style="font-size: 10px;">面试总结</a>
-					</div>
-				</section>
-				
-				
-				
 
-				
-			</div>
-		</div>
-	</header>				
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257616456&web_id=1257616456" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Superman</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">前端开发 / 摄影爱好者 / ...</p>
 </div>
 
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Superman</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-			
-				<img lazy-src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png" class="js-avatar">
-			
-			</div>
-			<hgroup>
-			  <h1 class="header-author">Superman</h1>
-			</hgroup>
-			
-			<p class="header-subtitle">前端开发 / 摄影爱好者 / ...</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-					<li><a href="/tags/随笔/">随笔</a></li>
-		        
-					<li><a href="http://66superman.lofter.com/">相册</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/superman66" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
 
-      <div class="body-wrap"><article id="post-angular/angular-markdown-note" class="article article-type-post" itemscope itemprop="blogPost">
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
   
-        <div class="article-meta">
-        <a href="/2016/05/04/angular/angular-markdown-note/" class="article-date">
-  	<time datetime="2016-05-04T14:36:21.000Z" itemprop="datePublished">May 4</time>
-</a>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于localStorage和AngularJS的markdown简易笔记本
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-04T22:36:21+08:00" content="May 4">
+              May 4
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/04/angular/angular-markdown-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/angular/angular-markdown-note/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      基于localStorage和AngularJS的markdown简易笔记本
-    </h1>
-  
-
       </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
-	</div>
-
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>这是基于AngularJS实现的简易markdown笔记本。具有添加、删除分类，添加、删除笔记本，添加标签，全屏显示等功能。后续将完善更多功能。<br><a id="more"></a><br>在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。<br>上一篇基于AngularJS打造的markdown笔记本<a href="http://superman66.github.io/2016/04/15/angular/angular-markdown/" target="_blank" rel="external">点击这里查看</a><br>先来看效果图：<br><img src="/images/angular-markdown-note.gif" alt="angular"></p>
+      
+
+      
+        <p>在之前markdown编辑器的基础上，再演化成一个基于localStorage的markdown简易笔记本。<br>上一篇基于AngularJS打造的markdown笔记本<a href="http://superman66.github.io/2016/04/15/angular/angular-markdown/" target="_blank" rel="external">点击这里查看</a><br>先来看效果图：<br><img src="/images/angular-markdown-note.gif" alt="angular"></p>
 <h1 id="已完成功能列表"><a href="#已完成功能列表" class="headerlink" title="已完成功能列表"></a>已完成功能列表</h1><ul>
 <li>添加和删除分类</li>
 <li>添加和删除笔记本</li>
@@ -251,129 +354,322 @@
 
       
     </div>
-    
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2016/04/30/essays/darktime-reading-note/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">《暗时间》读书笔记</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
 
-  
-</article>
+    <div>
+      
+        
+      
+    </div>
 
+    <div>
+      
+        
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
+      
+    </div>
 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJS/" rel="tag">#AngularJS</a>
+          
+            <a href="/tags/markdown/" rel="tag">#markdown</a>
+          
+        </div>
+      
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/30/essays/darktime-reading-note/" rel="next" title="《暗时间》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《暗时间》读书笔记
+              </a>
+            
+          </div>
 
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/08/javascript-array/" rel="prev" title="JavaScript的数组详解">
+                JavaScript的数组详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="angular/angular-markdown-note" data-title="基于localStorage和AngularJS的markdown简易笔记本" data-url="http://yoursite.com/2016/05/04/angular/angular-markdown-note/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"superman66"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+      
+      
+    </footer>
+  </article>
 
 
 
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 Superman
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div class="post-spread">
+      
     </div>
   </div>
-</footer>
-    </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
-
-
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+      <div class="ds-thread" data-thread-key="2016/05/04/angular/angular-markdown-note/"
+           data-title="基于localStorage和AngularJS的markdown简易笔记本" data-url="http://yoursite.com/2016/05/04/angular/angular-markdown-note/">
+      </div>
+    
   </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png"
+               alt="Superman" />
+          <p class="site-author-name" itemprop="name">Superman</p>
+          <p class="site-description motion-element" itemprop="description">前端开发 / 摄影爱好者 / ...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://66superman.lofter.com" target="_blank" title="Lofter">
+                  
+                    <i class="fa fa-fw fa-camera"></i>
+                  
+                  Lofter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/superman66" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#已完成功能列表"><span class="nav-number">1.</span> <span class="nav-text">已完成功能列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能待完善列表"><span class="nav-number">2.</span> <span class="nav-text">功能待完善列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点记录"><span class="nav-number">3.</span> <span class="nav-text">知识点记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS布局"><span class="nav-number">3.1.</span> <span class="nav-text">CSS布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、左边两列固定宽度，右边一列宽度自适应。如下图所示"><span class="nav-number">3.1.0.0.1.</span> <span class="nav-text">1、左边两列固定宽度，右边一列宽度自适应。如下图所示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、左右两列固定，中间一列自适应，如下图所示"><span class="nav-number">3.1.0.0.2.</span> <span class="nav-text">2、左右两列固定，中间一列自适应，如下图所示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、左边一列自适应，右边两列固定宽度。如下图所示"><span class="nav-number">3.1.0.0.3.</span> <span class="nav-text">3、左边一列自适应，右边两列固定宽度。如下图所示</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于localStorage存储数据"><span class="nav-number">3.2.</span> <span class="nav-text">基于localStorage存储数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript5的数组方法"><span class="nav-number">3.3.</span> <span class="nav-text">ECMAScript5的数组方法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Superman</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superman66"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
 </body>
 </html>

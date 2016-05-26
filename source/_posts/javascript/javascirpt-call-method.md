@@ -3,6 +3,7 @@ title: 深入理解JavaScript中的call和apply
 date: 2016-04-20 23:20:35
 tags:
 - JavaScript
+- JavaScript学习笔记
 ---
 本文利用主动提问的学习方法来学习JavaScript中的call和apply
 <!-- more -->
