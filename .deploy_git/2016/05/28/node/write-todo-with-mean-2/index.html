@@ -1,0 +1,685 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MEAN,Nodjs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言经过前面那篇文章的准备，现在已经搭建好MEAN架构的开发环境了。这篇文章将介绍如何实现TODO的项目。创建一个TODO项目的步骤如下：
+
+创建一个Express工程项目
+创建一个SPA，用于前台创建TODO事项，编辑和删除TODO事项以及显示TODO列表
+保存TODO到数据库（本文采用Mongoose）
+使用Node.js创建REST API
+使用AngularJS作为前端调用REST API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MEAN：AngularJS+Node.js的REST API开发教程（二）：项目开发">
+<meta property="og:url" content="http://yoursite.com/2016/05/28/node/write-todo-with-mean-2/index.html">
+<meta property="og:site_name" content="Superman">
+<meta property="og:description" content="前言经过前面那篇文章的准备，现在已经搭建好MEAN架构的开发环境了。这篇文章将介绍如何实现TODO的项目。创建一个TODO项目的步骤如下：
+
+创建一个Express工程项目
+创建一个SPA，用于前台创建TODO事项，编辑和删除TODO事项以及显示TODO列表
+保存TODO到数据库（本文采用Mongoose）
+使用Node.js创建REST API
+使用AngularJS作为前端调用REST API">
+<meta property="og:image" content="http://yoursite.com/images/write-a-todo-6.gif">
+<meta property="og:image" content="http://yoursite.com/images/write-a-todo-7.png">
+<meta property="og:updated_time" content="2016-05-28T02:52:34.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MEAN：AngularJS+Node.js的REST API开发教程（二）：项目开发">
+<meta name="twitter:description" content="前言经过前面那篇文章的准备，现在已经搭建好MEAN架构的开发环境了。这篇文章将介绍如何实现TODO的项目。创建一个TODO项目的步骤如下：
+
+创建一个Express工程项目
+创建一个SPA，用于前台创建TODO事项，编辑和删除TODO事项以及显示TODO列表
+保存TODO到数据库（本文采用Mongoose）
+使用Node.js创建REST API
+使用AngularJS作为前端调用REST API">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> MEAN：AngularJS+Node.js的REST API开发教程（二）：项目开发 | Superman </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257616456&web_id=1257616456" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Superman</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">前端开发 / 摄影爱好者 / ...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MEAN：AngularJS+Node.js的REST API开发教程（二）：项目开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-28T10:12:27+08:00" content="May 28">
+              May 28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/28/node/write-todo-with-mean-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/28/node/write-todo-with-mean-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>经过前面那篇文章的准备，现在已经搭建好MEAN架构的开发环境了。这篇文章将介绍如何实现TODO的项目。<br>创建一个TODO项目的步骤如下：</p>
+<ul>
+<li>创建一个Express工程项目</li>
+<li>创建一个SPA，用于前台创建TODO事项，编辑和删除TODO事项以及显示TODO列表</li>
+<li>保存TODO到数据库（本文采用Mongoose）</li>
+<li>使用Node.js创建REST API</li>
+<li>使用AngularJS作为前端调用REST API</li>
+</ul>
+<p>Github地址：<a href="https://github.com/superman66/node-express-todo" target="_blank" rel="external">https://github.com/superman66/node-express-todo</a><br>项目效果图：<br><img src="/images/write-a-todo-6.gif" alt="text"></p>
+<h2 id="Express项目结构"><a href="#Express项目结构" class="headerlink" title="Express项目结构"></a>Express项目结构</h2><p>在第一篇文章，我们已经创建了一个名字为todo的Express项目了，创建成功后的目录结构如下：<br><img src="/images/write-a-todo-7.png" alt="text"><br>接下来就介绍下express项目下的文件夹的作用</p>
+<ul>
+<li>node_modules：通过npm安装依赖包所存放的路径；</li>
+<li>public：存在公用的文件如CSS文件，图片文件等；</li>
+<li>routers：项目路由文件夹，项目所有的路由文件都放在该文件夹下；</li>
+<li>views：页面文件，可以是html文件，也可以是模板引擎文件；</li>
+<li>app.js：app.js是项目的主要入口文件；</li>
+<li>db.js：db.js存放着数据库连接信息，是自己创建的，具体后面会介绍。</li>
+</ul>
+<h2 id="TODO项目开发"><a href="#TODO项目开发" class="headerlink" title="TODO项目开发"></a>TODO项目开发</h2><p>介绍了Express项目的文件夹结构之后，就可以开始进入代码开发了。</p>
+<h2 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h2><p>在刚创建Express项目后，我们已经通过<code>npm install</code>安装了必要的依赖。但这还不够，我们还需要额外安装以下的npm：</p>
+<ul>
+<li>mongoose</li>
+<li>angular</li>
+</ul>
+<p>使用以下命令，即可安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongoose angular</span><br></pre></td></tr></table></figure></p>
+<p>我们使用的是MongoDB作为数据库，由于直接使用MongoDB操作连接数据库一点都不方便，因为在这里我们采用了<code>mongoose</code>。</p>
+<blockquote>
+<p>Mongoose是基于node-mongodb-native开发的MongoDB nodejs驱动，可以在异步的环境下执行。Mongoose和MondoDB的关系就好比jQuery和原生JavaScript。使用Mongoose操作数据数据库更加方便 。</p>
+</blockquote>
+<h2 id="项目开发步骤"><a href="#项目开发步骤" class="headerlink" title="项目开发步骤"></a>项目开发步骤</h2><h3 id="第一步：创建Express工程"><a href="#第一步：创建Express工程" class="headerlink" title="第一步：创建Express工程"></a>第一步：创建Express工程</h3><p>这一步我们已经完成了。</p>
+<h3 id="第二步：后台配置"><a href="#第二步：后台配置" class="headerlink" title="第二步：后台配置"></a>第二步：后台配置</h3><p>这一步包括数据库配置，静态文件夹服务器配置以及路由配置。<br>*数据库配置</p>
+<p>首先在根目录下创建一个<code>db.js</code>，用于存放数据库连接信息。我们还需要创建一个<code>Todo Model</code>，该model有id，content,update_at三个属性。在mongoose中，model是可以操作数据库的。代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* Created by superman on 2016/5/22.</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">var</span> Schema = mongoose.Schema;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> Todo = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    id : <span class="built_in">String</span>,</span><br><span class="line">    content : <span class="built_in">String</span>,</span><br><span class="line">    update_at : <span class="built_in">Date</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">mongoose.model(<span class="string">'Todo'</span>, Todo);</span><br><span class="line">mongoose.connect(<span class="string">'mongodb://localhost/express-todo'</span>);    <span class="comment">//此处的express-todo是mongodb数据库的名字，所以你需要先创建这个数据库</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来在<code>app.js</code>顶部中添加引用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">'./db'</span>);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>配置静态文件服务器</li>
+</ul>
+<p>Express项目默认public文件夹如静态文件的位置，我们也可以再添加文件夹作为静态文件服务器，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)));  <span class="comment">//配置静态文件服务器</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'node_modules'</span>)));  <span class="comment">//可以配置多个静态文件服务器</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>路由配置</li>
+</ul>
+<p>Express项目使用了路由中间件，将路由信息从app.js中剥离出来，单独放在router文件夹中。但是我们需要在<code>app.js</code>中配置，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(&#39;/&#39;, routes);</span><br></pre></td></tr></table></figure></p>
+<p>完整的<code>app.js</code>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">'./db'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> favicon = <span class="built_in">require</span>(<span class="string">'serve-favicon'</span>);</span><br><span class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</span><br><span class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>);</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"><span class="keyword">var</span> partials = <span class="built_in">require</span>(<span class="string">'express-partials'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> routes = <span class="built_in">require</span>(<span class="string">'./routes/index'</span>);</span><br><span class="line"><span class="keyword">var</span> users = <span class="built_in">require</span>(<span class="string">'./routes/users'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line"><span class="comment">// view engine setup</span></span><br><span class="line">app.set(<span class="string">'views'</span>, path.join(__dirname, <span class="string">'views'</span>));</span><br><span class="line"><span class="comment">//app.set('view engine', 'ejs');</span></span><br><span class="line"><span class="comment">//app.set(partials());  //启动模板文件配置</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// uncomment after placing your favicon in /public</span></span><br><span class="line"><span class="comment">//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));</span></span><br><span class="line">app.use(logger(<span class="string">'dev'</span>));</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(cookieParser());</span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)));  <span class="comment">//配置静态文件服务器</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'node_modules'</span>)));  <span class="comment">//可以配置多个静态文件服务器</span></span><br><span class="line">app.use(<span class="string">'/'</span>, routes);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// catch 404 and forward to error handler</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Not Found'</span>);</span><br><span class="line">  err.status = <span class="number">404</span>;</span><br><span class="line">  next(err);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// error handlers</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// development error handler</span></span><br><span class="line"><span class="comment">// will print stacktrace</span></span><br><span class="line"><span class="keyword">if</span> (app.get(<span class="string">'env'</span>) === <span class="string">'development'</span>) &#123;</span><br><span class="line">  app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">    res.status(err.status || <span class="number">500</span>);</span><br><span class="line">    res.render(<span class="string">'error'</span>, &#123;</span><br><span class="line">      message: err.message,</span><br><span class="line">      error: err</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// production error handler</span></span><br><span class="line"><span class="comment">// no stacktraces leaked to user</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  res.status(err.status || <span class="number">500</span>);</span><br><span class="line">  res.render(<span class="string">'error'</span>, &#123;</span><br><span class="line">    message: err.message,</span><br><span class="line">    error: &#123;&#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = app;</span><br></pre></td></tr></table></figure></p>
+<h3 id="第三步：创建REST-API-路由"><a href="#第三步：创建REST-API-路由" class="headerlink" title="第三步：创建REST API 路由"></a>第三步：创建REST API 路由</h3><p>在创建之前，我们可以先规划下，我们都需要用到哪些API:</p>
+<ul>
+<li>返回所有的todo列表： <code>/api/todos</code>、<code>GET</code></li>
+<li>创建todo： <code>/api/todo</code>、<code>POST</code></li>
+<li>更新todo：<code>/api/todo/:id</code>、<code>PUT</code></li>
+<li>删除todo：<code>/api/todo/:id</code>、<code>DELETE</code></li>
+</ul>
+<p>这个四个API的代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* restful api */</span></span><br><span class="line"><span class="comment">//get all todo</span></span><br><span class="line">router.get(<span class="string">'/api/todos'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>)</span>&#123;</span><br><span class="line">    Todo</span><br><span class="line">        .find()</span><br><span class="line">        .sort(<span class="string">'-update_at'</span>)</span><br><span class="line">        .exec(<span class="function"><span class="keyword">function</span>(<span class="params">err, todos</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                res.send(err);</span><br><span class="line">            &#125;</span><br><span class="line">            res.json(todos);</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//POST that create todo and return all todos</span></span><br><span class="line">router.post(<span class="string">'/api/todo'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">new</span> Todo(&#123;</span><br><span class="line">        content : req.body.content,</span><br><span class="line">        update_at : <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    &#125;).save(<span class="function"><span class="keyword">function</span>(<span class="params">err, todo, count</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            res.send(err);</span><br><span class="line">        &#125;</span><br><span class="line">        Todo</span><br><span class="line">            .find()</span><br><span class="line">            .sort(<span class="string">'-update_at'</span>) <span class="comment">//更加日期排序</span></span><br><span class="line">            .exec(<span class="function"><span class="keyword">function</span>(<span class="params">err, todos</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                    res.send(err);</span><br><span class="line">                &#125;</span><br><span class="line">                res.json(todos);</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//删除后返回所有</span></span><br><span class="line">router.delete(<span class="string">'/api/todo/:id'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>)</span>&#123;</span><br><span class="line">    Todo.findById(req.params.id, <span class="function"><span class="keyword">function</span>(<span class="params">err, todo</span>)</span>&#123;</span><br><span class="line">        todo.remove(<span class="function"><span class="keyword">function</span>(<span class="params">err, todo</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                res.send(err);</span><br><span class="line">            &#125;</span><br><span class="line">            Todo</span><br><span class="line">                .find()</span><br><span class="line">                .sort(<span class="string">'-update_at'</span>) <span class="comment">//更加日期排序</span></span><br><span class="line">                .exec(<span class="function"><span class="keyword">function</span>(<span class="params">err, todos</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                        res.send(err);</span><br><span class="line">                    &#125;</span><br><span class="line">                    res.json(todos);</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//Update</span></span><br><span class="line">router.put(<span class="string">'/api/todo/:id'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//更新操作</span></span><br><span class="line">    Todo.findById(req.params.id, <span class="function"><span class="keyword">function</span>(<span class="params">err, todo</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                res.send(err);</span><br><span class="line">            &#125;</span><br><span class="line">        todo.content = req.body.content;</span><br><span class="line">        todo.save(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'update success'</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">            Todo</span><br><span class="line">                .find()</span><br><span class="line">                .sort(<span class="string">'-update_at'</span>) <span class="comment">//更加日期排序</span></span><br><span class="line">                .exec(<span class="function"><span class="keyword">function</span>(<span class="params">err, todos</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                        res.send(err);</span><br><span class="line">                    &#125;</span><br><span class="line">                    res.json(todos);</span><br><span class="line">                &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>最后我们还需要在添加一个api，用于显示前端页面：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.sendfile(<span class="string">'./views/index.html'</span>);    <span class="comment">//angular应用首页的位置</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="第四步：创建AngularJS应用"><a href="#第四步：创建AngularJS应用" class="headerlink" title="第四步：创建AngularJS应用"></a>第四步：创建AngularJS应用</h2><p>新建<code>index.module.js</code>，用于定于AngularJS应用，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* Created by superman on 2016/5/25.</span><br><span class="line">*/</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="pi">    'use strict'</span>;</span><br><span class="line"> </span><br><span class="line">    angular.module(<span class="string">'TodoApp'</span>, [])</span><br><span class="line">        .factory(<span class="string">'TodoService'</span>, [<span class="string">'$http'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$http</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> _getTodoList = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> $http.get(<span class="string">'/api/todos'</span>);</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">var</span> _createTodo = <span class="function"><span class="keyword">function</span> (<span class="params">todo</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> $http(&#123;</span><br><span class="line">                    method: <span class="string">'POST'</span>,</span><br><span class="line">                    url: <span class="string">'/api/todo'</span>,</span><br><span class="line">                    data: todo</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">var</span> _deleteTodo = <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> $http(&#123;</span><br><span class="line">                    method: <span class="string">'DELETE'</span>,</span><br><span class="line">                    url: <span class="string">'/api/todo/'</span> + id</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">var</span> _updateTodo = <span class="function"><span class="keyword">function</span> (<span class="params">todo</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> $http(&#123;</span><br><span class="line">                    method: <span class="string">'PUT'</span>,</span><br><span class="line">                    url: <span class="string">'/api/todo/'</span> + todo._id,</span><br><span class="line">                    data: todo</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                todoList: _getTodoList,</span><br><span class="line">                createTodo: _createTodo,</span><br><span class="line">                deleteTodo: _deleteTodo,</span><br><span class="line">                updateTodo: _updateTodo</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;])</span><br><span class="line">        .controller(<span class="string">'TodoController'</span>, [<span class="string">'TodoService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">TodoService</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> vm = <span class="keyword">this</span>;</span><br><span class="line">            vm.todos = [];</span><br><span class="line">            vm.todo = &#123;</span><br><span class="line">                content: <span class="string">''</span></span><br><span class="line">            &#125;;</span><br><span class="line">            TodoService.todoList().success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                vm.todos = data;</span><br><span class="line">            &#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err);</span><br><span class="line">            &#125;)</span><br><span class="line"> </span><br><span class="line">            vm.createTodo = <span class="function"><span class="keyword">function</span> (<span class="params">todo</span>) </span>&#123;</span><br><span class="line">                TodoService.createTodo(todo).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    vm.todos = data;</span><br><span class="line">                    vm.todo.content = <span class="string">''</span>;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;;</span><br><span class="line"> </span><br><span class="line">            vm.delTodo = <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</span><br><span class="line">                TodoService.deleteTodo(id).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    vm.todos = data;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;;</span><br><span class="line"> </span><br><span class="line">            vm.updateTodo = <span class="function"><span class="keyword">function</span>(<span class="params">todo</span>)</span>&#123;</span><br><span class="line">                <span class="comment">// console.log(todo);</span></span><br><span class="line">                TodoService.updateTodo(todo).success(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                    <span class="comment">//vm.todos = data;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">        &#125;]);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>在这个文件中，我们把所有的http请求都放在了<code>TodoService</code>中，然后在Controller中注入。这样就可以在Controller中使用了。</p>
+<h2 id="第五步：创建HTML页面"><a href="#第五步：创建HTML页面" class="headerlink" title="第五步：创建HTML页面"></a>第五步：创建HTML页面</h2><p>这里就不对AngularJS的语法做介绍了，HTML代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>TODO<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">href</span>=<span class="value">'/stylesheets/style.css'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span> <span class="attribute">ng-app</span>=<span class="value">"TodoApp"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span> <span class="attribute">ng-controller</span>=<span class="value">"TodoController as vm"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h1</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span>TODO<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"form-content"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">form</span>  <span class="attribute">ng-submit</span>=<span class="value">"vm.createTodo(vm.todo)"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"form-control"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">name</span>=<span class="value">"content"</span> <span class="attribute">ng-model</span>=<span class="value">"vm.todo.content"</span> <span class="attribute">placeholder</span>=<span class="value">"添加待办事项"</span></span><br><span class="line">                   <span class="attribute">required</span>/&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;input type="submit" value="添加"&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"todo-list"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"todo in vm.todos"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">class</span>=<span class="value">"form-control btn-primary"</span>  <span class="attribute">ng-model</span>=<span class="value">"todo.content"</span> <span class="attribute">ng-blur</span>=<span class="value">"vm.updateTodo(todo)"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"btn-del"</span> <span class="attribute">ng-click</span>=<span class="value">"vm.delTodo(todo._id)"</span> <span class="attribute">title</span>=<span class="value">"Delete this todo item"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">footer</span>&gt;</span></span><br><span class="line">    输入回车键进行提交</span><br><span class="line"><span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/jquery/dist/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/angular/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/index.module.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>到这里，一个基于MEAN的TODO项目就完成了。你可以运行<code>npm start</code>运行项目，在浏览器中输入<code>localhost:3000</code>就可以看到页面了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个项目一开始只是想学习如何构建一个Express+Nodejs的项目，在完成之后开始思考，如何将其变成一个前后端分离的项目。想到我对AngularJS比较擅长，于是前端就采用AngularJS，代替了项目中自带的ejs模板引擎。然后这个技术栈就组成了简易型的MEAN架构了。突然想起来最开始学Express+Node项目的初衷就是为了掌握MEAN Stack，通过这么一个过程，虽然不能说已经掌握了MEAN Stack，但是已经对其有了结构性的了解，因为MEAN最基础的组成部分就是<code>MongoDB</code>、<code>Express</code>、<code>AngularJS</code>、<code>Nodejs</code>。对MEAN Stack有兴趣的，可以前往官网<a href="http://mean.io/了解更多。" target="_blank" rel="external">http://mean.io/了解更多。</a></p>
+<p>参考资料：<br><a href="http://www.jdon.com/idea/nodejs/web-app-with-angularjs-and-rest-api-with-node.html" target="_blank" rel="external">http://www.jdon.com/idea/nodejs/web-app-with-angularjs-and-rest-api-with-node.html</a><br><a href="http://dreamerslab.com/blog/en/write-a-todo-list-with-express-and-mongodb/" target="_blank" rel="external">http://dreamerslab.com/blog/en/write-a-todo-list-with-express-and-mongodb/</a><br><a href="https://cnodejs.org/topic/504b4924e2b84515770103dd" target="_blank" rel="external">https://cnodejs.org/topic/504b4924e2b84515770103dd</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MEAN/" rel="tag">#MEAN</a>
+          
+            <a href="/tags/Nodjs/" rel="tag">#Nodjs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/25/node/write-todo-with-mean-1/" rel="next" title="MEAN：AngularJS+Node.js的REST API开发教程（一）：Express+Node+MongoDB环境搭建">
+                <i class="fa fa-chevron-left"></i> MEAN：AngularJS+Node.js的REST API开发教程（一）：Express+Node+MongoDB环境搭建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/08/essays/reading-list-2016/" rel="prev" title="2016阅读书单">
+                2016阅读书单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/28/node/write-todo-with-mean-2/"
+           data-title="MEAN：AngularJS+Node.js的REST API开发教程（二）：项目开发" data-url="http://yoursite.com/2016/05/28/node/write-todo-with-mean-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_avatar.png"
+               alt="Superman" />
+          <p class="site-author-name" itemprop="name">Superman</p>
+          <p class="site-description motion-element" itemprop="description">前端开发 / 摄影爱好者 / ...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://66superman.lofter.com" target="_blank" title="Lofter">
+                  
+                    <i class="fa fa-fw fa-camera"></i>
+                  
+                  Lofter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/superman66" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Express项目结构"><span class="nav-number">1.1.</span> <span class="nav-text">Express项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO项目开发"><span class="nav-number">1.2.</span> <span class="nav-text">TODO项目开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖包"><span class="nav-number">1.3.</span> <span class="nav-text">安装依赖包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目开发步骤"><span class="nav-number">1.4.</span> <span class="nav-text">项目开发步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：创建Express工程"><span class="nav-number">1.4.1.</span> <span class="nav-text">第一步：创建Express工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：后台配置"><span class="nav-number">1.4.2.</span> <span class="nav-text">第二步：后台配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：创建REST-API-路由"><span class="nav-number">1.4.3.</span> <span class="nav-text">第三步：创建REST API 路由</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：创建AngularJS应用"><span class="nav-number">1.5.</span> <span class="nav-text">第四步：创建AngularJS应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步：创建HTML页面"><span class="nav-number">1.6.</span> <span class="nav-text">第五步：创建HTML页面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Superman</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"superman66"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
