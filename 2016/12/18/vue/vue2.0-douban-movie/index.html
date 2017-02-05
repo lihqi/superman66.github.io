@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Vue2.0实现简易豆瓣电影webApp - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/12/18/vue/vue2.0-douban-movie/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Vue" title="Vue">Vue</a>
+                        
+                    </div>
+                    <h1>Vue2.0实现简易豆瓣电影webApp</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-12-18
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h1><p>项目地址：<a href="https://github.com/superman66/vue2.x-douban" target="_blank" rel="external">https://github.com/superman66/vue2.x-douban</a><br>clone项目到本地，进入项目文件夹，安装依赖<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https:<span class="comment">//github.com/superman66/vue2.x-douban.git</span></div><div class="line">cd vue2.x-douban</div><div class="line">npm install</div></pre></td></tr></table></figure></p>
+<p>然后运行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev</div></pre></td></tr></table></figure></p>
+<p>最后打开浏览器，输入<code>localhost:8880</code>即可访问。效果图如下：<br><img src="/images/vue-douban-shrink.gif" alt="text"></p>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>应用包括下面4个路由</p>
+<ul>
+<li><code>/movies</code> 首页，包含正在上映榜单和即将上映榜单的电影信息，首页只显示各个榜单的前8条数据；</li>
+<li><code>/movie-list</code> 榜单列表页面，显示榜单列表信息;</li>
+<li><code>/movie/subject/:id</code> 电影详情页面；</li>
+<li><code>/movie/search</code> 电影搜索列表页面。</li>
+</ul>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── README.md</div><div class="line">├── build <span class="comment">// vue-cli 自带的配置文件</span></div><div class="line">│   ├── build.js</div><div class="line">│   ├── check-versions.js</div><div class="line">│   ├── dev-client.js</div><div class="line">│   ├── dev-server.js</div><div class="line">│   ├── utils.js</div><div class="line">│   ├── webpack.base.conf.js</div><div class="line">│   ├── webpack.dev.conf.js</div><div class="line">│   └── webpack.prod.conf.js</div><div class="line">├── config  <span class="comment">// vue-cli 自带的配置文件</span></div><div class="line">│   ├── dev.env.js</div><div class="line">│   ├── index.js</div><div class="line">│   └── prod.env.js</div><div class="line">├── git.sh</div><div class="line">├── index.html</div><div class="line">├── package.json</div><div class="line">├── src</div><div class="line">│   ├── App.vue</div><div class="line">│   ├── assets</div><div class="line">│   │   ├── list.scss</div><div class="line">│   │   ├── logo.png</div><div class="line">│   │   ├── search-btn.png</div><div class="line">│   │   └── style.scss</div><div class="line">│   ├── components</div><div class="line">│   │   ├── Hello.vue</div><div class="line">│   │   ├── Spinner.vue</div><div class="line">│   │   └── header.vue</div><div class="line">│   ├── main.js <span class="comment">// 入口文件</span></div><div class="line">│   ├── router.js <span class="comment">// 路由</span></div><div class="line">│   ├── store</div><div class="line">│   │   ├── api.js  <span class="comment">// 抽取访问api的方法</span></div><div class="line">│   │   ├── modules</div><div class="line">│   │   │   └── movie.js</div><div class="line">│   │   ├── store.js</div><div class="line">│   │   └── types.js</div><div class="line">│   └── views</div><div class="line">│       ├── index.vue</div><div class="line">│       ├── movie</div><div class="line">│       │   ├── movie-detail.vue</div><div class="line">│       │   ├── movie-list.vue</div><div class="line">│       │   ├── movies.vue</div><div class="line">│       │   └── search-list.vue</div><div class="line">│       └── vuex-demo.vue</div><div class="line">├── <span class="keyword">static</span></div><div class="line">└── tree.md</div></pre></td></tr></table></figure>
+<h1 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h1><ul>
+<li>HTTP库采用了<a href="https://github.com/mzabriskie/axios" target="_blank" rel="external">axios</a>。</li>
+<li>列表下拉加载更多数据使用了<a href="https://github.com/ElemeFE/vue-infinite-scroll" target="_blank" rel="external">vue-infinite-scroll</a></li>
+</ul>
+<h1 id="豆瓣API"><a href="#豆瓣API" class="headerlink" title="豆瓣API"></a>豆瓣API</h1><p>该应用使用了下面4个api：</p>
+<ul>
+<li><code>/v2/movie/search?q={text}</code> 电影搜索api；</li>
+<li><code>/v2/movie/in_theaters</code> 正在上映的电影；</li>
+<li><code>/v2/movie/coming_soon</code> 即将上映的电影；</li>
+<li><code>/v2/movie/subject/:id</code> 单个电影条目信息。</li>
+</ul>
+<blockquote>
+<p>更多关于豆瓣的api可以前往<a href="https://developers.douban.com/wiki/?title=guide" target="_blank" rel="external">豆瓣api官网</a>查看。</p>
+</blockquote>
+<p>需要注意的是，由于豆瓣api的跨域问题，并不能直接通过ajax请求访问。不过vue-cli提供了代理的配置。<br>我们需要在<code>/config/index.js</code>中配置代理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dev: &#123;</div><div class="line">  <span class="attr">env</span>: <span class="built_in">require</span>(<span class="string">'./dev.env'</span>),</div><div class="line">  <span class="attr">port</span>: <span class="number">8880</span>,</div><div class="line">  <span class="attr">assetsSubDirectory</span>: <span class="string">'static'</span>,</div><div class="line">  <span class="attr">assetsPublicPath</span>: <span class="string">'/'</span>,</div><div class="line">  <span class="attr">proxyTable</span>: &#123;</div><div class="line">    <span class="string">'/api'</span>: &#123;</div><div class="line">      <span class="attr">target</span>: <span class="string">'http://api.douban.com/v2'</span>,</div><div class="line">      <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</div><div class="line">      <span class="attr">pathRewrite</span>: &#123;</div><div class="line">        <span class="string">'^/api'</span>: <span class="string">''</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">cssSourceMap</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在<code>proxyTable</code>这个属性中，配置target属性为我们要代理的目标地址。这里我们写成<code>http://api.douban.com/v2</code>，这样我们就可以在应用中调用<code>/api/movie/in_theaters</code>来访问<code>http://api.douban.com/v2/movie/in_theaters</code>，从而解决跨域的问题。</p>
+<blockquote>
+<p>关于vue-cli更多关于跨域的设置可以看<a href="http://vuejs-templates.github.io/webpack/" target="_blank" rel="external">官网文档</a></p>
+</blockquote>
+<h1 id="关于vuex"><a href="#关于vuex" class="headerlink" title="关于vuex"></a>关于vuex</h1><p>如果你想了解vuex的用法，可以切换到<code>vuex</code>分支，在该分支下，所有的state都采用vuex来管理。</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/12/18/vue/vue2.0-douban-movie/"
+                    data-title="Vue2.0实现简易豆瓣电影webApp"
+                    data-url="http://wwww.iamsuperman.cn/2016/12/18/vue/vue2.0-douban-movie/"
+                    data-images=""
+                    data-content="运行项目项目地址：https://github.com/superman66/vue2.x-d... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/12/25/es6/promise-all/" data-toggle="tooltip" data-placement="top" title="使用Promise的链式调用解决多个异步回调问题">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/17/mac/mac-tree-usage/" data-toggle="tooltip" data-placement="top" title="Mac使用tree生成目录结构">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/12/18/vue/vue2.0-douban-movie/"
+                        data-title="Vue2.0实现简易豆瓣电影webApp"
+                        data-url="http://wwww.iamsuperman.cn/2016/12/18/vue/vue2.0-douban-movie/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Vue" title="Vue">Vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

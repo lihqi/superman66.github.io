@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          我的2016年总结 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2017/01/13/conclusion-of-2016/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#年终总结" title="年终总结">年终总结</a>
+                        
+                    </div>
+                    <h1>我的2016年总结</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2017-01-13
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>今年我的拖延症已经改变了非常多，可是没想到，一拖再拖，一篇本该在2016年完成的总结一直拖到了今天才完成。</p>
+<h2 id="关于前端"><a href="#关于前端" class="headerlink" title="关于前端"></a>关于前端</h2><p>从2015年开始接触前端到现在，已有两年的时间。可惜在2015年一整年的时间，感觉大部分的时间都被自己浪费了，没有太多的成长。浑浑噩噩得度过了一年。<br>不过还好，这种情况在今年得到了极大的改善。</p>
+<p>在这一年，慢慢补齐了一些原本欠缺的基础知识，主要是JavaScript部分。学习新的框架和语言变得更加容易了。更重要的是，负责起公司的前端。从之前的负责某个模块的开发，到后面全盘负责。这个过程是让我成长最多，最大的收获便是独立开发一个项目的能力，包括从框架选型、到框架搭建，项目模块分层等部分。<br>所以才有了后来我一个人用了一个多月的时间，基于ionic+Angular框架开发了添米财富Android App。<br>也有了现在正在进行中的利用Vue重构添米微信端网站的项目。<br>记得张云龙大神说过：在开发项目中，不仅包括对技术的熟悉，更重要的其实是工程经验。做项目，就是积累工程经验很好的一个方式。<br>今年的时间都花在公司的项目上，明年要花更多的时间来写自己的side project。</p>
+<h2 id="关于习惯"><a href="#关于习惯" class="headerlink" title="关于习惯"></a>关于习惯</h2><p>3个月前在知乎上听了warfalcon 100天行动的live后，我开启了<strong>第一个100天行动-每日总结</strong>。每天晚上记录这一天的总结。与这个行动并行的还包括<strong>每日阅读</strong>、<strong>每日早起</strong>两个子任务。再坚持7天，我就完成了第一个100天行动了。<br>这是自己有史以来刻意保持一个习惯，坚持最久的一次。具体过程和感受，等100天行动结束后我再总结。</p>
+<h2 id="关于阅读与写作"><a href="#关于阅读与写作" class="headerlink" title="关于阅读与写作"></a>关于阅读与写作</h2><p>今年大概保持了一周一本书的进度，看了40本书。虽然说大部分书看完了感觉什么都记不得的样子，但是依然要继续看，影响是会潜移默化的。<br><img src="/images/reading-list.png" alt=""><br>明年的目标是阅读量80本书，然后提高技术书的比例，技术书要在10-15之间。</p>
+<p>2016年共完成了59篇文章，从标签统计情况来看，就属<code>随笔</code>和<code>Angular</code>的文章数量最多（内向型性格的人总是喜欢内省，不太喜欢表达，所以找到了文字来表达想法）。虽然技术文章并不多，也没有太大的价值，但是作为开通博客的第一年，我坚持下来了，这就是这一年的胜利。明年继续！<br><img src="/images/tags.png" alt=""></p>
+<h2 id="关于成长"><a href="#关于成长" class="headerlink" title="关于成长"></a>关于成长</h2><p><code>比你优秀的人还比你努力</code>，每次有松懈的时候，我都用这句话来激励自己。<br>知乎上看到的一个问题的回答：如何成为中高级前端？</p>
+<blockquote>
+<p>对有学习习惯的人，这是自然发生的。<br>对于没有学习习惯的人，就要让自己每天都有所得。<br>不会学习的人会问怎么样，但学习并不是方法，学习是一个选择。<br>想成长却不爱学习的，不如不想成长的。懒惰是劣习，而机会主义者的懒惰，害己害人。</p>
+</blockquote>
+<p>关于成长最重要的是学习能力和习惯，没有良好的习惯的人，是无法获得持续得成长。这是我今年最大的感悟。</p>
+<h2 id="关于2017年的期望"><a href="#关于2017年的期望" class="headerlink" title="关于2017年的期望"></a>关于2017年的期望</h2><ul>
+<li>寻找更好的平台；</li>
+<li>写更多的代码；</li>
+<li>拥有健康的身体；</li>
+<li>开启并坚持1到2个新的100天行动；</li>
+<li>阅读80本书；</li>
+</ul>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2017/01/13/conclusion-of-2016/"
+                    data-title="我的2016年总结"
+                    data-url="http://wwww.iamsuperman.cn/2017/01/13/conclusion-of-2016/"
+                    data-images=""
+                    data-content="今年我的拖延症已经改变了非常多，可是没想到，一拖再拖，一篇本该在2016年完成的总结一直拖到了... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/31/essays/reading-list-2016/" data-toggle="tooltip" data-placement="top" title="2016阅读书单">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2017/01/13/conclusion-of-2016/"
+                        data-title="我的2016年总结"
+                        data-url="http://wwww.iamsuperman.cn/2017/01/13/conclusion-of-2016/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#年终总结" title="年终总结">年终总结</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

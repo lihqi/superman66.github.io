@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          《软技能：代码之外的生存指南》读书笔记（一） - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/11/24/essays/soft-skill-1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>《软技能：代码之外的生存指南》读书笔记（一）</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-11-24
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>双十一在异步社区买的一本书，刚好在打6折。这种书名字看起来像是适合新手的样子，不过没关系，正好我是新手。</p>
+<h2 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h2><p>说是一本书，还不如说是博客文章的集合。所以大可不必通篇浏览，只需挑选自己感兴趣的主题进行阅读即可。<br>这本书的定位是让你帮助你成为“优秀的软件开发人员”。所谓优秀的开发人员指的是<strong>那些能够把控自己的职业生涯、达成目标、享受生活的人</strong>。书中分为<strong>职业、自我营销、学习、生产力、理财、健身、精神</strong>七个主题。其中我觉得值得学习的包括<strong>职业、自我营销、学习、生产力、理财、健身</strong></p>
+<h2 id="职业"><a href="#职业" class="headerlink" title="职业"></a>职业</h2><h3 id="人际交往能力"><a href="#人际交往能力" class="headerlink" title="人际交往能力"></a>人际交往能力</h3><p>大部分的程序员可能都有一个特征，便是只想专心的写代码，与代码无关的其他事情一律不想关心。但实际上<strong>人际交往能力</strong>远比你想象中的重要。其实程序员大部分工作时间都在于沟通。与产品经理沟通、与你的上下游沟通、与你的同事沟通。文中列出了针对程序员的沟通建议：</p>
+<ul>
+<li>每个人都希望感到自己很重要，所以不要轻率地否决同事的想法；</li>
+<li>永远不要批评，理解了第一条后就能明白第二条的意义了；</li>
+<li>换位思考（停止用“我”和“我想要什么”来思考）；</li>
+<li>避免争吵，程序员真的很容易较真争吵起来；</li>
+</ul>
+<h3 id="成为专业人士"><a href="#成为专业人士" class="headerlink" title="成为专业人士"></a>成为专业人士</h3><p>所谓专业人士是指遵守自己的原则、专注于正确完成工作、不惧怕承认自己错了，不会文过饰非、持续稳定、勇于承担责任。<br>程序员本身就是专业性很强的一个职业，成为一个专业的人，更有利于你的职业生涯。</p>
+<h3 id="请勿陷入对技术的狂热之中"><a href="#请勿陷入对技术的狂热之中" class="headerlink" title="请勿陷入对技术的狂热之中"></a>请勿陷入对技术的狂热之中</h3><p>请注意是<strong>狂热</strong>而不是热爱。历史上许多最血腥、最残酷的战争，在某种程度上而言，都是因为狂热的宗教引起的。<br>对技术太虔诚的一大问题是，我们中的大多数崇拜某项特定的技术，只是因为熟悉这种技术。我们很自然地会相信自己选择是最好的，然而这会让我们经常忽略发对意见。<br>保持技术的热爱即可，而不是狂热。</p>
+<h2 id="自我营销"><a href="#自我营销" class="headerlink" title="自我营销"></a>自我营销</h2><p>自我营销听起来或许太low了，可能会被一些geek所鄙视。有的人喜欢活跃在社交场合，有的人则喜欢独处。选择本身并没有错。虽然自我营销会给程序员带来诸多好处，但这并不意味着每个人都适合进行自我营销。<br>自我营销指：希望得到你提供的产品或者服务的人和你自己连接起来。说白了就是为别人提供价值。<br>自我营销的基本机制是<strong>要想让人们追随你、倾听你、你就要带给他们价值：你能为他们的问题提供单，甚至是给他们带去欢乐。如果你在持续自我提升的同时并没有给他人带来价值，那么你终究不会走得太远</strong>。<br>进行自我营销的方式：</p>
+<ul>
+<li>博客</li>
+<li>播客</li>
+<li>视频</li>
+<li>给杂志投稿</li>
+<li>书籍</li>
+<li>代码营</li>
+<li>技术会议</li>
+</ul>
+<p>对于程序员而言，最简单的便是开通自己的博客，并持续有价值地产出。<br>关于搭建免费 github 博客可参考我的文章，立马就能拥有属于你自己的博客</p>
+<ul>
+<li><a href="http://www.iamsuperman.cn/2016/02/21/hexo/hexo-guide-1/" target="_blank" rel="external">Hexo博客搭建教程（一）：Hexo介绍及搭建</a></li>
+<li><a href="http://www.iamsuperman.cn/2016/02/21/hexo/hexo-guide-2/" title="Hexo博客搭建教程（二）：Hexo博客的配置、使用" target="_blank" rel="external">Hexo博客搭建教程（二）：Hexo博客的配置、使用</a></li>
+<li><a href="http://www.iamsuperman.cn/2016/02/22/hexo/hexo-guide-3/" title="Hexo博客搭建教程（二）：Hexo博客的配置、使用" target="_blank" rel="external">Hexo博客搭建教程（三）：Hexo博客代码版本控制</a></li>
+<li><a href="http://www.iamsuperman.cn/2016/02/23/hexo/hexo-guide-4/" target="_blank" rel="external">Hexo博客搭建教程（四）：Hexo优化与个性化</a></li>
+</ul>
+<p>关于打造成功的博客作者提到了两个要诀：<strong>持之以恒</strong>、<strong>保证博客的品质</strong>。</p>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><p>关于如何学习的知识大多数人都知道，效果如何其实都是在靠自己的执行力和坚持了。<br>书中提到两个点值得重新关注：</p>
+<ul>
+<li>制定计划时要明确成功的含义；</li>
+<li>发现自己的知识短板。</li>
+</ul>
+<h3 id="定义目标，明确成功的含义"><a href="#定义目标，明确成功的含义" class="headerlink" title="定义目标，明确成功的含义"></a>定义目标，明确成功的含义</h3><p>当你在定义目标的时候，明确“成功”的含义极其重要。如果你不知道成功是什么样子，你是很难找准目标的。比如下面的例子：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">`		<span class="number">1</span>、官网学习vuejs api</div><div class="line">		<span class="number">2</span>、使用vuejs完成TODO sample</div><div class="line">		<span class="number">3</span>、使用vue-cli脚手架构建项目</div><div class="line">		<span class="number">4</span>、学习vue-router的使用</div><div class="line">		<span class="number">5</span>、学习vue-resource使用</div><div class="line">		<span class="number">6</span>、做一个XXX项目</div></pre></td></tr></table></figure></p>
+<p>就是一个明确了成功含义的计划。</p>
+<h3 id="发现自己的知识短板"><a href="#发现自己的知识短板" class="headerlink" title="发现自己的知识短板"></a>发现自己的知识短板</h3><p>专注于自身的强项并没有不妥，但有时候，如果弱点得不到解决，通常会成为你的职业生涯或者生活的碍脚石。每个人都是有弱点的，我们能发现并消除的知识短板越多，长久来看我们从中受益越多。<br><strong>如何找出你的短板</strong><br>实际上你的知识短板并不全都是显而易见的，有的短板你很难清除地意识到。那么该如何找出自己的短板呢？<br>方法一：<strong>找到花费你大量时间或者一直进行重复性的内容</strong>。之所以花费你大量的时候或者让你重复的内容肯定是因为你对其掌握不够熟练、理解不够彻底造成的。比如我的短板之一便是正则表达式，每次遇到正则表达式我都束手无策。<br>方法二：<strong>时刻都要试图了解自己不理解或者不清楚的事物</strong>。不断得接触新事物，有帮助你发现自己在新领域的短板。<br>找到短板之后，当然就是要消除它咯</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/24/essays/soft-skill-1/"
+                    data-title="《软技能：代码之外的生存指南》读书笔记（一）"
+                    data-url="http://wwww.iamsuperman.cn/2016/11/24/essays/soft-skill-1/"
+                    data-images=""
+                    data-content="前言双十一在异步社区买的一本书，刚好在打6折。这种书名字看起来像是适合新手的样子，不过没关系，... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/11/25/soft-skill-2/" data-toggle="tooltip" data-placement="top" title="《软技能：代码之外的生存指南》读书笔记（二）">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/14/ionic/ionic-umeng-channel/" data-toggle="tooltip" data-placement="top" title="【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/24/essays/soft-skill-1/"
+                        data-title="《软技能：代码之外的生存指南》读书笔记（一）"
+                        data-url="http://wwww.iamsuperman.cn/2016/11/24/essays/soft-skill-1/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

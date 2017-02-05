@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          【面试总结】2016-4-3-宅米面试总结 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/04/04/interview/zhaimi-interview-summary/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#面试总结" title="面试总结">面试总结</a>
+                        
+                    </div>
+                    <h1>【面试总结】2016-4-3-宅米面试总结</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-04-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>经过几场面试后发现，面试官对于你如何学习新框架的过程都比较有兴趣，因为这可以考察出一个人的学习能力。以下是宅米面试过程的一些记录。<br><a id="more"></a></p>
+<h2 id="1-说说你是如何学习AngularJS"><a href="#1-说说你是如何学习AngularJS" class="headerlink" title="1.说说你是如何学习AngularJS"></a>1.说说你是如何学习AngularJS</h2><p>主要是考查学习能力，通过你对一门新框架的学习方式来判断你的学习能力。<br>我的回答：先是通过基本基本的书籍（如《AngularJS权威教程》）去入门，然后上手做项目。在做项目的过程中，遇到问题就查看官网api文档。再根据具体的知识，去翻阅不同的书籍进行补充（如《AngularJS Essentials》、《AngularJS Up &amp; Running》）<br>在入门之后，再阅读《AngularJS深度剖析与最佳实践》深入理解AngularJS，同时通过各种论坛收集并了解有关AngularJS的一些类库并使用（如按需加载库：ocLazyLoad）</p>
+<h2 id="2-在AngularJS开发中遇到哪些坑？如何解决？"><a href="#2-在AngularJS开发中遇到哪些坑？如何解决？" class="headerlink" title="2.在AngularJS开发中遇到哪些坑？如何解决？"></a>2.在AngularJS开发中遇到哪些坑？如何解决？</h2><p>关于AngularJS开发中遇到的坑已经整理成文章，详见<a href="http://superman66.github.io/2016/04/04/angular-collect/" target="_blank" rel="external">关于AngularJS的一些坑</a></p>
+<h2 id="3-脏检查机制，哪些事件会引起脏检查？点击一个函数是否会引起脏检查？"><a href="#3-脏检查机制，哪些事件会引起脏检查？点击一个函数是否会引起脏检查？" class="headerlink" title="3.脏检查机制，哪些事件会引起脏检查？点击一个函数是否会引起脏检查？"></a>3.脏检查机制，哪些事件会引起脏检查？点击一个函数是否会引起脏检查？</h2><p>我的回答：大概描述了“脏检查”机制的原理，并回答了input值变化会引起脏检查。但是对于ng-click是否会引起dirth check 却不知道。</p>
+<h3 id="1、脏检查机制原理"><a href="#1、脏检查机制原理" class="headerlink" title="1、脏检查机制原理"></a>1、脏检查机制原理</h3><p>“脏检查”是AngularJS中最核心的机制之一，它是实现双向绑定、MVVM模式的重要基础。用一句话来概括“脏检查机制”：<br>AngularJS将双向绑定转换为一堆watch表达式，然后递归检查这些watch表达式的结果是否变了，如果变了，则执行相应的watch函数。等到Model的值不再变化，也就不会再有watcher函数被触发，一个完整的digest循环就结束了。这时，浏览器就会重新渲染DOM来体现model的改变。</p>
+<h3 id="2、哪些事件会引起脏检查？"><a href="#2、哪些事件会引起脏检查？" class="headerlink" title="2、哪些事件会引起脏检查？"></a>2、哪些事件会引起脏检查？</h3><ul>
+<li>Model的值发生改变</li>
+<li><code>ngClick</code>、<code>ngSubmit</code>、<code>ngChange</code>等事件指令，<code>$http</code>、<code>$resource</code>这类外部Ajax数据获取的回调函数以及<code>$timeout</code>、<code>$interval</code></li>
+</ul>
+<h2 id="4-知道angular2吗？（考察行业新技术的了解）"><a href="#4-知道angular2吗？（考察行业新技术的了解）" class="headerlink" title="4.知道angular2吗？（考察行业新技术的了解）"></a>4.知道angular2吗？（考察行业新技术的了解）</h2><p>大概了解过，但并未具体开始深入学习。</p>
+<h2 id="5、微信开发中遇到哪些坑？是如何解决的？（踩坑过程是一次提升的过程，因此总结你踩坑的过程就显得非常重要）"><a href="#5、微信开发中遇到哪些坑？是如何解决的？（踩坑过程是一次提升的过程，因此总结你踩坑的过程就显得非常重要）" class="headerlink" title="5、微信开发中遇到哪些坑？是如何解决的？（踩坑过程是一次提升的过程，因此总结你踩坑的过程就显得非常重要）"></a>5、微信开发中遇到哪些坑？是如何解决的？（踩坑过程是一次提升的过程，因此总结你踩坑的过程就显得非常重要）</h2><p>用户在js-sdk签名完成之前如果进行分享操作，将会导致分享设置的失效？<br>解决办法：在未签名成功之前，隐藏右上角的菜单。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>记得公司一位大神说过，每个人都应该去经历面试。因为在一个环境待久了，自我意识很容易膨胀，陷入坐井观天的状态，无法意识到自身的不足。因此出去面试可以让你发现自己知识体系中薄弱的地方。在面试结束后，找出这些薄弱的地方，再一一去学习、巩固。这样的过程对于个人成长是很有帮助的。<br>去宅米的面试应该是我面试的第4家公司了。经历过前面三次面试的磨练，这次面试自己还是存在比较大的信心。因为前一天晚上接到面试通知后，得知他们的项目前端也是采用AngularJS框架，便去他们的网站查看项目结构、代码等，做到心中有数（还发现了一个他们微信端网站存的问题，在面试中指出来，并提出了解决方案）。同时也做了一些相应的面试准备。因此在整个面试过程中进行得非常顺利。</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/04/04/interview/zhaimi-interview-summary/"
+                    data-title="【面试总结】2016-4-3-宅米面试总结"
+                    data-url="http://wwww.iamsuperman.cn/2016/04/04/interview/zhaimi-interview-summary/"
+                    data-images=""
+                    data-content="经过几场面试后发现，面试官对于你如何学习新框架的过程都比较有兴趣，因为这可以考察出一个人的学习... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/04/07/mobile/wechat-clean-cache/" data-toggle="tooltip" data-placement="top" title="如何在安卓和iOS中清除微信浏览器的缓存">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/04/angular/angular-collect/" data-toggle="tooltip" data-placement="top" title="关于AngularJS的一些坑">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/04/04/interview/zhaimi-interview-summary/"
+                        data-title="【面试总结】2016-4-3-宅米面试总结"
+                        data-url="http://wwww.iamsuperman.cn/2016/04/04/interview/zhaimi-interview-summary/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#面试总结" title="面试总结">面试总结</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

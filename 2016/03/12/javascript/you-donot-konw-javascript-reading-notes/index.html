@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          【你不知道的JavasSript(上)读书笔记】第1章：作用域 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/03/12/javascript/you-donot-konw-javascript-reading-notes/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript学习笔记" title="JavaScript学习笔记">JavaScript学习笔记</a>
+                        
+                    </div>
+                    <h1>【你不知道的JavasSript(上)读书笔记】第1章：作用域</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-03-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。<br><a id="more"></a></p>
+<h1 id="一、JavaScript编译原理"><a href="#一、JavaScript编译原理" class="headerlink" title="一、JavaScript编译原理"></a>一、JavaScript编译原理</h1><p>传统的语言编译一般经历三个过程：</p>
+<ul>
+<li>分词/词法分析</li>
+<li>解析/语法分析</li>
+<li>代码生成<br>而JavaScript引擎则要复杂得多了。简单来说就是任何JavaScript代码在执行前都要进行<strong>编译</strong>（通常在代码执行前）。<h1 id="二、理解作用域"><a href="#二、理解作用域" class="headerlink" title="二、理解作用域"></a>二、理解作用域</h1>要理解作用域之前需要了解下什么是作用域，它有什么作用？同时还需要了解JavaScript引擎和编译器是什么？</li>
+<li>引擎<br>  从头到尾负责整个JavaScript程序的编译及执行过程。</li>
+<li>编译器<br>  负责语法分析及代码生成</li>
+<li>作用域<br> 负责收集并维护由所有声明的标识符（及变量）组成的一系列<strong>查询</strong>，并实施一套<strong>规则</strong>，确定当前执行的代码对这些标识符的<strong>访问权限</strong>（简而言之就是规定了谁有权限访问哪些变量）。<br>现在以<code>var a = 2</code>这个简单的变量命名过程来分析，JavaScript引擎会将其看做两步<code>var a;</code>和<code>a = 2</code>两步进行。详见下面的流程图<br><img src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_JavaScript%E5%8F%98%E9%87%8F%E7%BC%96%E8%AF%91.png" alt="JavaScript变量编译流程图"><br>总结：变量的赋值操作会执行两个动作，首先编译器会在当前作用域声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域查找该变量，如果能够找到便对它进行赋值。<h3 id="关于变量查找的类型"><a href="#关于变量查找的类型" class="headerlink" title="关于变量查找的类型"></a>关于变量查找的类型</h3>编译器在编译过程，会对变量进行查询。一种是LHS查询，另外一种查找的类型是RHS。</li>
+<li>LHS 当变量出现在赋值操作的左侧时进行LHS查询 （赋值操作的目标是谁）</li>
+<li>RHS 当变量出现在赋值操作的非左侧时，进行RHS查询（谁是赋值操作的源头，取到这个变量的源值）<br>试着找出下面的例子各有多少个LHS和RHS<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> b = a;</div><div class="line">    <span class="keyword">return</span> b+a;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> c = foo(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>答案在结尾</em></p>
+<h1 id="三、作用域嵌套"><a href="#三、作用域嵌套" class="headerlink" title="三、作用域嵌套"></a>三、作用域嵌套</h1><p>所谓作用域嵌套就是当一个块或函数嵌套在另外一个块或函数中，就发生了作用域的嵌套。因此在当前作用域无法找到该变量时，就会往外层嵌套作用域中继续寻找，直到找到该变量或者抵达最外层的作用域（也就是全局作用域）为止。</p>
+<h1 id="四、异常"><a href="#四、异常" class="headerlink" title="四、异常"></a>四、异常</h1><p>前面提到的LHS和RHS两种查询，如何区分它们是非常重要的一件事。<br>因为在变量尚未声明之前，二者的查询行为是不一样的。如下面例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(b+a);</div><div class="line">    b = a;</div><div class="line">&#125;</div><div class="line">foo(<span class="number">2</span>);</div></pre></td></tr></table></figure></p>
+<p>想一下，输出的值应该是什么？<br>答案：<code>Uncaught ReferenceError: b is not defined(…)</code>，结果会报错。因为<code>b</code>并没有被定义，因此引擎就抛出<code>ReferenceError</code>异常。<br>为什么会导致这样的结果呢？这是因为在对变量<code>b</code>进行RHS查询的时候，如果在作用域中没有找到该变量，也就是说明这是一个“未声明”的变量，这时候引擎就会抛出<code>ReferenceError</code>异常。<br>相比较之下，如果是对变量<code>b</code>进行LHS查询的时候，如果在全局作用域也没有找到该变量的话，<strong>全局作用域便会自动创建该变量</strong>，前提是在非严格模式下。<strong>这就是LHS和RHS的两种查询类型的区别</strong>。<br>同样，在JavaScript中，也有两种异常类型。一种就是刚刚说到的<code>ReferenceError</code>，另外一种则是<code>TypeError</code>。那这二者有什么区别吗？</p>
+<ul>
+<li><code>ReferenceError</code>指的是同作用域判别失败相关，简单说就是在作用域找不到该变量。</li>
+<li><code>TypeError</code>指的是作用域判别成功，但对结果的操作是非法或者不合理的。简单说就是在作用域找到该变量，但是该变量的值不符合。</li>
+</ul>
+<p><strong>前面问题的答案</strong><br>LHS</p>
+<ul>
+<li><code>c=</code></li>
+<li><code>a=2</code></li>
+<li><code>b=</code>。<br>RHS</li>
+<li><code>foo(2)</code></li>
+<li><code>=a</code></li>
+<li><code>a</code>（return的时候要去查找a的值）   </li>
+<li><code>b</code>（return的时候要去查找b的值）</li>
+</ul>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/03/12/javascript/you-donot-konw-javascript-reading-notes/"
+                    data-title="【你不知道的JavasSript(上)读书笔记】第1章：作用域"
+                    data-url="http://wwww.iamsuperman.cn/2016/03/12/javascript/you-donot-konw-javascript-reading-notes/"
+                    data-images=""
+                    data-content="该系列是《你不知道的JavaScript（上）》的读书笔记。记录成文字，加深学习印象。
+一、J... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/03/15/javascript/you-donot-konw-javascript-reading-notes-2/" data-toggle="tooltip" data-placement="top" title="【你不知道的JavasSript(上)读书笔记】第2章：词法作用域">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/03/12/project-summary-uular/" data-toggle="tooltip" data-placement="top" title="优乐健身移动端页面制作总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/03/12/javascript/you-donot-konw-javascript-reading-notes/"
+                        data-title="【你不知道的JavasSript(上)读书笔记】第1章：作用域"
+                        data-url="http://wwww.iamsuperman.cn/2016/03/12/javascript/you-donot-konw-javascript-reading-notes/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript学习笔记" title="JavaScript学习笔记">JavaScript学习笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

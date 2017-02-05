@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          《暗时间》读书笔记 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/04/30/essays/darktime-reading-note/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>《暗时间》读书笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-04-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>一本豆瓣评分8.5分的书，忘记是从哪个地方了解到这本书，只记得被暗时间这个书名吸引了，于是第一时间看起来了。第一篇顺着目录，挑着感兴趣的话题读了一遍。第二遍的时候，从头到尾，一字一句得看完了。本来这篇读书笔记应该在更早的几天就该完成了，可是总是想着等做完思维导图才开始动笔写。然而这思维导图憋了几天也没完成，于是索性先放弃思维导图，转向写文章了</p>
+<blockquote>
+<p>《暗时间》以心理学、认知科学和神经科学为主要角度，对学习心理学的意义、日常生活中人们如何进行思考，不同的思维方式会带来怎样的价值，何种学习方法才是有效的，以及在数学和计算机科学学习过程中如何分析问题并解决问题都做了详细的阐述，强调人们需要主动训练自身的反思能力并掌握有效的思考方法。</p>
+</blockquote>
+<p>看一本书，如果不能迭代你的认知与知识的话，那就不能叫学习，只能称为娱乐。因为你只是在重复了解你原本就已经知道的知识。下面的几个部分是我看完《暗时间》后的被迭代的。</p>
+<h2 id="暗时间是什么"><a href="#暗时间是什么" class="headerlink" title="暗时间是什么"></a>暗时间是什么</h2><p>作者用了比较大的篇幅介绍了暗时间的意义。其中有一个比喻非常形象：</p>
+<blockquote>
+<p>如果你有一台计算机，你装了一个系统之后就整天把他搁置在那里，你觉得这台计算机被实际使用了吗？没有，因为CPU整天运行的就是空闲进程。运行空闲进程也是一天，运行大数据量计算的程序也是一天，对于CPU来说同样的一天，价值却是完全不一样。</p>
+</blockquote>
+<p>非常生动形象的比喻。了解过计算机的人一看这个比喻就立马明白了什么是暗时间的意义。作者接着又举了一个更普通的例子来说明：</p>
+<blockquote>
+<p>如果你正在学习一门专业，你使用自己所投入的天数来衡量，很容易就产生一种错觉，认为投入了不少时间，然而其实，“投入时间”这个说法本身就是荒唐的，实际投入的是时间和效率的乘积。</p>
+</blockquote>
+<p>通过上面两个举例，相信你可以很明了暗时间有什么意义了。作者认为，所谓<strong>暗时间就是你的思维时间</strong>，你走路，买菜，洗脸洗手，坐公交，逛街、出游、吃饭、睡觉所有的这些时间都可以成为暗时间，你可以充分利用这些时间思考，反刍和消化平时看和读的东西，让你的认识能够脱离照本宣科的层面。这段时间看起来微不足道，但日积月累将产生庞大的效应。能够充分利用暗时间的人将无形中多出一大块生命。牛逼的人不仅在自己擅长的领域非常牛逼，连在“业务、兴趣“的领域也特别的牛逼。每每看到这样的人，总是会疑惑，他们怎么哪里来的这么多时间，居然可以在这么多个领域达到如此卓越的地步。或许其中一个原因就是牛逼的人特别善于利用暗时间。<br>这是一个非常具有实用价值的概念。尤其是在移动互联网空前发达的今天，随处可见低头一族。吃饭时刷刷朋友圈，看看新闻；等车时刷刷微博；挤地铁时又掏出手机刷着各种公众号文章。大部分的暗时间已经被手机占领了，每天接触着大量的信息，却没有花时间消化，那么多信息你只是看过而已，如果没有进一步的回顾、整理以及内化，看过的文章其实没有在你脑子留下任何有价值的信息。信息过载等同于没有信息。<br>现在的我已经逐渐在学习排除干扰因素，增加暗时间来思考了。</p>
+<ul>
+<li>关闭朋友圈，减少每天频繁刷朋友圈的次数</li>
+<li>每天早上等公交，等地铁的时间用来思考，千万别看手机</li>
+<li>地铁拥挤的时候无法看书，也将其纳入暗时间，用来思考。思考的内容包括但不限于：今天的工作计划、近期的阅读计划、待写的文章、人生思考等。</li>
+<li>其他暗时间还在慢慢纳入</li>
+</ul>
+<p>要想充分利用好暗时间，还需要一个非常重要的技能：<strong>专注，不仅包括能快速进入专注的状态，还包括能够长期保持专注状态。这两个是高效学习最重要的习惯</strong>。<br>不得不承认，专注力已经作为一种稀缺资源了。生活中充满着各种分散你注意力的事物，qq消息，邮件提醒，微信消息提醒，朋友圈动态提醒等等太多了。稍微没有控制住，你的注意力就被分散，你就无法专注了。解决这个办法很简单：杜绝一切干扰因素，关闭手机提醒、邮件提醒、qq消息提醒、微信消息提醒，甚至在必要的时候可以断网。<br>除了专注，还有一个高效的习惯：<strong>抗干扰</strong>。</p>
+<blockquote>
+<p>只有超强的抗干扰能力，才能有效地利用起前面提到的各种暗时间。</p>
+</blockquote>
+<p>因为大多数的暗时间都是处于室外复杂，喧闹的环境，干扰的因素很多。还好抗干扰能力也是可以练习出来的。<br>于我而言，现在每天上班的地铁时间，就是我高效看书的时间。一开始也是无法专心在那么嘈杂的环境下安心专注得看书，但经过近半年的训练，在地铁中，现在已经能非常快速得进入阅读状态了。事实证明在有干扰的环境中看书是非常锻炼专注能力的一个办法。另外作者还提到，经常利用各种碎片时间阅读和思考，对迅速集中注意力和保持注意力都非常有帮助。</p>
+<h2 id="设计自己的进度条"><a href="#设计自己的进度条" class="headerlink" title="设计自己的进度条"></a>设计自己的进度条</h2><p>设计进度条其实和流行的GTD方法学类似，其核心理念在于</p>
+<blockquote>
+<p>如果你把任务分割了，你就有了进度条，你就知道，事情是在不断紧张，你总会完成任务或到达你的目标，你会有一个时间估计。反之，如果没有这个分割，整个的任务或目标对你而言就只有两种状态——“完成”和“未完成”</p>
+</blockquote>
+<p>有接触过GTD（Get Thing Done）的人都明白，GTD的方法论就是记录下你所有要做的事，然后再去安排、执行（这是最初级的阶段）。更深入一点的GTD则是：列下所有要做的事，<strong>对每件事都进行拆分</strong>。对于要做的这件事，你可以实际采取的下一步行动是什么。以此类推，每一步都去分析<strong>下一步行动</strong>。到最后的结果便是，一件事就会被拆分成多个下一步行动，每一个行动都是可以实际做到的。这样下来，Get Thing Done就是一件顺理成章的事。</p>
+<p>如果我们对于任务或者目标没有进行合理得设计进度条，那么在目标达到之前，你的状态就会一直都是“未完成”，一次又一次的未完成会耗尽你的耐心，让你下意识的产生“这事什么时候才能完成呢？“的疑惑，没有分而治之，你就不知道未来还需要付出多少努力才能达到目的，这样导致的后果就是你会心生怯意，不敢进一步投入时间，免得血本无归。在这要的心理下，不少人就会选择保守策略——退出。设计进度条就是基于人的这种心理弱点，如果你对整个目标的几个重大步骤都有清晰的界定，能够对每个步骤的耗时作出靠谱的上界估计，你就不会被不确定的未来，不确定的时间投入感到恐惧。就会心生退意。<br>所以作者就提出了</p>
+<blockquote>
+<p>不要过早退出循环</p>
+</blockquote>
+<p>因为即使是设计了进度条，在遇到困难时，大部分的人依然会想到退出、逃避。我们在尝试新事物的时候，会遇到各种各样的困难，不同的人会在碰壁不同的次数之后退出。</p>
+<blockquote>
+<p>用程序员喜欢的话就是，我们都在for循环，区别在于你是什么情况下break；有的人退出阙值高，这是能坚持的一类人；有的人退出阙值低，一遇到困难就退出了。</p>
+</blockquote>
+<p>最喜欢这种用程序比喻了，高度贴切。就好比笑点有高有低，坚持阙值也有高有低，下次要放弃之前，先问问自己“难道你是容易放弃的人吗？”。</p>
+<blockquote>
+<p>过早退出是一切失败的根源</p>
+</blockquote>
+<h2 id="靠专业技能的成功最具有可复制性"><a href="#靠专业技能的成功最具有可复制性" class="headerlink" title="靠专业技能的成功最具有可复制性"></a>靠专业技能的成功最具有可复制性</h2><p>如果说世界上有一种成功可以复制，那也只有靠专业技能的成功可以称得上这种成功了。因为它只需要的只是你在一个领域坚持不懈地专注下去，只需要选择一个不算不太靠谱的方向，然后专心致志得专下去，最后必然能成为高手或者绝顶高手。世界上有很多成功带有偶然因素和运气成分或出身环境，但至少这一样，被无数人复制了无数遍，否则就不会存在学校和教育了。</p>
+<h2 id="为什么你应该（从现在开始）写博客"><a href="#为什么你应该（从现在开始）写博客" class="headerlink" title="为什么你应该（从现在开始）写博客"></a>为什么你应该（从现在开始）写博客</h2><p>因为写博客有很多好处，却没有任何明显的坏处。</p>
+<ul>
+<li>能够交到很多志同道合的朋友</li>
+<li>写博客就是对你思考结果、学习结果的再次整理<br>自从开始开通博客之后，每次都会将学习过程记录成博客。每次在写博客的过程中，为了能让自己可以表达更清楚明了，又会趋使我去深入了解。</li>
+<li>教是最好的学；<blockquote>
+<p>为了让一个不明白的人做到明白，你必须要知道从明白到不明白他究竟需要掌握哪些概念，这就迫使我们对我们大脑中的整个知识体系来个寻根究底，把大脑中的那些我们知道，但不知道自己知道的潜在概念或假设都挖出来，把它们从内隐记忆拉扯到外显记忆中。因为只有完全知道，并知道自己知道一切来龙去脉的人，才能真正把一件事情讲得通通透透。</p>
+</blockquote>
+</li>
+<li>激励你去持续学习和思考<br>刚开始可能觉得没有什么内容可以写，这个时候，为了更新博客，我会去逼迫自己为了写而写。看完一本书，会逼迫自己写点读书笔记（就好比这篇文章）；学完一个知识后，我会逼迫自己将学习过程、总结记录下来。写的过程，又促使我进行了二次思考和学习。</li>
+<li>学会持之以恒的做一件事情<br>如果有什么是我希望坚持做下去的话，那么写博客将会是我的第一选择。</li>
+<li>一个长期的价值博客是一份很好的简历。<br>作为程序员，拥有自己的网站或者博客，你已经比大多数人进步了。如果能长期坚持写下去，那更是超越了全国90%的用户了（数字纯属杜撰）。一个好的博客就应该如同朋友圈，新朋友通过朋友圈可以大致了解你；博客则是一个让别人了解自己的窗口。（这里的简历指广义上的简历：别人了解自己的窗口）</li>
+</ul>
+<h2 id="什么才是你不可替代性和核心竞争力"><a href="#什么才是你不可替代性和核心竞争力" class="headerlink" title="什么才是你不可替代性和核心竞争力"></a>什么才是你不可替代性和核心竞争力</h2><p>物依稀为贵，这条最基本经济学铁律已是深入人心。人才在社会上的本质就是一种商品，而商品的稀缺性决定着商品的价值。稀缺性，换种说法就是不可替代性。不可替代性越强，价格就会越高。<br>那么如何构筑自己的个人知识体系，提高自己的稀缺性呢？<br>作者通过观察得出一个观点：</p>
+<blockquote>
+<p>个人的核心竞争力是他独特的个性、知识、经验组合。如果这种组合<br>1、绝无仅有<br>2、在实践中有价值<br>3、具有可持续发展性<br>那你就具有核心竞争力。</p>
+</blockquote>
+<p>作者认为以下的知识技能组合是具有相当程度的不可替代性：</p>
+<blockquote>
+<p>1、专业技能：成为一个专业领域的专家，你的专业技能越强，在这个领域的不可替代性就越高。<br>2、跨领域的技能：解决问题的能力，创新思维，判断与决策能力，Critical-Thinking(批判性思维)，表达沟通能力，Open Mind等。<br>3、学习能力：严格来说学习能力也属于跨领域的技能，但由于实在太重要，并且跨任何领域，所以独立出来。如果培养学习能力，就是持续学习和思考新知识<br>4、性格要素：专注、持之以恒、自省（意识到自己的问题所在的能力，这是改进自身的大前提）、好奇心、自信、谦卑等等</p>
+</blockquote>
+<p>不管所处哪个行业，上面所说的四个技能都是适用的。作为程序员，专业技能这点是毋庸置疑的。但也千万别忘了培养后面三种技能。专业技能决定了你能走多远，而后面的技能却决定着你能飞多高。</p>
+<h2 id="精彩摘录"><a href="#精彩摘录" class="headerlink" title="精彩摘录"></a>精彩摘录</h2><blockquote>
+<p>1、兴趣遍地都是，专注和持之以恒才是真正稀缺的。<br>2、人与人的差距不在资质上，而在花在思考的时间与思考的深度上<br>3、靠专业技能的成功是最具有可复制性的<br>4、大学期间，最不缺的就是业余时间，最缺的就是专注精神，非凡的注意力造就非凡的专家</p>
+</blockquote>
+<p>参考资料<br>来源： <a href="http://baike.baidu.com/subview/3147362/11243902.htm#viewPageContent" target="_blank" rel="external">http://baike.baidu.com/subview/3147362/11243902.htm#viewPageContent</a></p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/04/30/essays/darktime-reading-note/"
+                    data-title="《暗时间》读书笔记"
+                    data-url="http://wwww.iamsuperman.cn/2016/04/30/essays/darktime-reading-note/"
+                    data-images=""
+                    data-content="一本豆瓣评分8.5分的书，忘记是从哪个地方了解到这本书，只记得被暗时间这个书名吸引了，于是第一... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/04/angular/angular-markdown-note/" data-toggle="tooltip" data-placement="top" title="基于localStorage和AngularJS的markdown简易笔记本">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/04/20/javascript/javascirpt-call-method/" data-toggle="tooltip" data-placement="top" title="深入理解JavaScript中的call和apply">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/04/30/essays/darktime-reading-note/"
+                        data-title="《暗时间》读书笔记"
+                        data-url="http://wwww.iamsuperman.cn/2016/04/30/essays/darktime-reading-note/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

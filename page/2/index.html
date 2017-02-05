@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/page/2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Superman&#39;s Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">To Be A Better Man!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2016/11/14/ionic/ionic-umeng-channel/">
+        <h2 class="post-title">
+            【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            安装umeng提供的插件第一步：下载SDK
+下载地址：http://dev.umeng.com/analytics/h5/sdk-download
+第二步：配置appkey
+下载解压缩后，打开里面*/umeng-plugin-android/下的plugin.xml，更改appkey：
+123 &lt;!-- appkey --&gt;&lt;meta-data android:name="......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-11-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/11/08/ionic/ionic-summary/">
+        <h2 class="post-title">
+            ionic开发App-问题收集总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            总结使用ionic开发App算是告一段落了。使用前端的技术来统一移动端，不得不承认这个听起来很酷。JavaScript要统一世界的节奏。然而现实并不是这样，使用ionic开发App虽然在开发速度上比原生开发快很多（有AngularJS的基础上，1~2个礼拜熟悉ionic框架，一个月左右做完App），但依然存在下面这个几个比较致命的问题：
+
+App流畅度不足，用户体验差。尤其是在Android......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-11-08
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/11/05/angular/angular-copy-cancel-two-way-binding/">
+        <h2 class="post-title">
+            angular.copy 取消变量的双向绑定及解析
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言AngularJS的双向绑定在表单应用中强大又方便，但是偶尔会遇到需要解除对象变量的双向绑定。Angular提供的angular.copy的方法可以实现解除双向绑定。今天就来说说angular.copy。
+Demotalk is cheap, show me the code.
+1234567891011121314151617181920212223242526272829303132......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-11-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/22/photos-in-the-past/">
+        <h2 class="post-title">
+            告别Android，记录过去的照片
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            今天晚上将魅族MX4上的手机卡拿下来，放到iPhone上，就意味着今天开始要彻底抛弃Android阵营了，从生活到工作都已经彻底拥抱iOS和macOS了。这篇文章用来记录从MX4导出的一些照片。依稀还记得大三买单反那会，对摄影充满着热爱。随着时间的过去，从学生变成了上班一族，单反已经快要发霉了。偶尔还能用手机拍拍照片，称之为手机摄影。刚刚整理照片的时候，挑选了一些照片，一张照片就是一个故事，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-10-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/20/essays/read-book-in-a-week/">
+        <h2 class="post-title">
+            一周看完一本书很难吗？
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            这是昨天在微信公众号看到的一篇文章的标题。在昨天早晨，我将《把生命浪费在美好的事物上》看完了一遍，前后刚好用了一周时间。
+一周一本书对于我而言，有时候显得轻而易举，有时候又是困难重重。总结下来就两点原因：
+
+阅读习惯养成；
+挑自己最感兴趣的书看；
+
+作为程序员，阅读习惯可能要比大部分行业的大部分人要好很多。因为程序员是个不断需要学习才能保持进步或者维持原状。所以程序员的阅读量相对还是不少的。......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-10-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/09/ionic/ionic-wechat-share/">
+        <h2 class="post-title">
+            【ionic App问题总结系列】ionic微信朋友圈分享
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            做完之后才发现实现ionic微信朋友圈、朋友分享并不难。只要按照着插件的文档来就行。但是在刚接触的时候依然是存在疑惑，还是写点记录总结下吧（本文是在开发Android App的环境下产生的）。
+整个流程大致是下面三步：
+
+微信开放平台申请应用获取appid
+
+安装cordova微信分享插件
+
+在代码中调用实现分享
+
+
+开发前的准备不管你使用什么样的cordova 微信分享插件，都必须要在微信......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-10-09
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/02/ionic/handle-hardware-back-button-exist-app/">
+        <h2 class="post-title">
+            【ionic App问题总结系列】点击系统返回键退出App
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            在安卓下，如果不处理系统返回键的事件，那么每次点击返回键，将页面将返回到上一个路由，这种逻辑不符合app的路由逻辑。正确的应该是：当页面到了各个导航页的首页时，此时再按返回键应该提示是否退出app，用户点击确认后退出app。
+在run()方法中添加下面的方法12345678910111213141516171819202122232425262728293031323334353637383......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-10-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/09/30/ionic/update-ionic-app/">
+        <h2 class="post-title">
+            【ionic App问题总结系列】如何更新app版本
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            ionic 如何进行自动更新ionic App更新有两种方式：第一种是普通的从远程下载apk，安装并覆盖旧版本。另外一种就是采用替换www文件夹的内容，实现应用内更新，而无需下载安装apk。这篇文章讲的是通过第一种方式，来实现app的更新。App更新流程比较简单，如下图：这里用到的后端的接口字段如下：123456&#123;    "update_flag",    // 更新的flag，一......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-09-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/08/27/interview/about-interview/">
+        <h2 class="post-title">
+            知己知彼-从面试官的角度反观求职面试
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言大部分人在求职的时候，通常是这样的流程：写简历-&gt;网上找企业投简历-&gt;收到面试通知，准备-&gt;面试。这整个过程中，还包含着准备面试的阶段。关于如何准备面试不是本文探讨的内容，这篇文章是想从面试官或者企业的角度出发，尝试从招聘方理解他们会如何去面试一个求职者这个角度来帮助我们更好的准备面试，从而得到自己心仪的offer（本文只针对it行业，或者再缩小范围，只针对前端招聘）。......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-08-27
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/08/23/vue/vue-cli-and-vue-router/">
+        <h2 class="post-title">
+            如何在vue-cli中使用vue-router
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言vue-cli和vue-router都是Vue官方提供的库。一个是脚手架，一个是路由。这两天刚学习Vue.js，一开始对于如何在vue-cli创建的项目中使用vue-router有点搞不明白，总结下来，希望也能帮助到其他Vue初学者。
+vue-cli首先利用vue-cli创建项目。具体教程可以前往官网：https://github.com/vuejs/vue-cli。
+我这里选择的是we......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-08-23
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/page/3/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#JavaScript" title="JavaScript" rel="4">JavaScript</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#随笔" title="随笔" rel="16">随笔</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Hexo" title="Hexo" rel="5">Hexo</a>
+                            
+                        
+                            
+                            <a href="/tags/#移动端" title="移动端" rel="3">移动端</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="6">读书笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#AngularJS" title="AngularJS" rel="8">AngularJS</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#markdown" title="markdown" rel="2">markdown</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#ionic" title="ionic" rel="7">ionic</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#JavaScript学习笔记" title="JavaScript学习笔记" rel="7">JavaScript学习笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#面向对象" title="面向对象" rel="2">面向对象</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Mac" title="Mac" rel="2">Mac</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#MEAN" title="MEAN" rel="2">MEAN</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Vue" title="Vue" rel="2">Vue</a>
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.jpg" />
+                        
+
+                        
+                            <p>越来越宅了</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                                <li>
+                                    <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/superman66">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

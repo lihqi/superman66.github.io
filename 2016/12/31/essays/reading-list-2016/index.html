@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          2016阅读书单 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/12/31/essays/reading-list-2016/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#阅读书单" title="阅读书单">阅读书单</a>
+                        
+                    </div>
+                    <h1>2016阅读书单</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-12-31
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>记录2016阅读过的书籍。2016年从2月份记录开始到2016年结束，共计阅读了40本书籍。<br><a id="more"></a></p>
+<h1 id="2016-12-阅读列表"><a href="#2016-12-阅读列表" class="headerlink" title="2016-12-阅读列表"></a>2016-12-阅读列表</h1><h2 id="《一个悲观主义者的积极思考》叔本华的经典之作"><a href="#《一个悲观主义者的积极思考》叔本华的经典之作" class="headerlink" title="《一个悲观主义者的积极思考》叔本华的经典之作"></a>《一个悲观主义者的积极思考》叔本华的经典之作</h2><p>终于在2016年的最后一天将这本书看完了，没有带着这本书跨年。<br>叔本华：悲观主义哲学大师，一生未婚，以狗为伴，家产万贯，却并不得志。<br>在上大学的时候，看哲学书总是没有成功看完。可能跟浮躁与经历尚少有关系。经历一年多的工作，明显的进步就是能心平气和地将这本书看完，并且对书中的多个方面与作者取得共鸣。</p>
+<h2 id="《少有人走的路》心智成熟之路"><a href="#《少有人走的路》心智成熟之路" class="headerlink" title="《少有人走的路》心智成熟之路"></a>《少有人走的路》心智成熟之路</h2><p>人可以拒绝任何东西，但绝对不可以拒绝成熟。拒绝成熟，实际上就是在规避问题，逃避痛苦。</p>
+<h2 id="《月亮和六便士》毛姆经典作之一"><a href="#《月亮和六便士》毛姆经典作之一" class="headerlink" title="《月亮和六便士》毛姆经典作之一"></a>《月亮和六便士》毛姆经典作之一</h2><p>这本书也是一波三折。之前已经尝试看了3次了，每次都是刚开始开头就看不下去了（本书的开头真的很生涩）。还好这次坚持下来了。又认识到了人的伟大。<br>为了追求自己内心的绘画艺术，毅然抛弃已有的一切：家庭、金钱、名誉的一切。只为追求艺术，追求内心的方向，而不为其他任何东西。<br>换做是你，你能做到吗？我做不到。</p>
+<h2 id="《苏菲的世界》挪威高中哲学教科书"><a href="#《苏菲的世界》挪威高中哲学教科书" class="headerlink" title="《苏菲的世界》挪威高中哲学教科书"></a>《苏菲的世界》挪威高中哲学教科书</h2><p>如果你刚对哲学及发展史感兴趣，那么一定不能错过这本书。一口气把这本书看完，一个词可以形容：酣畅淋漓。</p>
+<h1 id="2016-11-阅读列表"><a href="#2016-11-阅读列表" class="headerlink" title="2016-11-阅读列表"></a>2016-11-阅读列表</h1><h2 id="《你不知道的JavaScript（中）》"><a href="#《你不知道的JavaScript（中）》" class="headerlink" title="《你不知道的JavaScript（中）》"></a>《你不知道的JavaScript（中）》</h2><p>JavaScript的好书之一，趁着双十一打折买了6本书，超级划算的。正在阅读过程中，读书笔记待整理。</p>
+<h2 id="《JavaScript忍者秘籍》"><a href="#《JavaScript忍者秘籍》" class="headerlink" title="《JavaScript忍者秘籍》"></a>《JavaScript忍者秘籍》</h2><p>一本JavaScript进阶的书籍，虽然是大神写的书，但并不保证你看完就能成为忍者。但是值得深入阅读。但是有一点值得吐槽，这本书的翻译真不怎么样。依然在阅读中，等待后续整理笔记。</p>
+<h2 id="《软技能：代码之外的生存技能》"><a href="#《软技能：代码之外的生存技能》" class="headerlink" title="《软技能：代码之外的生存技能》"></a>《软技能：代码之外的生存技能》</h2><p>博客文集合，适合新手阅读。读书笔记戳这里：</p>
+<ul>
+<li><a href="http://www.iamsuperman.cn/2016/11/24/essays/soft-skill-1/" target="_blank" rel="external">《软技能：代码之外的生存指南》读书笔记（一）</a></li>
+<li><a href="http://www.iamsuperman.cn/2016/11/25/soft-skill-2/" target="_blank" rel="external">《软技能：代码之外的生存指南》读书笔记（二）</a></li>
+</ul>
+<h2 id="《极简人类史》"><a href="#《极简人类史》" class="headerlink" title="《极简人类史》"></a>《极简人类史》</h2><h1 id="2016-10-阅读列表"><a href="#2016-10-阅读列表" class="headerlink" title="2016-10-阅读列表"></a>2016-10-阅读列表</h1><h2 id="《把生命浪费在美好的事物上》"><a href="#《把生命浪费在美好的事物上》" class="headerlink" title="《把生命浪费在美好的事物上》"></a>《把生命浪费在美好的事物上》</h2><p>吴晓波的书，财经写作者写的类似随笔散文。虽然豆瓣褒贬不一，但是我喜欢就行了。</p>
+<h2 id="《最重要的事只要一件》"><a href="#《最重要的事只要一件》" class="headerlink" title="《最重要的事只要一件》"></a>《最重要的事只要一件》</h2><p>刚好在进行100天行动，很多原则跟这本书类似。</p>
+<h1 id="2016-09-阅读列表"><a href="#2016-09-阅读列表" class="headerlink" title="2016-09-阅读列表"></a>2016-09-阅读列表</h1><h2 id="《北京折叠》"><a href="#《北京折叠》" class="headerlink" title="《北京折叠》"></a>《北京折叠》</h2><p>趁着热闹看了，可能社会阅历还不够，无法深刻理解小说中的阶级分层。等待二刷。</p>
+<h2 id="《动物庄园》"><a href="#《动物庄园》" class="headerlink" title="《动物庄园》"></a>《动物庄园》</h2><p>又是一本将阶级、借用动物起义讽刺共产阶级。一群动物因不满人类庄主的统治，庄园内的动物全体起义赶跑庄主，并霸占庄园，实现庄园内的共产主义，全部动物平等对待，一起工作，一起享受工作成果。可惜好景不长，后来就演变出从动物里面产生了统治者，接着便是开始实施专政统治，情况又回到了人类庄主在的时候，甚至更糟。最后动物庄园当然是以失败告终。</p>
+<p>回想中国各类起义及造反，过程和结果极其相似。先是大家同甘共苦的一起奋斗打江山。打下江山后便是除异己，制定各类维护当前统治者利益的政策，巩固既得利益。不得不承认，跟天朝还蛮类似的。只能呵呵。</p>
+<h2 id="《假性亲密关系》《iPhone十年》"><a href="#《假性亲密关系》《iPhone十年》" class="headerlink" title="《假性亲密关系》《iPhone十年》"></a>《假性亲密关系》《iPhone十年》</h2><p>这两本都是知乎出品的电子书。严格来说，这其实都不上书。只能勉强算吧。</p>
+<p>看完《假性亲密关系》后才发现，亲密相处学问这么大，然而大部分人都还不知道。所以大部分人可能都是处于一种假性亲密关系的状态下吧。</p>
+<p>《iPhone十年》刷新了我对iPhone的认识。对于史上最伟大的手机，心中只有敬佩。</p>
+<h2 id="《高性能JavaScript编程》"><a href="#《高性能JavaScript编程》" class="headerlink" title="《高性能JavaScript编程》"></a>《高性能JavaScript编程》</h2><p>还没看完。。。</p>
+<h1 id="2016-08-阅读列表"><a href="#2016-08-阅读列表" class="headerlink" title="2016-08-阅读列表"></a>2016-08-阅读列表</h1><h2 id="《编写可维护的JavaScript》"><a href="#《编写可维护的JavaScript》" class="headerlink" title="《编写可维护的JavaScript》"></a>《编写可维护的JavaScript》</h2><p>代码是写给人看的，不仅要自己能看懂，还要让别人也能看懂。因此遵循着一定的规范写出来的代码更符合规范，也更方便维护。<br><a href="http://www.iamsuperman.cn/2016/08/15/javascript/maintainable-javaScript/" target="_blank" rel="external">《编写可维护的JavaScript》笔记</a></p>
+<h2 id="《图解CSS3》"><a href="#《图解CSS3》" class="headerlink" title="《图解CSS3》"></a>《图解CSS3》</h2><p>专门挑了Flexbox模型这一章节看了，并在项目中用起来了，真后悔没有早点使用。在移动端使用flexbox简直太爽了。</p>
+<h2 id="《硅谷钢铁侠》"><a href="#《硅谷钢铁侠》" class="headerlink" title="《硅谷钢铁侠》"></a>《硅谷钢铁侠》</h2><p>又是一本人物传记的书籍。SpaceX可能大家还不是非常的熟悉，但是提起Tesla的话，那名气可就大得多了。帅气的流线型车体、电动车、加速快、贵，这些可能是大众对Tesla的普遍印象。不管是SpaceX还是Tesla，这背后都有一个成功男人的身影：埃隆 马斯克。<br><strong>我们所看到的永远只是别人成功光鲜的一面，却不曾想到这背后所付出的努力和艰辛。</strong><br>如今风生水起的Tesla，可曾想到在2008年那会，由于没能如期生产出电动车，又遇到金融危机。整个公司遭遇了严重的经济危机，正濒临破产的边缘，随时都有可能倒闭。庆幸的是，Tesla挺过来了，才有了今天的Model S。</p>
+<p><strong>成功没有速成，唯有坚持</strong><br>马斯克在开启Tesla的项目时，最早是在2002年。可是它真正让全世界认识是在2012年Model S的发布。这个过程整整持续了10年。<br>SpaceX的计划是在2001年开始的，到现在2016年已经过去了15年了，虽然SpaceX还面临着很多问题，但是它也获得很巨大的成就：可回收火箭、低成本火箭发射。<br><strong>摘录</strong></p>
+<ol>
+<li>伟大成功者都带有强烈的偏执。对事业绝不妥协</li>
+<li>SpaceX的做事原则是全情投入你的工作并把事情搞定。等待指导或详细指示的人将会举步维艰。习惯得到反馈意见的员工也是一样。</li>
+</ol>
+<h2 id="《MacTalk-人生元编程》"><a href="#《MacTalk-人生元编程》" class="headerlink" title="《MacTalk 人生元编程》"></a>《MacTalk 人生元编程》</h2><p>以前没有mbp的时候看过一遍，现在买了mbp后开始2刷。里面的Mac技巧挺实用的，还推荐了一些好用的软件。<br>更多Mac软件可以看这篇文章：<a href="http://www.iamsuperman.cn/2016/07/28/mac-software/" target="_blank" rel="external">Mac好用的软件</a><br>书中有篇文章讲到了程序员的性格，深有感触。虽然coding带来的是独立思考和逻辑思考的能力，但同时也发生了一些变化。幽默感会逐渐消失，会变得喜欢反驳别人，凡事都想以程序处理方式来处理（也就是所谓的死板，没情趣）。这是个危险的信号，毕竟这个世界是由人组成而非程序，跟人打交道还是得按照人的方式。</p>
+<h1 id="2016-07-阅读列表"><a href="#2016-07-阅读列表" class="headerlink" title="2016-07-阅读列表"></a>2016-07-阅读列表</h1><p>这个月忙着做项目，导致看书时间大幅度减少。</p>
+<h2 id="《经济学通识》-一本帮你更好的认识这个世界本质的书"><a href="#《经济学通识》-一本帮你更好的认识这个世界本质的书" class="headerlink" title="《经济学通识》-一本帮你更好的认识这个世界本质的书"></a>《经济学通识》-一本帮你更好的认识这个世界本质的书</h2><p>罗辑思维独家出售的书，虽然豆瓣和知乎上很多人对作者唯经济理论至上的观点表示不赞同，但是不可否认的是书中至少为我们提供了多种看待世界的角度。值得一看。<br>读书笔记：<a href="http://www.iamsuperman.cn/2016/08/09/Economic-reading-note/" target="_blank" rel="external">http://www.iamsuperman.cn/2016/08/09/Economic-reading-note/</a></p>
+<h2 id="《程序员修炼之道》-程序员如何更好得学习"><a href="#《程序员修炼之道》-程序员如何更好得学习" class="headerlink" title="《程序员修炼之道》-程序员如何更好得学习"></a>《程序员修炼之道》-程序员如何更好得学习</h2><p>里面介绍了著名的德雷福斯技能等级模型，以及关于程序员的学习之道。如何从小工到专家。</p>
+<h1 id="2016-06-阅读列表"><a href="#2016-06-阅读列表" class="headerlink" title="2016-06-阅读列表"></a>2016-06-阅读列表</h1><h2 id="《开发的智力》"><a href="#《开发的智力》" class="headerlink" title="《开发的智力》"></a>《开发的智力》</h2><p>算是采铜在知乎一些精彩答案的合集。这本书主要分为三部分：给青年、去学习、会思考。</p>
+<ul>
+<li>给青年：主要从思维模式角度给青年一些启发，比如什么是“失败者思维”、“单因素模型”、“何为平庸”等</li>
+<li>去学习：还是讲学习的一些方法论</li>
+<li>会思考：讲述如何思考，如何进行有深度和广度的思考。</li>
+</ul>
+<p>后两部分的内容与《精进》一书存在着重叠部分。</p>
+<h2 id="《魔鬼经济学》-揭示隐藏在表象之下的真实世界。"><a href="#《魔鬼经济学》-揭示隐藏在表象之下的真实世界。" class="headerlink" title="《魔鬼经济学》-揭示隐藏在表象之下的真实世界。"></a>《魔鬼经济学》-揭示隐藏在表象之下的真实世界。</h2><blockquote>
+<p>伦理道德代表了人们希望这个社会运行的方式，而经济学则勾画出了它的实际运作方式。</p>
+</blockquote>
+<p>本书取材于日常生活，用经济学的方式来探索日常事物背后的世界。花了一下午看了一遍，虽然没有记住太多，但是为思考提供了一种新的可能性。你所看到的世界并不是你想象中的那样，学会试着用数据去分析。</p>
+<h2 id="《将心注入》"><a href="#《将心注入》" class="headerlink" title="《将心注入》"></a>《将心注入》</h2><p>星巴克创始人霍华德.舒尔茨的传记，带你了解了星巴克的创立过程以及在发展过程中星巴克遇到的各种问题以及霍华德.舒尔茨是如何解决的。其中还讲到了星巴克的畅销品-星冰乐的诞生。有事没事多读读名人传记。</p>
+<h2 id="《稀缺》-我们是如何陷入贫穷与忙碌的"><a href="#《稀缺》-我们是如何陷入贫穷与忙碌的" class="headerlink" title="《稀缺》-我们是如何陷入贫穷与忙碌的"></a>《稀缺》-我们是如何陷入贫穷与忙碌的</h2><p>贫穷与忙碌都有相同的状态：稀缺。而稀缺一方面会带来短时的专注红利，另一方面却会带来管窥效应（专注于某一事物就意味着我们会忽略其他事物），从而带来短视等一系列影响，从而加剧你的稀缺。<br>书中稀缺和带宽的概念，值得反复学习，可以用于指导自己管理稀缺状态。</p>
+<h1 id="2016-05-阅读列表"><a href="#2016-05-阅读列表" class="headerlink" title="2016-05-阅读列表"></a>2016-05-阅读列表</h1><h2 id="《JavaScript设计模式与开发实践》"><a href="#《JavaScript设计模式与开发实践》" class="headerlink" title="《JavaScript设计模式与开发实践》"></a>《JavaScript设计模式与开发实践》</h2><p>本书的作者是曾探，2007年毕业于吉林大学软件学院。就职于国内知名前端团队腾讯AlloyTeam，高级工程师。此本书豆瓣9.1的评分，对于设计模式讲得很清楚，再加上示例代码，很容易理解每种设计模式。但是要运用到开发中，还是不断需要学习的。此书还需要多看几遍才行。</p>
+<h2 id="《雪崩》"><a href="#《雪崩》" class="headerlink" title="《雪崩》"></a>《雪崩》</h2><p>科幻小说之于美国，就如同武侠小说之于中国。因为知乎上一篇关于软件行业未来的文章中提到了《雪崩》这本关于有关未来黑客的小说，感兴趣就看了。</p>
+<blockquote>
+<p>故事发生在21世纪初期的美国的洛杉矶，在这个未来中美国联邦政府将大部分权力给予了私人企业家和组织，国家安全交付给了雇佣军队，公路公司之间也相互竞争来吸引司机来上他们的路，政府剩余的权利只是做一些繁琐的工作而已，社会的繁荣安定与他们无关。政府的大部分的土地被各个大的私人瓜分，并建立了个人领地。这种安排类似与无政府资本主义，这是尼尔·斯蒂芬森下部小说《钻石时代》的主题。在严重的恶性通货膨胀下，美元急剧贬值，一兆美元也是一个会被忽略的数字，而人们交易中通常则使用的是其他的货币。 在小说中，斯蒂芬森创造了一个并非以往想象中的互联网——虚拟实境（Metaverse），而是和社会紧密联系的三维数字空间，与现实世界平行，在现实世界中地理位置彼此隔绝的人们可以通过各自的“化身”进行交流娱乐。</p>
+</blockquote>
+<h2 id="《精进》"><a href="#《精进》" class="headerlink" title="《精进》"></a>《精进》</h2><p>5月份每天早上花将近一个小时读的书。知乎大V采铜老师的新作。一本值得推荐的好书，《精进》选取了7个人生关键切面：时间、选择、行动、学习、思维、才能、成功，帮助你更好的成长。这本书的关于认知心理学部分的内容可与《思考快与慢》一本作比较阅读。</p>
+<h2 id="《深度学习的艺术》"><a href="#《深度学习的艺术》" class="headerlink" title="《深度学习的艺术》"></a>《深度学习的艺术》</h2><p>同样是采铜老师的作品，只不过这是<em>知乎盐系列</em>的作品。先是看完这本书，后面在看《精进》的时候发现，这本书被整合为一章纳入《精进》了。<br><strong>学习本身也是需要学习的</strong>。</p>
+<h2 id="《深入浅出Node-js》"><a href="#《深入浅出Node-js》" class="headerlink" title="《深入浅出Node.js》"></a>《深入浅出Node.js》</h2><p>鼎鼎大名朴大的Node.js系列。深入介绍了Nodejs，而不是仅仅停留在表层。如果想要对Node.js有深入理解，此书必不可少。</p>
+<p>##《Node.js开发指南》<br>也是一本很经典的Node.js入门书籍，主要看了书中关于利用Node.js进行Web开发章节。也成功搭建了一个非常简易的MEAN架构的TODO项目。<br>文章地址：<a href="http://superman66.github.io/2016/05/25/node/write-todo-with-mean-1/" target="_blank" rel="external">http://superman66.github.io/2016/05/25/node/write-todo-with-mean-1/</a></p>
+<h1 id="2016-04-阅读列表"><a href="#2016-04-阅读列表" class="headerlink" title="2016-04-阅读列表"></a>2016-04-阅读列表</h1><h2 id="《暗时间》"><a href="#《暗时间》" class="headerlink" title="《暗时间》"></a>《暗时间》</h2><p>详见暗时间读书笔记<a href="http://supemran66.github.io/2016/04/30/essays/darktime-reading-note/" target="_blank" rel="external">查看笔记</a></p>
+<h1 id="2016-03-阅读列表"><a href="#2016-03-阅读列表" class="headerlink" title="2016-03-阅读列表"></a>2016-03-阅读列表</h1><h2 id="《高危地带》"><a href="#《高危地带》" class="headerlink" title="《高危地带》"></a>《高危地带》</h2><p>一本讲述了埃博拉病毒的产生以及历史。对埃博拉这种强大的病毒有了比较全面的认识，原来这世界上还存在着比艾滋病还厉害的病毒。同样是目前尚无医学治疗方法的病毒，艾滋病和埃博拉比较起来可是温柔得太多太多。艾滋病会有潜伏期，而且艾滋病只是攻击人身体的免疫系统，对人类其它器官并不会产生致命性伤害。而埃博拉病毒则不同，发病期短至5到7天，同时埃博拉会攻击人类的肝脏等器官，感染者将承受巨大的痛苦并死去。</p>
+<h2 id="《你不知道的JavaScript（上）》"><a href="#《你不知道的JavaScript（上）》" class="headerlink" title="《你不知道的JavaScript（上）》"></a>《你不知道的JavaScript（上）》</h2><p>作为JavaScript界风头很大的新书，又怎么能错过呢？看到早读课的“21天阅读行动”的书单中包含这本书，但是还是没有去报名参加。自己默默根据自身情况进行选择性阅读，主要集中在第一部分：作用域和闭包，以及第二部分第一章：关于this。<br>虽然进度不快，但每一章都看得非常仔细并做了读书笔记。非常不错的一本书，特别是关于javascript的作用域这部分的内容，用非常易懂的语言解释了内在的原理。如果你对js的作用域和变量提升相关问题还有困惑，那么你应该阅读这本书了。</p>
+<ul>
+<li>【你不知道的JavasSript(上)读书笔记】第1章：作用域（<a href="http://superman66.github.io/2016/03/12/you-donot-konw-javascript-reading-notes/" target="_blank" rel="external">查看笔记</a>）</li>
+<li>【你不知道的JavasSript(上)读书笔记】第2章：词法作用域（<a href="http://superman66.github.io/2016/03/15/you-donot-konw-javascript-reading-notes-2/" target="_blank" rel="external">查看笔记</a>）</li>
+</ul>
+<h2 id="《JavaScript高级程序设计（第三版）》"><a href="#《JavaScript高级程序设计（第三版）》" class="headerlink" title="《JavaScript高级程序设计（第三版）》"></a>《JavaScript高级程序设计（第三版）》</h2><p>JavaScript的经典之作，依然采用按需阅读+读书笔记方式进行学习。主要学习了<code>面向对象程序设计</code>和<code>事件</code>这两章。<code>面对对象程序设计</code>这一章讲得非常详细，深入理解了创建对象的8种方式，以及理解了JavaScript中关于原型链继承的问题。</p>
+<ul>
+<li>【JavaScript高程学习笔记】面向对象的程序设计之继承（<a href="http://superman66.github.io/2016/03/06/javascript-inherit/" target="_blank" rel="external">查看笔记</a>）</li>
+<li>【JavaScript高程学习笔记】面向对象的程序设计之对象（<a href="http://superman66.github.io/2016/02/26/javascript-learning-object" target="_blank" rel="external">查看笔记</a>）</li>
+</ul>
+<h2 id="《JavaScript权威指南》"><a href="#《JavaScript权威指南》" class="headerlink" title="《JavaScript权威指南》"></a>《JavaScript权威指南》</h2><p>这本书的权威性就不用多说了。确实是一本质量非常高的书。结合上面两本书，深入学习了作用域和变量提升。</p>
+<ul>
+<li>深入理解变量声明提升和函数声明提升(<a href="http://superman66.github.io/2016/03/05/javascript-hoisting/" target="_blank" rel="external">查看笔记</a>)</li>
+</ul>
+<h1 id="2016-02-阅读列表"><a href="#2016-02-阅读列表" class="headerlink" title="2016-02-阅读列表"></a>2016-02-阅读列表</h1><h2 id="《把时间当朋友》-很不错的一本关于时间与精力的书。"><a href="#《把时间当朋友》-很不错的一本关于时间与精力的书。" class="headerlink" title="《把时间当朋友》- 很不错的一本关于时间与精力的书。"></a>《把时间当朋友》- 很不错的一本关于时间与精力的书。</h2><p>书中有个观点非常有意思：利用黄金分割法来规划你的时间。如果你一天可以规划的时间有10个小时，那么大概用6.18小时去工作学习，剩下的大约3.82小时去享受欢乐。我们总想着一直保持高效率的运转，但这是不切实际的。所以不妨试试这个方法来规划你的时间。</p>
+<h2 id="《当我跑步时，我谈些什么》-村上春树的经典之作"><a href="#《当我跑步时，我谈些什么》-村上春树的经典之作" class="headerlink" title="《当我跑步时，我谈些什么》- 村上春树的经典之作"></a>《当我跑步时，我谈些什么》- 村上春树的经典之作</h2><p>喜欢就一个理由，不喜欢却有千千万万的借口。为什么我现在还没有开始跑步呢，可能是自己还没找到一个可以为之坚持的理由吧！</p>
+<h2 id="《高效程序员的45个习惯》-论程序猿的自我修养"><a href="#《高效程序员的45个习惯》-论程序猿的自我修养" class="headerlink" title="《高效程序员的45个习惯》- 论程序猿的自我修养"></a>《高效程序员的45个习惯》- 论程序猿的自我修养</h2><p>程序猿学习应该是迭代和增量式学习。每天用一定时间来学习新技术，不需要很多时间，但要经常进行。记录新的技术，在计划时间学习。ps:这不就是互联网的节奏嘛，快速迭代，小步快跑。</p>
+<h2 id="《小强升职记》-这名字无力吐槽了，但是不能以貌取人"><a href="#《小强升职记》-这名字无力吐槽了，但是不能以貌取人" class="headerlink" title="《小强升职记》 - 这名字无力吐槽了，但是不能以貌取人"></a>《小强升职记》 - 这名字无力吐槽了，但是不能以貌取人</h2><p>实操性非常强的一本书，感谢这本书让我获得了行动计划的习惯。当然了，书中还提到很多非常行之有效的办法，只不过我没学到。</p>
+<h2 id="《程序员跳槽全攻略》-其实是我想跳槽了"><a href="#《程序员跳槽全攻略》-其实是我想跳槽了" class="headerlink" title="《程序员跳槽全攻略》 - 其实是我想跳槽了"></a>《程序员跳槽全攻略》 - 其实是我想跳槽了</h2><p>就算是不想跳槽的程序猿也值得看一看。因为总有一天你也会面临跳槽的问题。</p>
+<h2 id="《人类简史》-别被名字吓到了，内容和文字非常浅显易懂！"><a href="#《人类简史》-别被名字吓到了，内容和文字非常浅显易懂！" class="headerlink" title="《人类简史》 - 别被名字吓到了，内容和文字非常浅显易懂！"></a>《人类简史》 - 别被名字吓到了，内容和文字非常浅显易懂！</h2><p>“现代人类的各种破坏大自然的行为，被很多人称呼是“自然的毁灭”。然而，这其实并不能算是“毁灭”，而只是“改变”。自然是无法“毁灭”的。6500万年前，一颗陨石让恐龙灭绝，但却为哺乳类动物开启了一条康庄大道。今天，人类正在让许多物种灭绝，甚至可能包括自己。但即使如此，还是有某些生物过得生龙活虎。举例来说，老鼠和蟑螂可说是正在全盛时期。如果今天发生核灾而让世界末日降临，这些顽强的动物很有可能就会从闷烧的废墟里爬出来，准备好继续将自己的DNA传给千代万代。或许，现在的6500万年后，会有一群高智商的老鼠心怀感激地回顾人类造成的这场灾难，就像我们现在感谢那颗杀死恐龙的陨石一般。” 细思极恐！</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/12/31/essays/reading-list-2016/"
+                    data-title="2016阅读书单"
+                    data-url="http://wwww.iamsuperman.cn/2016/12/31/essays/reading-list-2016/"
+                    data-images=""
+                    data-content="记录2016阅读过的书籍。2016年从2月份记录开始到2016年结束，共计阅读了40本书籍。
+... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/01/13/conclusion-of-2016/" data-toggle="tooltip" data-placement="top" title="我的2016年总结">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/30/essays/last-day-in-2016/" data-toggle="tooltip" data-placement="top" title="记2016年最后一天的线上事故">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/12/31/essays/reading-list-2016/"
+                        data-title="2016阅读书单"
+                        data-url="http://wwww.iamsuperman.cn/2016/12/31/essays/reading-list-2016/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#阅读书单" title="阅读书单">阅读书单</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

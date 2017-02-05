@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/11/14/ionic/ionic-umeng-channel/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ionic" title="ionic">ionic</a>
+                        
+                          <a class="tag" href="/tags/#友盟" title="友盟">友盟</a>
+                        
+                          <a class="tag" href="/tags/#多渠道打包" title="多渠道打包">多渠道打包</a>
+                        
+                    </div>
+                    <h1>【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-11-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="安装umeng提供的插件"><a href="#安装umeng提供的插件" class="headerlink" title="安装umeng提供的插件"></a>安装umeng提供的插件</h1><p><strong>第一步：下载SDK</strong></p>
+<p>下载地址：<a href="http://dev.umeng.com/analytics/h5/sdk-download" target="_blank" rel="external">http://dev.umeng.com/analytics/h5/sdk-download</a></p>
+<p><strong>第二步：配置appkey</strong></p>
+<p>下载解压缩后，打开里面<code>*/umeng-plugin-android/</code>下的plugin.xml，更改<code>appkey</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">&lt;!-- appkey --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:name</span>=<span class="string">"UMENG_APPKEY"</span> <span class="attr">android:value</span>=<span class="string">"4f83c5d852701564XXXXXX"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:name</span>=<span class="string">"UMENG_CHANNEL"</span> <span class="attr">android:value</span>=<span class="string">"Umeng-Channel"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>将appkey替换为你自己应用的key。”UMENG_CHANNEL”可以先不替换，因为渠道名后面是动态设置的。</p>
+<p><strong>第三步：将友盟统计功能集成到你的项目中</strong></p>
+<p>首先通过本地安装cordova plugin的方式将<code>umemg-plugin-android</code>安装到你的项目。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">cordova</span> plugins <span class="keyword">add </span>*/umeng-plugin-<span class="keyword">android/ </span>       // 其中* 代表的是umeng-plugin-<span class="keyword">android所在的路径</span></div></pre></td></tr></table></figure>
+<p><strong>在主界面集成友盟初始化</strong></p>
+<p>打开Android项目下的<code>MainActivity.java</code>文件，添加下面的代码，在<code>onCreate()</code>中调用<code>initUmengSDK()</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">CordovaActivity</span> </span>&#123;</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">       initUmengSDK();</div><div class="line">       <span class="comment">// Set by &lt;content src="index.html" /&gt; in config.xml</span></div><div class="line">       loadUrl(launchUrl);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * onCreate中调用</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initUmengSDK</span><span class="params">()</span> </span>&#123;</div><div class="line">       MobclickAgent.setScenarioType(<span class="keyword">this</span>, MobclickAgent.EScenarioType.E_UM_NORMAL);</div><div class="line">       MobclickAgent.setDebugMode(<span class="keyword">true</span>);</div><div class="line">       MobclickAgent.openActivityDurationTrack(<span class="keyword">false</span>);</div><div class="line">       <span class="comment">// MobclickAgent.setSessionContinueMillis(1000);</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onResume();</div><div class="line">       MobclickAgent.onResume(<span class="keyword">this</span>);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onPause();</div><div class="line">       MobclickAgent.onPause(<span class="keyword">this</span>);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>友盟PhoneGap集成文档：<a href="http://dev.umeng.com/analytics/h5/phonegap-doc" target="_blank" rel="external">http://dev.umeng.com/analytics/h5/phonegap-doc</a></p>
+</blockquote>
+<p>到这一步就可以实现将友盟统计集成到你的App中了。接下来就是进行多渠道打包。</p>
+<h1 id="多渠道打包"><a href="#多渠道打包" class="headerlink" title="多渠道打包"></a>多渠道打包</h1><p>多渠道打包是指：因Android市场的四分五裂，不同的厂家都有各自的应用市场和渠道，所以一个apk要根据不同应用市场的要求打包成不同渠道的apk。最后可以通过友盟的渠道统计来分析apk在各个应用市场的数据。</p>
+<p>传统的多渠道打包一般是采用gradle打包，这种方式打包apk非常的慢，所以我放弃了。</p>
+<p>这里我采用的是：<a href="http://www.cnblogs.com/ct2011/p/4152323.html" target="_blank" rel="external">Android批量打包提速 - 1分钟900个市场不是梦</a> 这篇文章中介绍的技术（其中的思路其实是来自美团的技术分享 <a href="http://tech.meituan.com/mt-apk-packaging.html" target="_blank" rel="external">美团Android自动化之旅—生成渠道包</a>  中提到的第三种实现方式）。<br>思路是</p>
+<ol>
+<li>通过解压apk，往META-INF中放置一个类似 channel_xxx的空文件来标致渠道名称</li>
+<li>在Java代码中解析这个文件名获取渠道名称。</li>
+</ol>
+<p>去作者的github(<a href="https://github.com/GavinCT/AndroidMultiChannelBuildTool" target="_blank" rel="external">https://github.com/GavinCT/AndroidMultiChannelBuildTool</a>) 下载代码得到下面几个文件</p>
+<ul>
+<li>JavaUtil/ChannelUtil.java 用于获取渠道名称；</li>
+<li>PythonTool/info 该文件夹包括两个txt文件，<code>channel.txt</code>用于存放渠道列表，<code>czt.txt</code>用于添加到apk中的`META-INF中；</li>
+<li>Python/MutilChannelBuildTool.py 用于执行打包替换多渠道的Python脚本</li>
+</ul>
+<p><strong>第一步：在项目中动态设置渠道名称</strong></p>
+<p>将<code>ChannelUtil.java</code>放入你的项目中，并在<code>MainActivity.java</code>中调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">   <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    ChannelUtil.getChannel(<span class="keyword">this</span>);    <span class="comment">// 在这里便可以获取到渠道名称</span></div><div class="line">   <span class="comment">// Set by &lt;content src="index.html" /&gt; in config.xml</span></div><div class="line">   loadUrl(launchUrl);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是到这里，我们只能得到渠道的名称，所以我们还需要动态将渠道名称动态设置到友盟的代码中，这样才能分辨不同渠道的apk。</p>
+<p><strong>关于友盟渠道动态设置网上说的方法<code>AnalyticsConfig.setChannel(getChannel(Context context) )</code>已经不能用了 </strong>，因为友盟提供的sdk中，已经废弃了该方法，而改用<code>MobclickAgent.startWithConfigure()</code>来进行初始化。所以我们需要在往<code>MainActivity.java</code>中添加友盟初始化的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*传入渠道名称设置友盟渠道名称</div><div class="line">*/</div><div class="line"><span class="keyword">private</span> MobclickAgent.<span class="function">UMAnalyticsConfig <span class="title">getConfig</span><span class="params">(String channel)</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">new</span> MobclickAgent.UMAnalyticsConfig(<span class="keyword">this</span>, AnalyticsConfig.getAppkey(<span class="keyword">this</span>), channel);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在<code>onCreate()</code>中调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">   <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">   MobclickAgent.startWithConfigure(getConfig(ChannelUtil.getChannel(<span class="keyword">this</span>)));</div><div class="line">   <span class="comment">// Set by &lt;content src="index.html" /&gt; in config.xml</span></div><div class="line">   loadUrl(launchUrl);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>加上前面的初始化友盟代码，完整的<code>MainActivity.java</code>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">CordovaActivity</span> </span>&#123;</div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">       MobclickAgent.startWithConfigure(getConfig(ChannelUtil.getChannel(<span class="keyword">this</span>)));</div><div class="line">       initUmengSDK();</div><div class="line">       <span class="comment">// Set by &lt;content src="index.html" /&gt; in config.xml</span></div><div class="line">       loadUrl(launchUrl);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * onCreate中调用</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initUmengSDK</span><span class="params">()</span> </span>&#123;</div><div class="line">       MobclickAgent.setScenarioType(<span class="keyword">this</span>, MobclickAgent.EScenarioType.E_UM_NORMAL);</div><div class="line">       MobclickAgent.setDebugMode(<span class="keyword">true</span>);</div><div class="line">       MobclickAgent.openActivityDurationTrack(<span class="keyword">false</span>);</div><div class="line">       <span class="comment">// MobclickAgent.setSessionContinueMillis(1000);</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onResume();</div><div class="line">       MobclickAgent.onResume(<span class="keyword">this</span>);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onPause();</div><div class="line">       MobclickAgent.onPause(<span class="keyword">this</span>);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">private</span> MobclickAgent.<span class="function">UMAnalyticsConfig <span class="title">getConfig</span><span class="params">(String channel)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">new</span> MobclickAgent.UMAnalyticsConfig(<span class="keyword">this</span>, AnalyticsConfig.getAppkey(<span class="keyword">this</span>), channel);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>第二步：执行python，进行多渠道打包</strong></p>
+<p>将想要批量打包的apk放到与<code>Python/MutilChannelBuildTool.py</code>一起，运行python脚本即可（前提是你的电脑已经安装python环境）。</p>
+<h1 id="如何重命名cordova生成apk的名称"><a href="#如何重命名cordova生成apk的名称" class="headerlink" title="如何重命名cordova生成apk的名称"></a>如何重命名cordova生成apk的名称</h1><p>cordova 生成apk的名称默认为android-release.apk，更改<code>platforms/android/build.gradle</code>,代码如下：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">buildTypes &#123;</div><div class="line">   release &#123;</div><div class="line">       signingConfig signingConfigs.release</div><div class="line">       applicationVariants.all &#123; variant -&gt;</div><div class="line">           variant.outputs.<span class="keyword">each</span> &#123; output -&gt;</div><div class="line">               <span class="comment">// 重命名产出的apk文件 </span></div><div class="line">               <span class="keyword">def</span> outputFile = output.outputFile</div><div class="line">                   <span class="keyword">File</span> outputDirectory = <span class="keyword">new</span> <span class="keyword">File</span>(outputFile.parent);</div><div class="line">                   <span class="keyword">def</span> fileName</div><div class="line">                   <span class="keyword">def</span> manifestParser = <span class="keyword">new</span> com.android.builder.core.DefaultManifestParser()</div><div class="line">                   fileName = <span class="string">"TM_"</span>+manifestParser.getVersionName(android.<span class="keyword">sourceSets</span>.main.manifest.srcFile)+<span class="string">".apk"</span>    <span class="comment">// 格式为 'TM_2.1.0' 其中2.1.0是AndroidMainifest.xml中的versionName</span></div><div class="line">                   output.outputFile = <span class="keyword">new</span> <span class="keyword">File</span>(outputDirectory, fileName)</div><div class="line">               <span class="comment">// 删除unaligned apk</span></div><div class="line">               <span class="keyword">if</span> (output.zipAlign != <span class="keyword">null</span>) &#123;</div><div class="line">                   output.zipAlign.<span class="keyword">doLast</span> &#123;</div><div class="line">                       output.zipAlign.inputFile.<span class="keyword">delete</span>()</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码命名风格为：<code>TM_versionName.apk</code>，其中versionName是当前apk的版本号。</p>
+<h1 id="如何测试友盟统计及渠道信息"><a href="#如何测试友盟统计及渠道信息" class="headerlink" title="如何测试友盟统计及渠道信息"></a>如何测试友盟统计及渠道信息</h1><p>友盟提供了集成测试，进入<a href="http://mobile.umeng.com/test_devices" target="_blank" rel="external">http://mobile.umeng.com/test_devices</a> , 添加测试设备后，便可以实时看到统计日志了。如下图：<br><img src="/images/ionic-umeng-channel-1.png" alt="txt"><br><img src="/images/ionic-umeng-channel-2.png" alt="txt"></p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/14/ionic/ionic-umeng-channel/"
+                    data-title="【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包"
+                    data-url="http://wwww.iamsuperman.cn/2016/11/14/ionic/ionic-umeng-channel/"
+                    data-images=""
+                    data-content="安装umeng提供的插件第一步：下载SDK
+下载地址：http://dev.umeng.com... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/11/24/essays/soft-skill-1/" data-toggle="tooltip" data-placement="top" title="《软技能：代码之外的生存指南》读书笔记（一）">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/08/ionic/ionic-summary/" data-toggle="tooltip" data-placement="top" title="ionic开发App-问题收集总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/14/ionic/ionic-umeng-channel/"
+                        data-title="【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包"
+                        data-url="http://wwww.iamsuperman.cn/2016/11/14/ionic/ionic-umeng-channel/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ionic" title="ionic">ionic</a>
+                        
+                          <a class="tag" href="/tags/#友盟" title="友盟">友盟</a>
+                        
+                          <a class="tag" href="/tags/#多渠道打包" title="多渠道打包">多渠道打包</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

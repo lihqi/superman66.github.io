@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          【ionic App问题总结系列】如何更新app版本 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/09/30/ionic/update-ionic-app/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ionic" title="ionic">ionic</a>
+                        
+                          <a class="tag" href="/tags/#更新App版本" title="更新App版本">更新App版本</a>
+                        
+                    </div>
+                    <h1>【ionic App问题总结系列】如何更新app版本</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-09-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="ionic-如何进行自动更新"><a href="#ionic-如何进行自动更新" class="headerlink" title="ionic 如何进行自动更新"></a>ionic 如何进行自动更新</h1><p>ionic App更新有两种方式：第一种是普通的从远程下载apk，安装并覆盖旧版本。另外一种就是采用替换<code>www</code>文件夹的内容，实现应用内更新，而无需下载安装apk。<br>这篇文章讲的是通过第一种方式，来实现app的更新。<br>App更新流程比较简单，如下图：<br><img src="/images/update-ionic-app.png" alt="ionic"><br>这里用到的后端的接口字段如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "update_flag",    // 更新的flag，一般取值分为不更新，普通更新，强制更新三种</div><div class="line">    "url",    // 远程apk下载地址</div><div class="line">    "desc",    // 更新描述</div><div class="line">    ""</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="第一步：安装所需要的插件"><a href="#第一步：安装所需要的插件" class="headerlink" title="第一步：安装所需要的插件"></a>第一步：安装所需要的插件</h2><ul>
+<li>cordova-plugin-network-information</li>
+<li>cordova-plugin-file</li>
+<li>cordova-plugin-file-operner2</li>
+<li>cordova-plugin-file-transfer</li>
+<li>cordova-plugin-app-version</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cordova plugin add pluginname</div></pre></td></tr></table></figure>
+<h2 id="第二步：添加AppUpdateService"><a href="#第二步：添加AppUpdateService" class="headerlink" title="第二步：添加AppUpdateService"></a>第二步：添加AppUpdateService</h2><p>我把App更新的逻辑封装在了<code>AppUpdateService</code>中，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * App检查更新 Service</div><div class="line"> */</div><div class="line">.factory(<span class="string">'AppUpdateService'</span>, [<span class="string">"$http"</span>, <span class="string">"Services"</span>, <span class="string">'$q'</span>, <span class="string">'$cordovaNetwork'</span>, <span class="string">'$cordovaAppVersion'</span>, <span class="string">'$ionicPopup'</span>, <span class="string">'$ionicLoading'</span>, <span class="string">'$cordovaFileTransfer'</span>, <span class="string">'$cordovaFileOpener2'</span>, <span class="string">'$timeout'</span>,</div><div class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">$http, Services, $q, $cordovaNetwork, $cordovaAppVersion, $ionicPopup, $ionicLoading, $cordovaFileTransfer, $cordovaFileOpener2, $timeout</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">checkVersionData</span>: checkVersionData,</div><div class="line">      <span class="attr">checkVersion</span>: checkVersion,</div><div class="line">    &#125;;</div><div class="line"> </div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 调用后端接口获取版本更新信息，这里应该换成你自己的逻辑</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkVersionData</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> deferred = $q.defer();</div><div class="line">      $http(&#123;<span class="attr">method</span>: <span class="string">'GET'</span>, <span class="attr">url</span>: Services.CHECK_VERSION.url, <span class="attr">params</span>: data&#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">        deferred.resolve(data.data);</div><div class="line">      &#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">        deferred.reject(err);</div><div class="line">      &#125;);</div><div class="line">      <span class="keyword">return</span> deferred.promise;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkVersion</span>(<span class="params">scope</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> deferred = $q.defer();</div><div class="line">      <span class="comment">// params 是我这边需要传递给后端接口的参数，需更改为你自己的参数</span></div><div class="line">      <span class="keyword">var</span> params = &#123;</div><div class="line">        <span class="attr">platform</span>: <span class="string">'android'</span>,</div><div class="line">        <span class="attr">version</span>: <span class="string">''</span></div><div class="line">      &#125;;</div><div class="line">      <span class="comment">// 获取手机的网络状态，返回的值包括：WIFI CELL_4G CELL_3G等网络状态，这里用来检测手机是否处于WiFi状态</span></div><div class="line">      <span class="keyword">var</span> networkType = $cordovaNetwork.getNetwork();</div><div class="line"> </div><div class="line">      <span class="comment">// 获取App 内的版本信息</span></div><div class="line">      $cordovaAppVersion.getVersionNumber().then(<span class="function"><span class="keyword">function</span> (<span class="params">version</span>) </span>&#123;</div><div class="line">        params.version = version;</div><div class="line"></div><div class="line">        <span class="comment">// 获取服务器版本信息，此处需更改为你自己的逻辑</span></div><div class="line">        checkVersionData(params)</div><div class="line">          .then(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">             <span class="comment">// 该接口返回的updateFlag取值为：0（不更新）、1（普通更新）、2（强制更新）</span></div><div class="line">            <span class="comment">// 判断是否需要更新</span></div><div class="line">            <span class="keyword">if</span> (data.updateFlag) &#123;</div><div class="line">              <span class="keyword">var</span> json = &#123;</div><div class="line">                <span class="attr">title</span>: <span class="string">''</span>,</div><div class="line">                <span class="attr">subTitle</span>: data.description</div><div class="line">              &#125;;</div><div class="line"></div><div class="line">              <span class="comment">// 由于应用内的版本是1.0.0这种格式，所以可以通过正则替换成1.0.0-&gt;100，方便进行版本号的比较</span></div><div class="line">              <span class="keyword">var</span> nowVersionNum = <span class="built_in">parseInt</span>(version.toString().replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/(\.)/g</span>), <span class="string">'0'</span>));</div><div class="line"></div><div class="line">              <span class="comment">// data.version为后端接口返回的需要更新的新版本号</span></div><div class="line">              <span class="keyword">var</span> newVersionNum = <span class="built_in">parseInt</span>(data.version.toString().replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/(\.)/g</span>), <span class="string">'0'</span>));</div><div class="line">              <span class="keyword">if</span> (newVersionNum &gt; nowVersionNum) &#123;</div><div class="line"> </div><div class="line">                <span class="keyword">if</span> (data.updateFlag == <span class="number">1</span>) &#123;  <span class="comment">// 普通更新</span></div><div class="line">                  <span class="keyword">if</span> (networkType == <span class="string">'wifi'</span>) &#123;</div><div class="line">                    json.title = <span class="string">'APP版本更新'</span></div><div class="line">                  &#125;</div><div class="line">                  <span class="keyword">else</span> &#123;</div><div class="line">                    json.title = <span class="string">'APP版本更新（建议WIFI下升级）'</span>;</div><div class="line">                  &#125;</div><div class="line">                  updateAppPopup(json, scope).then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">                    <span class="keyword">if</span> (res == <span class="string">'update'</span>) &#123;</div><div class="line">                      UpdateForAndroid(data.url);</div><div class="line">                    &#125;</div><div class="line">                  &#125;);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (data.updateFlag == <span class="number">2</span> &amp;&amp; type == <span class="string">'wifi'</span>) &#123;  <span class="comment">// 强制更新</span></div><div class="line">                  UpdateForAndroid(data.url);</div><div class="line">                &#125;</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">            deferred.resolve(data.updateFlag);</div><div class="line">          &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">            deferred.reject(<span class="literal">null</span>);</div><div class="line">          &#125;)</div><div class="line">      &#125;);</div><div class="line"> </div><div class="line">      <span class="keyword">return</span> deferred.promise;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">updateAppPopup</span>(<span class="params">json, scope</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> $ionicPopup.show(&#123;</div><div class="line">        <span class="attr">title</span>: json.title,</div><div class="line">        <span class="attr">subTitle</span>: json.subTitle,</div><div class="line">        <span class="attr">scope</span>: scope,</div><div class="line">        <span class="attr">buttons</span>: [</div><div class="line">          &#123;</div><div class="line">            <span class="attr">text</span>: <span class="string">'取消'</span>,</div><div class="line">            <span class="attr">type</span>: <span class="string">'button-clear button-assertive'</span>,</div><div class="line">            <span class="attr">onTap</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">return</span> <span class="string">'cancel'</span>;</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          &#123;</div><div class="line">            <span class="attr">text</span>: <span class="string">'更新'</span>,</div><div class="line">            <span class="attr">type</span>: <span class="string">'button-clear button-assertive border-left'</span>,</div><div class="line">            <span class="attr">onTap</span>: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">              <span class="keyword">return</span> <span class="string">'update'</span>;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">UpdateForAndroid</span>(<span class="params">downloadUrl</span>) </span>&#123;</div><div class="line">      $ionicLoading.show(&#123;</div><div class="line">        <span class="attr">template</span>: <span class="string">"已经下载：0%"</span></div><div class="line">      &#125;);</div><div class="line">      <span class="keyword">var</span> targetPath = <span class="string">"/sdcard/Download/tianmicaifu.apk"</span>;</div><div class="line">      <span class="keyword">var</span> trustHosts = <span class="literal">true</span>;</div><div class="line">      <span class="keyword">var</span> options = &#123;&#125;;</div><div class="line">      $cordovaFileTransfer.download(downloadUrl, targetPath, options, trustHosts).then(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">        $cordovaFileOpener2.open(targetPath, <span class="string">'application/vnd.android.package-archive'</span></div><div class="line">        ).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="comment">// 成功</span></div><div class="line">        &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">          <span class="built_in">console</span>.log(err);</div><div class="line">        &#125;);</div><div class="line">        $ionicLoading.hide();</div><div class="line">      &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">        $ionicLoading.show(&#123;</div><div class="line">          <span class="attr">template</span>: <span class="string">"下载失败"</span></div><div class="line">        &#125;);</div><div class="line">        $ionicLoading.hide();</div><div class="line">      &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">progress</span>) </span>&#123;</div><div class="line">        $timeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> downloadProgress = (progress.loaded / progress.total) * <span class="number">100</span>;</div><div class="line">          $ionicLoading.show(&#123;</div><div class="line">            <span class="attr">template</span>: <span class="string">"已经下载："</span> + <span class="built_in">Math</span>.floor(downloadProgress) + <span class="string">"%"</span></div><div class="line">          &#125;);</div><div class="line">          <span class="keyword">if</span> (downloadProgress &gt; <span class="number">99</span>) &#123;</div><div class="line">            $ionicLoading.hide();</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">  &#125;])</div></pre></td></tr></table></figure></p>
+<h2 id="第三步：在run-方法中调用"><a href="#第三步：在run-方法中调用" class="headerlink" title="第三步：在run()方法中调用"></a>第三步：在<code>run()</code>方法中调用</h2><p>在<code>run()</code>中调用<code>AppUpdateService</code>便可以实现App更新了。代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 版本更新提醒</span></div><div class="line">AppUpdateService.checkVersion($rootScope);</div></pre></td></tr></table></figure></p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/09/30/ionic/update-ionic-app/"
+                    data-title="【ionic App问题总结系列】如何更新app版本"
+                    data-url="http://wwww.iamsuperman.cn/2016/09/30/ionic/update-ionic-app/"
+                    data-images=""
+                    data-content="ionic 如何进行自动更新ionic App更新有两种方式：第一种是普通的从远程下载apk，... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/10/02/ionic/handle-hardware-back-button-exist-app/" data-toggle="tooltip" data-placement="top" title="【ionic App问题总结系列】点击系统返回键退出App">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/27/interview/about-interview/" data-toggle="tooltip" data-placement="top" title="知己知彼-从面试官的角度反观求职面试">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/09/30/ionic/update-ionic-app/"
+                        data-title="【ionic App问题总结系列】如何更新app版本"
+                        data-url="http://wwww.iamsuperman.cn/2016/09/30/ionic/update-ionic-app/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ionic" title="ionic">ionic</a>
+                        
+                          <a class="tag" href="/tags/#更新App版本" title="更新App版本">更新App版本</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

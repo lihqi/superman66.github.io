@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          知己知彼-从面试官的角度反观求职面试 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/08/27/interview/about-interview/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
+                        
+                    </div>
+                    <h1>知己知彼-从面试官的角度反观求职面试</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-08-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大部分人在求职的时候，通常是这样的流程：<br>写简历-&gt;网上找企业投简历-&gt;收到面试通知，准备-&gt;面试。这整个过程中，还包含着准备面试的阶段。关于如何准备面试不是本文探讨的内容，这篇文章是想从面试官或者企业的角度出发，尝试从招聘方理解他们会如何去面试一个求职者这个角度来帮助我们更好的准备面试，从而得到自己心仪的offer（本文只针对it行业，或者再缩小范围，只针对前端招聘）。<br>ps：只所以想写这篇文章，是因为之前招的前端由于各种原因被辞退了，所以这段时间又开始在招聘初级前端工程师。从之前的面试者到面试官的身份转换，这个过程产生了一些想法，所以就把这些想法记录下来，也算是为以后自己的求职做准备。</p>
+<h1 id="面试官是如何面试求职者"><a href="#面试官是如何面试求职者" class="headerlink" title="面试官是如何面试求职者"></a>面试官是如何面试求职者</h1><p>其实我也还是属于入门一年多的前端，并没有太多经验和能力来面试别人，尤其是在面试和招聘这两个方面。但是这并不妨碍你去学习。我网上找过资料，询问过公司的大神，也向公司负责人事的总经理请教过。这篇文章其实就是基于这几方面收集的整合。<br><strong>一般企业会从下面几个方面来考察面试者</strong></p>
+<ol>
+<li>考察对方专业知识，根据对方的回答再进行深入提问。考察专业知识这点已经是共识了。只有专业知识符合了，才能有机会进行下面的面试阶段。 </li>
+<li>询问对方感兴趣的技术是什么（技术方面），然后根据他所说的技术，深入挖掘问下去。因为在面试官看来，如果你连感兴趣的东西都了解得不多，学得不够好，不是态度的问题就是学习能力的问题。而这两者都是企业不愿意在一个员工身上看到的。</li>
+<li>询问对方的做项目中遇到什么样的难题，怎么解决的？每个人在做项目的时候都会遇到难题，但是如果你没有记录总结的习惯，你就不太可能在这个环节回答得很好。</li>
+<li>询问对方平时遇到问题都是如何解决的或者抛出一个问题让对方给出解决方案或者思路。从对方的回答中来判断对方解决问题的思路和方法。</li>
+<li>询问对方下班后的时间都会花在什么地方？从对方的回答中判断对方是否会主动学习，毕竟程序员这个行业是需要保持不断学习的步伐才能不落后。当然了这个问题是需要有提问技巧的，如果这么直白得问，求职者的回答肯定都是套路。</li>
+<li>在沟通的过程观察对方的表达能力。 如果是表达能力存在比较大的问题，则可能会给后面的工作造成困扰，因为你在公司不是一个人在战斗，肯定是需要同事的沟通与协作。能把意思表达清楚是一个必须要掌握的能力。</li>
+<li>谈到薪资的过程，可通过公司提供的成长性、技术成长等方面来平衡对方的心理落差。这点是总经理说的，HR总是想着法子将你的工资压下来（一脸鄙视）。</li>
+</ol>
+<h1 id="求职者如何准备面试"><a href="#求职者如何准备面试" class="headerlink" title="求职者如何准备面试"></a>求职者如何准备面试</h1><p>有了这几个参考的角度，是不是就会觉得准备面试就没有那么无从下手了。那我们就看针对上面说的一点一点来看如何应对</p>
+<h2 id="一、专业知识"><a href="#一、专业知识" class="headerlink" title="一、专业知识"></a>一、专业知识</h2><p>这部分的内容就好像上学时代考卷中的选择题和填空题。前端基本专业知识就那些，你看或不看，它都在那里。这部分就没有太多技巧可言了，好好找几份前端面试题，该背得背，该coding得还是老老实实地coding。这里附上两份github的面试题大全：</p>
+<ul>
+<li><a href="https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions" target="_blank" rel="external">https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions</a></li>
+<li><a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions/tree/master/Translations/Chinese" target="_blank" rel="external">https://github.com/h5bp/Front-end-Developer-Interview-Questions/tree/master/Translations/Chinese</a></li>
+</ul>
+<h2 id="二、感兴趣的技术"><a href="#二、感兴趣的技术" class="headerlink" title="二、感兴趣的技术"></a>二、感兴趣的技术</h2><p>如果把整个面试过程看做一场考试，第一部分是封闭型问题，那么这部分则是开放性问题，没有标准可言。<br>但是有一点一定要注意的：<strong>所说的技术一定是你最熟悉的</strong>，因为对于你感兴趣的技术，面试官一定不会放过这个机会，深入问下去的。<br>可能会有人会觉得，感兴趣的技术为什么非得是你熟练掌握的技术呢？我对一项新的技术很感兴趣，但是我还没有来得及深入学习。这样的想法也是正确的，在平常的回答中，你大可以这么说。但这是在面试啊，你需要在跟面试官的沟通过程中，让对方更多的了解到你。所以如果你这么回答：“我对这项技术很感兴趣，但是我还不懂这项技术”，目测面试官会一脸懵逼，这还能不能愉快得沟通啊。这简直就是面试话题终结者。因为在面试官看来，如果你连喜欢的东西都研究得不够深入，那么你所谓的喜欢也太廉价了。<br>这就回到了面试的目的。面试的目的不是让你百分百的表达你的真实想法，而是让你尽可能得在整个面试过程中，让对方能更全面得了解到你的能力。任何行为和言语如果不能达到这个目的，都应该尽量减少或者避免。</p>
+<h2 id="三、做项目过程遇到什么难以解决的难题？最后如何解决"><a href="#三、做项目过程遇到什么难以解决的难题？最后如何解决" class="headerlink" title="三、做项目过程遇到什么难以解决的难题？最后如何解决"></a>三、做项目过程遇到什么难以解决的难题？最后如何解决</h2><p>这个问题我问过很多应届毕业生，屡试不爽。普遍的回答都是没有什么问题。没有问题本身就是最大的问题。试想下，你在做任何东西的过程中怎么可能没有问题呢？比如你在利用新框架做一个项目，那么关于环境的搭建是否有疑问？关于新框架语法是否有疑问？还有每个框架都会存在很多坑，你没有踩过吗？还有作为web开发者，PC的浏览器兼容问题有遇到过吗？Android和iOS兼容性问题？这些都是你在做项目过程中可能会遇到的问题，如果你就这么回答没有，则一定说明你没有深入思考过或者遇到问题从来不会记录和总结。</p>
+<p><strong>那么对于这个问题该如何准备呢</strong><br>其实如果有记录和总结问题的习惯的话，那么这个问题就迎刃而解。如果没有的话，那就从现在开始培养这个习惯咯。可以每天建立一个问题记录列表，用来收集每天的问题（模板如下）:<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 问题描述：</span></div><div class="line"></div><div class="line">gulp执行sass命令报错</div><div class="line"></div><div class="line">node_modules/<span class="keyword">node</span><span class="title">-sass</span>/vendor/darwin-x64-<span class="number">48</span>/binding.node,</div><div class="line"></div><div class="line">解决办法</div><div class="line"></div><div class="line">是<span class="keyword">node</span><span class="title">-sass</span>的问题，rebuild即可</div><div class="line"></div><div class="line">npm rebuild <span class="keyword">node</span><span class="title">-sass</span></div></pre></td></tr></table></figure></p>
+<p>通过每日记录问题来培养这种习惯。这个方法也可以用在做项目的过程中，专门为每个项目建一个<strong>问题记录列表</strong>，所有在项目开发过程中遇到的问题，都可以扔到这个列表中，然后再按照上面的方法，将问题描述和解决办法补齐。最后在项目结束后，就可以通过这份问题记录列表来做总结。<br>这样就不用再担心在这个问题回答不出来了，就把你问题记录列表里的内容抛出来就行。</p>
+<h2 id="四、询问对方平时遇到问题都是如何解决"><a href="#四、询问对方平时遇到问题都是如何解决" class="headerlink" title="四、询问对方平时遇到问题都是如何解决"></a>四、询问对方平时遇到问题都是如何解决</h2><p>工作中最重要的能力应当是解决问题的能力。解决问题的能力包括思路和能力两部分。思路就是你想到如何去解决这个问题，而能力就是指具体解决问题的能力，这里指coding能力。所以在遇到问题的时候，如何清晰地将你解决问题的思路表达出来就显得很重要了。思路这种东西，就是你脑袋中的各种想法，如果你没有刻意得训练过，很难一下子将其通过语言清楚得表达出来。所以要想回答好这个问题，也需要在平常的学习和工作过程中，有意识地<strong>将解决问题的想法通过文字或者流程图、思维导图等方式记录下来</strong>。这样的训练过程能强化解决问题的思路，对解决问题也是很有帮助的。</p>
+<h2 id="五、询问对方下班后的时间都会花在什么地方？"><a href="#五、询问对方下班后的时间都会花在什么地方？" class="headerlink" title="五、询问对方下班后的时间都会花在什么地方？"></a>五、询问对方下班后的时间都会花在什么地方？</h2><p>这个问题意图太明显了，所以大部分面试者的回答都是套路，不够具体且没有可信度。比如：“下班后一般就看书、学习”这类的回答。讲真的，如果你从无数个面试者口中听到类似的话，那么你可能就不会再相信这句话了。这类问题的回答就跟制定计划很类似，如果你制定的计划非常模糊：<code>我要学习Vuejs</code>，那多半这个计划就会执行不下去了。但如果你制定的计划是这样的：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">学习计划：掌握vuejs，能独立完成vuejs的项目</div><div class="line">具体行动：</div><div class="line">    <span class="number">1</span>、官网学习vuejs api</div><div class="line">    <span class="number">2</span>、使用vuejs完成TODO sample</div><div class="line">    <span class="number">3</span>、使用vue-cli脚手架构建项目</div><div class="line">    <span class="number">4</span>、学习vue-router的使用</div><div class="line">    <span class="number">5</span>、学习vue-resource使用</div><div class="line">    <span class="number">6</span>、做一个XXX项目</div></pre></td></tr></table></figure></p>
+<p>那么这个计划就相对完成的概率就高很多。<br>同样地，如果你的回答是具体且可实施的，那么可信度就会大大增加了。对于这个问题，我的回答会是这样的：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">正常情况下是<span class="number">6</span>点下班，除去通勤和吃饭及休息时间，一般<span class="number">8</span>点半开始空闲出来。</div><div class="line">    <span class="number">1</span>、首先，我会选择先花<span class="number">20</span>分钟到<span class="number">30</span>分钟跟着健身App锻炼，即保持健康，也为了保证后续学习的精神状态。</div><div class="line">    <span class="number">2</span>、接着便是学习、看书和coding time。在奇妙清单中，我建有“学习计划”，“阅读计划”，“项目计划”三个清单。</div><div class="line">    ﻿一般是会先花半个小时在阅读计划上。半个小时结束之后，再根据学习计划和项目计划来安排。</div><div class="line">    比如这两天的时间用来完成项目计划中的任务，然后后面几天就可以用来学习，完成学习计划中的任务。</div></pre></td></tr></table></figure></p>
+<p>相信这样回答的可信度肯定拉“下班后一般就看书、学习”这种回答好几条街。<br><strong>当然了，这么回答的前提是你真的有这么在做，我可没有教你虚造这样的回答。</strong></p>
+<h2 id="六、关于表达能力"><a href="#六、关于表达能力" class="headerlink" title="六、关于表达能力"></a>六、关于表达能力</h2><p>关于如何提高表达能力，网上已经有太多的资源和教程了。我只能帮你到这，剩下的就靠你自己了。<br>再多说一句，以程序员这个行业对表达能力的要求远没有其他行业如销售那般高，只要你能把意思简洁明了地表达清楚就可以了。如果当中能再多点风趣幽默，那简直就是完美了。</p>
+<h1 id="关于薪资"><a href="#关于薪资" class="headerlink" title="关于薪资"></a>关于薪资</h1><p>关于如何谈薪资，可以参考之前写过文章：<a href="http://www.iamsuperman.cn/2016/08/02/how-to-deal-with-hr/。" target="_blank" rel="external">http://www.iamsuperman.cn/2016/08/02/how-to-deal-with-hr/。</a><br>总之一句话，合理认识你的价值，不要被HR的话所吓倒了。该要多少钱，就要多少，不要慌！</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/08/27/interview/about-interview/"
+                    data-title="知己知彼-从面试官的角度反观求职面试"
+                    data-url="http://wwww.iamsuperman.cn/2016/08/27/interview/about-interview/"
+                    data-images=""
+                    data-content="前言大部分人在求职的时候，通常是这样的流程：写简历-&gt;网上找企业投简历-&gt;收到面试... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/09/30/ionic/update-ionic-app/" data-toggle="tooltip" data-placement="top" title="【ionic App问题总结系列】如何更新app版本">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/23/vue/vue-cli-and-vue-router/" data-toggle="tooltip" data-placement="top" title="如何在vue-cli中使用vue-router">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/08/27/interview/about-interview/"
+                        data-title="知己知彼-从面试官的角度反观求职面试"
+                        data-url="http://wwww.iamsuperman.cn/2016/08/27/interview/about-interview/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

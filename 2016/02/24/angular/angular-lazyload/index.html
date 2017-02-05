@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          AngularJS动态加载模块和依赖 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/02/24/angular/angular-lazyload/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#AngularJS" title="AngularJS">AngularJS</a>
+                        
+                          <a class="tag" href="/tags/#动态加载" title="动态加载">动态加载</a>
+                        
+                    </div>
+                    <h1>AngularJS动态加载模块和依赖</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-02-24
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>由于AngularJS是单页面应用框架，在正常的情况下，会在访问页面的时候将所有的CSS、JavaScript文件都加载进来。文件不多的时候，页面启动速度倒不会影响太多。但是一旦文件数太多或者加载的第三方库比较大的时候，就会影响页面启动速度。因此对于应用规模大、文件数比较多或者加载的第三方库比较大的时候，采用动态加载JS或者动态加载模块会极大提升页面的启动速度。本文将介绍如何利用ocLazyLoad实现动态加载。<br><a id="more"></a><br>AngularJS动态加载依赖第三方库：<a href="https://oclazyload.readme.io/docs" target="_blank" rel="external">ocLazyLoad</a>。ocLazyLoad是一个第三方库，支持AngularJS动态加载<code>module</code>、<code>service</code>、<code>directive</code>以及静态文件。</p>
+<h3 id="安装ocLazyLoad"><a href="#安装ocLazyLoad" class="headerlink" title="安装ocLazyLoad"></a>安装ocLazyLoad</h3><p>可通过npm或者bower进行安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install oclazyload</div><div class="line">bower install oclazyload</div></pre></td></tr></table></figure></p>
+<h3 id="将ocLazyLoad-module-添加到你的应用中"><a href="#将ocLazyLoad-module-添加到你的应用中" class="headerlink" title="将ocLazyLoad module 添加到你的应用中"></a>将<code>ocLazyLoad</code> module 添加到你的应用中</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'myApp'</span>,[<span class="string">'oc.lazyLoad'</span>]);</div></pre></td></tr></table></figure>
+<h3 id="配置-ocLazyLoad"><a href="#配置-ocLazyLoad" class="headerlink" title="配置 ocLazyLoad"></a>配置 <code>ocLazyLoad</code></h3><p>你可以在 <code>config</code>函数中配置 <code>$ocLazyLoadProvider</code>,配置文件如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.config([<span class="string">'$ocLazyLoadProvider'</span>, <span class="keyword">function</span>(<span class="variable">$ocLazyLoadProvider</span>)&#123;</div><div class="line">    <span class="variable">$ocLazyLoadProvider</span>.config(&#123;</div><div class="line">        debug: <span class="literal">true</span>,</div><div class="line">        events: <span class="literal">true</span>,</div><div class="line">        modules: [</div><div class="line">            &#123;</div><div class="line">                name: <span class="string">'TestModule'</span>,</div><div class="line">                files: [<span class="string">'test.js'</span>]</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;)</div><div class="line">&#125;])</div></pre></td></tr></table></figure></p>
+<ul>
+<li>debug: 用来开启debug模式。布尔值，默认是false。当开启debug模式时，$ocLazyLoad会打印出所有的错误到console控制台上。</li>
+<li>events：当你动态加载了module的时候，$ocLazyLoad会广播相应的事件。布尔值，默认为false。</li>
+<li>modules：用于定义你需要动态加载的模块。定义每个模块的名字需要唯一。<br>modules必须要用<strong>数组</strong>的形式，其中files也必须以<strong>数组</strong>的形式存在，哪怕只需要加载一个文件</li>
+</ul>
+<h3 id="在路由当中加载module"><a href="#在路由当中加载module" class="headerlink" title="在路由当中加载module"></a>在路由当中加载module</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.config([<span class="string">'$routeProvider'</span>, <span class="keyword">function</span>(<span class="variable">$routeProvider</span>) &#123;</div><div class="line">    <span class="variable">$routeProvider</span>.otherwise(<span class="string">'/index'</span>);</div><div class="line">    <span class="variable">$routeProvider</span>.when(<span class="string">'/index'</span>, &#123;</div><div class="line">        templateUrl: <span class="string">'index.html'</span>,</div><div class="line">        controller: <span class="string">'IndexController'</span>,</div><div class="line">        resolve: &#123; //  resolve 里的属性如果返回的是 promise对象，那么resolve将会在view加载之前执行</div><div class="line">            loadMyCtrl: [<span class="string">'$ocLazyLoad'</span>, <span class="keyword">function</span>(<span class="variable">$ocLazyLoad</span>) &#123;</div><div class="line">                // 在这里可以延迟加载任何文件或者刚才预定义的modules</div><div class="line">                <span class="built_in">return</span> <span class="variable">$ocLazyLoad</span>.load(<span class="string">'TestModule'</span>); //加载刚才定义的TestModule</div><div class="line">                /*<span class="built_in">return</span> <span class="variable">$ocLazyLoad</span>.load([   // 如果要加载多个module，需要写成数组的形式</div><div class="line">                    <span class="string">'TestModule'</span>,</div><div class="line">                    <span class="string">'MainModule'</span></div><div class="line">                    ]);*/</div><div class="line">            &#125;]</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;])</div></pre></td></tr></table></figure>
+<p>resolve设置的属性可以被注入到Controller当中。如果resolve返回的是promise对象的话，那么它们将在控制器加载以及$routeChangeSuccess被触发之前执行。<br><strong>$ocLazyLoad就是利用这个原理hack，进行动态加载</strong>。<br><code>resolve</code>的值可以是：</p>
+<ul>
+<li>key，the value of key 是会被注入到Controller的依赖的名字；</li>
+<li>factory，即可以是一个service的名字，也可以是一个返回值，它是会被注入到控制器中的函<br>数或可以被resolve的promise对象。</li>
+</ul>
+<p>通过这样的配置，就可以实现了AngularJS动态加载模块和依赖。但是$ocLazyLoad提供的功能更加丰富，不止动态加载模块和依赖，还能动态加载service，diretive等。更多的功能，可以访问<a href="https://oclazyload.readme.io" target="_blank" rel="external">$ocLazyLoad官网</a></p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/02/24/angular/angular-lazyload/"
+                    data-title="AngularJS动态加载模块和依赖"
+                    data-url="http://wwww.iamsuperman.cn/2016/02/24/angular/angular-lazyload/"
+                    data-images=""
+                    data-content="由于AngularJS是单页面应用框架，在正常的情况下，会在访问页面的时候将所有的CSS、Ja... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/02/26/javascript/javascript-learning-object/" data-toggle="tooltip" data-placement="top" title="【JavaScript高程学习笔记】面向对象的程序设计之对象">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/02/23/hexo/hexo-guide-4/" data-toggle="tooltip" data-placement="top" title="Hexo博客搭建教程（四）：Hexo优化与个性化">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/02/24/angular/angular-lazyload/"
+                        data-title="AngularJS动态加载模块和依赖"
+                        data-url="http://wwww.iamsuperman.cn/2016/02/24/angular/angular-lazyload/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#AngularJS" title="AngularJS">AngularJS</a>
+                        
+                          <a class="tag" href="/tags/#动态加载" title="动态加载">动态加载</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

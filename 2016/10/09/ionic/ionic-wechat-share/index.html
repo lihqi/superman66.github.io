@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          【ionic App问题总结系列】ionic微信朋友圈分享 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/10/09/ionic/ionic-wechat-share/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ionic" title="ionic">ionic</a>
+                        
+                          <a class="tag" href="/tags/#微信分享" title="微信分享">微信分享</a>
+                        
+                    </div>
+                    <h1>【ionic App问题总结系列】ionic微信朋友圈分享</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-10-09
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>做完之后才发现实现ionic微信朋友圈、朋友分享并不难。只要按照着插件的文档来就行。但是在刚接触的时候依然是存在疑惑，还是写点记录总结下吧（本文是在开发Android App的环境下产生的）。</p>
+<p>整个流程大致是下面三步：</p>
+<ol>
+<li><p>微信开放平台申请应用获取appid</p>
+</li>
+<li><p>安装cordova微信分享插件</p>
+</li>
+<li><p>在代码中调用实现分享</p>
+</li>
+</ol>
+<h1 id="开发前的准备"><a href="#开发前的准备" class="headerlink" title="开发前的准备"></a>开发前的准备</h1><p>不管你使用什么样的cordova 微信分享插件，都必须要在微信开发者平台（<a href="https://open.weixin.qq.com/）" target="_blank" rel="external">https://open.weixin.qq.com/）</a> 申请应用，并获得appid。appid的作用就是用来标识你的应用，让你的应用可以获取微信提供的接口权限，比如：分享到朋友圈、分享给朋友等权限。由于之前开发原生Android App的同事已经将这一步完成了，我直接是利用已经申请好的appid，并没有重新尝试（实际上也并没办法尝试，每个应用的名称、包名，签名都必须是唯一。为了做到ionic app能覆盖原有的Android App，我也必须保证ionic app这三者与原来保持一致）。关于如何申请可以参考这篇文章：<a href="http://www.cnblogs.com/fair-1107518056/p/5667773.html" target="_blank" rel="external">http://www.cnblogs.com/fair-1107518056/p/5667773.html</a></p>
+<h1 id="安装并使用插件"><a href="#安装并使用插件" class="headerlink" title="安装并使用插件"></a>安装并使用插件</h1><p>完成上一步之后，你就获得了appid。然后就可以安装所需要的插件了。这里使用的插件是：<a href="https://github.com/xu-li/cordova-plugin-wechat" target="_blank" rel="external">https://github.com/xu-li/cordova-plugin-wechat</a> 。README部分已经够用了，如果还不清楚的话，作者还很贴心的提供了sample：<a href="https://github.com/xu-li/cordova-plugin-wechat-example" target="_blank" rel="external">https://github.com/xu-li/cordova-plugin-wechat-example</a> 。</p>
+<p><strong>第一步：先安装插件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cordova plugin add cordova-plugin-wechat --variable wechatappid=YOUR_WECHAT_APPID</div></pre></td></tr></table></figure>
+<p>其中<code>YOUR_WECHAT_APPID</code>要替换成你上一步申请应用成功后获得的appid。</p>
+<p>如果你只是用到了“分享给好友”和“分享到朋友圈”这两个功能，那代码其实就非常简单了。</p>
+<p><strong>第二步：把微信分享的功能写到service层中</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* 微信分享插件Service</div><div class="line">*/</div><div class="line">.factory(<span class="string">'WechatService'</span>, [ <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">share</span>(<span class="params">params</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (<span class="keyword">typeof</span> Wechat === <span class="string">"undefined"</span>) &#123;</div><div class="line">     alert(<span class="string">"手机尚未安装微信"</span>);</div><div class="line">     <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">var</span> json = &#123;&#125;;</div><div class="line">   Wechat.share(params, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     alert(分享成功);</div><div class="line">   &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</div><div class="line">     alert(<span class="string">'Failed'</span>+ reason);</div><div class="line">   &#125;);</div><div class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="keyword">return</span> &#123;</div><div class="line">   <span class="attr">share</span>: share</div><div class="line"> &#125;</div><div class="line">&#125;])</div></pre></td></tr></table></figure>
+<p>插件安装后，会自动注册一个<code>Wechat</code>全局变量，在这个全局变量下，定义了一个<code>share()</code>方法，用来分享到微信中。</p>
+<p><strong>第三步：在Controller层中调用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* type 表示分享类型。0：表示分享给朋友，1表示分享到朋友圈</div><div class="line">/</div><div class="line"></div><div class="line">$scope.share = function (type) &#123;</div><div class="line"> var json = &#123;&#125;;</div><div class="line"> Wechat.isInstalled(function (installed) &#123;</div><div class="line">   if (!installed) &#123;</div><div class="line">     alert(尚未安装微信);</div><div class="line">     return false</div><div class="line">   &#125;</div><div class="line"> &#125;, function (reason) &#123;</div><div class="line">    alert('Failed'+ reason);</div><div class="line"></div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> $scope.params = &#123;</div><div class="line">   scene: type,</div><div class="line">   message: &#123;</div><div class="line">     title: "添米送万元，几万人都在领，我在这里等你",</div><div class="line">     thumb: "https://www.91tianmi.com/mobile/statics/mobile/images/icon-tm-logo.jpg",</div><div class="line">     description: "写上描述文本",</div><div class="line">     media: &#123;</div><div class="line">       type: Wechat.Type.LINK,</div><div class="line">       webpageUrl: “http://xxx.xxx.com/siteurl”    // 这里的webpageUrl要替换成你的页面url</div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line"> &#125;;</div><div class="line"> WechatService.share($scope.params);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>第四步：View层中的html页面显示</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row text-center"</span> <span class="attr">flex</span>=<span class="string">"box:mean"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"share-option"</span> <span class="attr">ng-click</span>=<span class="string">"share(0)"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"main/assets/images/account/invite/share-friends.png"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"icon-share"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>微信好友<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"share-option"</span> <span class="attr">ng-click</span>=<span class="string">"share(1)"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"main/assets/images/account/invite/share-timeline.png"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"icon-share"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>微信朋友圈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>然后就可以愉快得使用微信分享了。</p>
+<h1 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h1><ul>
+<li><p>安装插件的时候必须要将添加你的appid，要不然是无法调用分享功能；</p>
+</li>
+<li><p>要测试微信分享功能，必须是签名之后的release apk，debug-apk是无法测试。因为在微信开发平台申请移动应用的时候需要你填写签名，所以你也必须对你的apk进行签名后才能正常使用微信分享功能；</p>
+</li>
+</ul>
+<h1 id="小彩蛋"><a href="#小彩蛋" class="headerlink" title="小彩蛋"></a>小彩蛋</h1><p>基于ionic开发的添米财富Android App第一版已经悄悄上线了，有兴趣研究ionic用在公司正式项目的朋友可以前往各大应用市场搜索“添米财富”进行下载，下载后打开，如果有提示更新，点击“立即更新”后下载最新的app进行安装覆盖即可。升级完版本后的App就是基于ionic 开发。在公司尚未正式推广之前，我都没有对里面的代码进行压缩混淆，想研究的朋友自己解压缩apk后就可以看到完整的源码了。很想放到github上的，但是由于是公司的项目，便打消了这个念头。</p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/10/09/ionic/ionic-wechat-share/"
+                    data-title="【ionic App问题总结系列】ionic微信朋友圈分享"
+                    data-url="http://wwww.iamsuperman.cn/2016/10/09/ionic/ionic-wechat-share/"
+                    data-images=""
+                    data-content="做完之后才发现实现ionic微信朋友圈、朋友分享并不难。只要按照着插件的文档来就行。但是在刚接... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/10/20/essays/read-book-in-a-week/" data-toggle="tooltip" data-placement="top" title="一周看完一本书很难吗？">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/10/02/ionic/handle-hardware-back-button-exist-app/" data-toggle="tooltip" data-placement="top" title="【ionic App问题总结系列】点击系统返回键退出App">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/10/09/ionic/ionic-wechat-share/"
+                        data-title="【ionic App问题总结系列】ionic微信朋友圈分享"
+                        data-url="http://wwww.iamsuperman.cn/2016/10/09/ionic/ionic-wechat-share/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ionic" title="ionic">ionic</a>
+                        
+                          <a class="tag" href="/tags/#微信分享" title="微信分享">微信分享</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

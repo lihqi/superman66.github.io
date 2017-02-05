@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          《编写可维护的JavaScript》-读书笔记 - Superman的博客 | Superman&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/08/15/javascript/maintainable-javaScript/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Superman&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>《编写可维护的JavaScript》-读书笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Superman on
+                        2016-08-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="编程风格"><a href="#编程风格" class="headerlink" title="编程风格"></a>编程风格</h1><ul>
+<li><p>约定缩进，使用tab或者空格缩进取决于团队的规范。</p>
+</li>
+<li><p>不要省略分号</p>
+</li>
+<li><p>行长度80个字符</p>
+</li>
+<li><p>换行：通常在运算符后换行，下一行增加两个层级的缩进。</p>
+</li>
+<li><p>空行：为了提高代码的可读性。下面这些情况插入空行</p>
+<ul>
+<li><p>方法之间插入空行</p>
+</li>
+<li><p>在方法中的局部变量和第一条语句之间</p>
+</li>
+<li><p>在多行或者单行注释之前</p>
+</li>
+<li><p>在方法内的逻辑片段之间插入空行</p>
+</li>
+</ul>
+</li>
+<li><p>命名：采用驼峰大小写（Camel Case）命名法</p>
+</li>
+</ul>
+<h1 id="UI层的松耦合"><a href="#UI层的松耦合" class="headerlink" title="UI层的松耦合"></a>UI层的松耦合</h1><p>将CSS从JavaScript中抽离，尽量在JavaScript中使用CSS的类，而非直接操作style样式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//  原生</span></div><div class="line"></div><div class="line">element.className  += <span class="string">" class"</span>;    <span class="comment">// 注意class前面是带有空格的</span></div><div class="line"></div><div class="line"><span class="comment">// jQuery </span></div><div class="line"></div><div class="line">$(element).addClass(<span class="string">'className'</span>);</div></pre></td></tr></table></figure>
+<h1 id="避免全局变量"><a href="#避免全局变量" class="headerlink" title="避免全局变量"></a>避免全局变量</h1><p><strong>全局变量所带来的问题</strong></p>
+<pre><code>* 命名冲突
+
+* 增加代码脆弱性：依赖全局变量使得代码和上下文是深耦合。
+
+* 难以测试
+</code></pre><p><strong>要避免意外产生的全局变量</strong></p>
+<p>我们都知道，在JavaScript中，如何没有使用<code>var</code>声明变量的话，那么JavaScript会自动创建一个全局变量。比如下面的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> count = <span class="number">10</span>;</div><div class="line"></div><div class="line">     title = <span class="string">'title'</span>;</div></pre></td></tr></table></figure>
+<p>本意应该是声明两个变量，结果不小心将分号输错位逗号，结果就会将title创建成了全局变量。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p><strong>采用单全局变量方式</strong></p>
+<p>全文只创建一个全局变量，并将所有的属性和方法都挂载在这个全局对象上。</p>
+<p>比如jQuery，定义了<code>$</code>和<code>jQuery</code>两个全局对象。只有在<code>$</code>被其他类库使用了的情况下，为了避免冲突，才应该使用jQuery。</p>
+<p><strong>命名空间</strong></p>
+<p>即使使用“单全局变量方式”也可能存在着全局污染，所以一般可以使用命名空间来解决。</p>
+<p><strong>使用模块</strong></p>
+<p>ES6已经可以支持module语法了</p>
+<p><strong>“异步模块定义”（AMD）</strong></p>
+<h1 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h1><p>先来看个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 这是将应用逻辑和用户交互程序混合在一起的代码</span></div><div class="line"><span class="comment">// 不好的写法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">event</span>) </span>&#123;    </div><div class="line"><span class="comment">// body...    </span></div><div class="line"><span class="keyword">var</span> popup = <span class="built_in">document</span>.querySelector(<span class="string">'#popup'</span>);    </div><div class="line">popup.style.left = event.clientX + <span class="string">'px'</span>;    </div><div class="line">popup.style.top = event.clientY + <span class="string">'px'</span>;    </div><div class="line">popup.className = <span class="string">'popup'</span>;&#125;</div><div class="line"><span class="comment">// 事件处理程序</span></div><div class="line">addListener(element, <span class="string">'click'</span>, handleClick);</div></pre></td></tr></table></figure>
+<p>在上面这个例子中，应用逻辑（显示popup）和事件处理程序的代码混在一起了。</p>
+<h2 id="规则一：隔离应用逻辑"><a href="#规则一：隔离应用逻辑" class="headerlink" title="规则一：隔离应用逻辑"></a>规则一：隔离应用逻辑</h2><p>应用逻辑（application logic）指和应用相关的功能性代码，而不是和用户行为相关的。所谓隔离应用逻辑就是将应用逻辑从所有事件处理程序中抽离出来。</p>
+<p>比如下面这个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//规则一：将应用逻辑从事件处理程序中抽离</span></div><div class="line"><span class="keyword">var</span> MyApplication = &#123;    </div><div class="line"><span class="attr">handleClick</span>: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;        </div><div class="line"><span class="comment">// body...        </span></div><div class="line"><span class="keyword">this</span>.shopPop(event);    </div><div class="line">&#125;,    </div><div class="line"><span class="attr">shopPopup</span>: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;        </div><div class="line"><span class="comment">// body...        </span></div><div class="line"><span class="keyword">var</span> popup = <span class="built_in">document</span>.querySelector(<span class="string">'#popup'</span>);        </div><div class="line">popup.style.left = event.clientX + <span class="string">'px'</span>;        </div><div class="line">popup.style.top = event.clientY + <span class="string">'px'</span>;        </div><div class="line">popup.className = <span class="string">'popup'</span>;    </div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line">addListener(element, <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;    </div><div class="line"><span class="comment">// body...    </span></div><div class="line">MyApplication.handleClick(event);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="规则二：不要分发事件对象"><a href="#规则二：不要分发事件对象" class="headerlink" title="规则二：不要分发事件对象"></a>规则二：不要分发事件对象</h2><p>对于上面的代码，showPopup()中，只需要event的两个参数:clientX和clientY。所以不需要将整个event对象作为参数传入，只需要传入所需要的参数即可。如下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//规则二：不要分发事件对象，传递具体的参数</span></div><div class="line"><span class="keyword">var</span> MyApplication = &#123;    </div><div class="line"><span class="attr">handleClick</span>: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;        </div><div class="line"><span class="comment">// 在应用处理之前阻止默认事件或者阻止事件冒泡        </span></div><div class="line">event.preventDefault();        </div><div class="line">event.stopPropagation();        </div><div class="line"><span class="comment">// 传入应用逻辑        </span></div><div class="line"><span class="keyword">this</span>.shopPop(event.clientX, event.clientY);    </div><div class="line">&#125;,    </div><div class="line"><span class="attr">shopPopup</span>: <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;        </div><div class="line"><span class="comment">// body...        </span></div><div class="line"><span class="keyword">var</span> popup = <span class="built_in">document</span>.querySelector(<span class="string">'#popup'</span>);        </div><div class="line">popup.style.left = x + <span class="string">'px'</span>;        </div><div class="line">popup.style.top = y + <span class="string">'px'</span>;        </div><div class="line">popup.className = <span class="string">'popup'</span>;    </div><div class="line">&#125;&#125;;</div><div class="line">addListener(element, <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;    </div><div class="line"><span class="comment">// body...    </span></div><div class="line">MyApplication.handleClick(event);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这种思想就是设计模式中所遵循的单一职责原则（SRP），就是一个方法尽量只负责一个功能。将不同的功能细分到不同的方法中。</p>
+<h1 id="避免“空比较”"><a href="#避免“空比较”" class="headerlink" title="避免“空比较”"></a>避免“空比较”</h1><p>之所以不建议和<code>null</code>做比较是因为任何有值，任何对象都和null不相等。正确的做法是对于不同类型的值应该采用与之相对应的方法。</p>
+<p><strong>检测原始值（string, number, boolean, null, undefined）</strong>用<code>typeof</code>。</p>
+<p><code>typeof</code>会返回一个表示值的类型。比如</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="typescript"><span class="keyword">typeof</span> <span class="built_in">string</span>; <span class="comment">// string</span></span></div><div class="line"><span class="keyword">typeof</span> <span class="built_in">number</span>; <span class="comment">//number</span></div><div class="line"><span class="keyword">typeof</span> <span class="built_in">boolean</span>; <span class="comment">// boolean</span></div><div class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>; <span class="comment">//undefined</span></div></pre></td></tr></table></figure>
+<p>typeof运算符的独特之处在于，将其用于一个未声明的变量也不会报错。对于未声明的变量和值为undefined的变量通过typeof都将返回”undefined”</p>
+<p>检测引用值用instanceof</p>
+<p>检验自定义类型唯一的方法就是<code>instanceof</code><br><strong>检测函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 不好的写法</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(myFn <span class="keyword">instanceof</span> <span class="built_in">Function</span>);    <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 好的写法</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> myFn === <span class="string">'function'</span>);</div></pre></td></tr></table></figure>
+<p><strong>检测数组</strong></p>
+<p>使用ECMAScript5中的方法<code>isArray()</code>判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(arr));    <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>但是由于这个方法可能在低版本浏览器并不兼容，所以可以采用下面的方法进行判断：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray === <span class="string">'function'</span>)&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(value);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> object.prototype.toString.call(value) === <span class="string">'[object array]'</span>;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><strong>检测属性</strong></p>
+<p>判断属性是否存在最好的办法就是用<code>in</code>运算符和<code>hasOwnProperty()</code>。<code>in</code>运算符仅仅会简单得判断属性是否存在，而不会去读属性的值。比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//检测属性</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line"></div><div class="line">    <span class="attr">count</span>: <span class="number">0</span>,</div><div class="line"></div><div class="line">    <span class="attr">related</span>: <span class="literal">null</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 好的写法</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(<span class="string">'count'</span> <span class="keyword">in</span> object)&#123;</div><div class="line"></div><div class="line">    <span class="comment">// do something</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 不好的写法 检测假值</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(object[<span class="string">'count'</span>])&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 代码不会执行</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 或者采用hasOwnProperty()</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(object.hasOwnProperty(<span class="string">'count'</span>))&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 代码将执行</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="将配置数据从代码中分离出来"><a href="#将配置数据从代码中分离出来" class="headerlink" title="将配置数据从代码中分离出来"></a>将配置数据从代码中分离出来</h1><p>哪些配置数据需要从代码中分离出来：</p>
+<ul>
+<li><p>URL</p>
+</li>
+<li><p>需要展现给用户的字符串</p>
+</li>
+<li><p>重复的值</p>
+</li>
+<li><p>设置值，一些配置参数</p>
+</li>
+<li><p>任何可能发生变更的值</p>
+</li>
+</ul>
+<p>不同的框架对于保存配置文件的方式各不相同，但思想都是一样，抽离出易变项，单独分离成文件，与代码中的数据和应用逻辑隔离。</p>
+<h1 id="抛出自定义错误"><a href="#抛出自定义错误" class="headerlink" title="抛出自定义错误"></a>抛出自定义错误</h1><p>在JavaScript中抛出错误是一门艺术。搞清楚代码中哪里适合抛出错误，将有助于在代码发生错误时，大大缩短调试时间。</p>
+<p><strong>JavaScript中抛出错误的方法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 好的写法</span></div><div class="line"></div><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Somethind bad happend'</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 不好的写法</span></div><div class="line"></div><div class="line"><span class="keyword">throw</span> <span class="string">"message"</span>;</div></pre></td></tr></table></figure>
+<p><strong>错误类型</strong></p>
+<ul>
+<li><p>Error，所有错误的基本类型，所有的错误都继承与它。实际上引擎从来不会抛出该类型的错误；</p>
+</li>
+<li><p>EvalError，通过<code>eval()</code>函数执行代码发生错误时抛出；</p>
+</li>
+<li><p>RangeError，一个数字超过边界时抛出；</p>
+</li>
+<li><p>ReferenceError，期望的对象不存在时抛出，这个错误很常见；</p>
+</li>
+<li><p>SyntaxError，给<code>eval()</code>函数传递的代码中有语法错误时抛出；</p>
+</li>
+<li><p>TypeError，变量不是期望的类型时抛出；</p>
+</li>
+<li><p>URIError，给encodeURI()、encodeURIComponent()、decodeURI()或者decodeURIComponent()等函数传递格式非法的URI字符串时抛出。</p>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/08/15/javascript/maintainable-javaScript/"
+                    data-title="《编写可维护的JavaScript》-读书笔记"
+                    data-url="http://wwww.iamsuperman.cn/2016/08/15/javascript/maintainable-javaScript/"
+                    data-images=""
+                    data-content="编程风格
+约定缩进，使用tab或者空格缩进取决于团队的规范。
+
+不要省略分号
+
+行长度80个字... | Superman的博客 | Superman&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/08/19/angular/angular-download-pdf/" data-toggle="tooltip" data-placement="top" title="如何在AngularJS中接收PDF并下载">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/09/essays/Economic-reading-note/" data-toggle="tooltip" data-placement="top" title="《经济学通识》观后感|摘录">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/08/15/javascript/maintainable-javaScript/"
+                        data-title="《编写可维护的JavaScript》-读书笔记"
+                        data-url="http://wwww.iamsuperman.cn/2016/08/15/javascript/maintainable-javaScript/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'superman66';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/superman666">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/superman66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Superman&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://wwww.iamsuperman.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://wwww.iamsuperman.cn/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
