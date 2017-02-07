@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -201,7 +201,7 @@
 <li>代码生成<br>而JavaScript引擎则要复杂得多了。简单来说就是任何JavaScript代码在执行前都要进行<strong>编译</strong>（通常在代码执行前）。<h1 id="二、理解作用域"><a href="#二、理解作用域" class="headerlink" title="二、理解作用域"></a>二、理解作用域</h1>要理解作用域之前需要了解下什么是作用域，它有什么作用？同时还需要了解JavaScript引擎和编译器是什么？</li>
 <li>引擎<br>  从头到尾负责整个JavaScript程序的编译及执行过程。</li>
 <li>编译器<br>  负责语法分析及代码生成</li>
-<li>作用域<br> 负责收集并维护由所有声明的标识符（及变量）组成的一系列<strong>查询</strong>，并实施一套<strong>规则</strong>，确定当前执行的代码对这些标识符的<strong>访问权限</strong>（简而言之就是规定了谁有权限访问哪些变量）。<br>现在以<code>var a = 2</code>这个简单的变量命名过程来分析，JavaScript引擎会将其看做两步<code>var a;</code>和<code>a = 2</code>两步进行。详见下面的流程图<br><img src="http://7xr6yj.com1.z0.glb.clouddn.com/hexo_JavaScript%E5%8F%98%E9%87%8F%E7%BC%96%E8%AF%91.png" alt="JavaScript变量编译流程图"><br>总结：变量的赋值操作会执行两个动作，首先编译器会在当前作用域声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域查找该变量，如果能够找到便对它进行赋值。<h3 id="关于变量查找的类型"><a href="#关于变量查找的类型" class="headerlink" title="关于变量查找的类型"></a>关于变量查找的类型</h3>编译器在编译过程，会对变量进行查询。一种是LHS查询，另外一种查找的类型是RHS。</li>
+<li>作用域<br> 负责收集并维护由所有声明的标识符（及变量）组成的一系列<strong>查询</strong>，并实施一套<strong>规则</strong>，确定当前执行的代码对这些标识符的<strong>访问权限</strong>（简而言之就是规定了谁有权限访问哪些变量）。<br>现在以<code>var a = 2</code>这个简单的变量命名过程来分析，JavaScript引擎会将其看做两步<code>var a;</code>和<code>a = 2</code>两步进行。详见下面的流程图<br><img src="/images/hexo_JavaScript%E5%8F%98%E9%87%8F%E7%BC%96%E8%AF%91.png" alt="JavaScript变量编译流程图"><br>总结：变量的赋值操作会执行两个动作，首先编译器会在当前作用域声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域查找该变量，如果能够找到便对它进行赋值。<h3 id="关于变量查找的类型"><a href="#关于变量查找的类型" class="headerlink" title="关于变量查找的类型"></a>关于变量查找的类型</h3>编译器在编译过程，会对变量进行查询。一种是LHS查询，另外一种查找的类型是RHS。</li>
 <li>LHS 当变量出现在赋值操作的左侧时进行LHS查询 （赋值操作的目标是谁）</li>
 <li>RHS 当变量出现在赋值操作的非左侧时，进行RHS查询（谁是赋值操作的源头，取到这个变量的源值）<br>试着找出下面的例子各有多少个LHS和RHS<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> b = a;</div><div class="line">    <span class="keyword">return</span> b+a;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> c = foo(<span class="number">2</span>);</div></pre></td></tr></table></figure>
 </li>
