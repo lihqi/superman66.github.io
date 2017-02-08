@@ -184,6 +184,50 @@
 
 <div class="post-preview">
 
+    <a href="/2016/11/20/ionic/ionic-login-modal/">
+        <h2 class="post-title">
+            ionic登录拦截机制-使用Modal作为登录框
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言先来说说网页和App中交互的不同。在网页中，页面与页面之间的跳转过程较少会采用转场动画，直接就是页面切换。而在App的交互方式中，页面切换是有转场动画的。页面进入一般都是从右到左的动画切换。这种交互方式通常表示页面正常的切换。还有一种页面进入方式就是从下往上进入，这种交互方式一般用于登录拦截时，弹出登录框，表示得是非正常状态下的页面切换。如下图所示，就是登陆拦截情况下的从下往上的页面进入......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-11-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/11/16/ionic/ionic-hide-tabs/">
+        <h2 class="post-title">
+            ionic隐藏底部菜单栏ion-tabs
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言ionic中没有提供属性来控制底部菜单栏ion-tabs在页面中的显示与隐藏，只有一个类.tabs-item-hide可以控制，所以我们可以通过控制添加.tabs-item-hide来实现隐藏菜单栏的目的。
+实现方式三个步骤就可以实现了
+第一步，在ion-tabs指令上添加hideTabs12&lt;ion-tabs class="tabs-icon-top tabs-assertive......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-11-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2016/11/14/ionic/ionic-umeng-channel/">
         <h2 class="post-title">
             【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包
@@ -248,6 +292,49 @@ Demotalk is cheap, show me the code.
     <p class="post-meta">
         Posted by Superman on
         2016-11-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/30/ionic/update-ionic-app/">
+        <h2 class="post-title">
+            【ionic App问题总结系列】如何更新app版本
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            ionic 如何进行自动更新ionic App更新有两种方式：第一种是普通的从远程下载apk，安装并覆盖旧版本。另外一种就是采用替换www文件夹的内容，实现应用内更新，而无需下载安装apk。这篇文章讲的是通过第一种方式，来实现app的更新。App更新流程比较简单，如下图：这里用到的后端的接口字段如下：123456&#123;    "update_flag",    // 更新的flag，一......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-10-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/10/28/ionic/handle-hardware-back-button-exist-app/">
+        <h2 class="post-title">
+            【ionic App问题总结系列】点击系统返回键退出App
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            在安卓下，如果不处理系统返回键的事件，那么每次点击返回键，将页面将返回到上一个路由，这种逻辑不符合app的路由逻辑。正确的应该是：当页面到了各个导航页的首页时，此时再按返回键应该提示是否退出app，用户点击确认后退出app。
+在run()方法中添加下面的方法12345678910111213141516171819202122232425262728293031323334353637383......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Superman on
+        2016-10-28
     </p>
 
 </div>
@@ -327,93 +414,6 @@ Demotalk is cheap, show me the code.
     <p class="post-meta">
         Posted by Superman on
         2016-10-09
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/10/02/ionic/handle-hardware-back-button-exist-app/">
-        <h2 class="post-title">
-            【ionic App问题总结系列】点击系统返回键退出App
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            在安卓下，如果不处理系统返回键的事件，那么每次点击返回键，将页面将返回到上一个路由，这种逻辑不符合app的路由逻辑。正确的应该是：当页面到了各个导航页的首页时，此时再按返回键应该提示是否退出app，用户点击确认后退出app。
-在run()方法中添加下面的方法12345678910111213141516171819202122232425262728293031323334353637383......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Superman on
-        2016-10-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/09/30/ionic/update-ionic-app/">
-        <h2 class="post-title">
-            【ionic App问题总结系列】如何更新app版本
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            ionic 如何进行自动更新ionic App更新有两种方式：第一种是普通的从远程下载apk，安装并覆盖旧版本。另外一种就是采用替换www文件夹的内容，实现应用内更新，而无需下载安装apk。这篇文章讲的是通过第一种方式，来实现app的更新。App更新流程比较简单，如下图：这里用到的后端的接口字段如下：123456&#123;    "update_flag",    // 更新的flag，一......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Superman on
-        2016-09-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/08/27/interview/about-interview/">
-        <h2 class="post-title">
-            知己知彼-从面试官的角度反观求职面试
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言大部分人在求职的时候，通常是这样的流程：写简历-&gt;网上找企业投简历-&gt;收到面试通知，准备-&gt;面试。这整个过程中，还包含着准备面试的阶段。关于如何准备面试不是本文探讨的内容，这篇文章是想从面试官或者企业的角度出发，尝试从招聘方理解他们会如何去面试一个求职者这个角度来帮助我们更好的准备面试，从而得到自己心仪的offer（本文只针对it行业，或者再缩小范围，只针对前端招聘）。......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Superman on
-        2016-08-27
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/08/23/vue/vue-cli-and-vue-router/">
-        <h2 class="post-title">
-            如何在vue-cli中使用vue-router
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言vue-cli和vue-router都是Vue官方提供的库。一个是脚手架，一个是路由。这两天刚学习Vue.js，一开始对于如何在vue-cli创建的项目中使用vue-router有点搞不明白，总结下来，希望也能帮助到其他Vue初学者。
-vue-cli首先利用vue-cli创建项目。具体教程可以前往官网：https://github.com/vuejs/vue-cli。
-我这里选择的是we......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Superman on
-        2016-08-23
     </p>
 
 </div>

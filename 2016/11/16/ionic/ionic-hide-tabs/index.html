@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/06/16/ionic/ionic-hide-tabs/">
+    <link rel="canonical" href="http://wwww.iamsuperman.cn/2016/11/16/ionic/ionic-hide-tabs/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -172,7 +172,7 @@
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Superman on
-                        2016-06-16
+                        2016-11-16
                     </span>
                 </div>
             </div>
@@ -194,7 +194,7 @@
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>ionic中没有提供属性来控制底部菜单栏ion-tabs在页面中的显示与隐藏，只有一个类<code>.tabs-item-hide</code>可以控制，所以我们可以通过控制添加<code>.tabs-item-hide</code>来实现隐藏菜单栏的目的。</p>
 <h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>三个步骤就可以实现了</p>
 <h3 id="第一步，在ion-tabs指令上添加hideTabs"><a href="#第一步，在ion-tabs指令上添加hideTabs" class="headerlink" title="第一步，在ion-tabs指令上添加hideTabs"></a>第一步，在ion-tabs指令上添加<code>hideTabs</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-tabs</span> <span class="attr">class</span>=<span class="string">"tabs-icon-top tabs-assertive &#123;&#123;hideTabs&#125;&#125;"</span> &gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ion-tabs</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="第二步：写hideTabs指令"><a href="#第二步：写hideTabs指令" class="headerlink" title="第二步：写hideTabs指令"></a>第二步：写<code>hideTabs</code>指令</h3><p>下面的指令监听了ionicView广播的<code>$ionicView.beforeEnter</code>、<code>$ionicView.beforeLeave</code>和<code>$destroy</code>，当View在进入之前和离开之前，监听<code>hideTabs</code>属性，并添加<code>.tabs-item-hide</code>。<br>并在View被销毁的时候即页面返回的时候，将<code>hideTabs</code>置为false。指令代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 隐藏tabs指令</div><div class="line">   * </div><div class="line">   */</div><div class="line">  .directive(<span class="string">'hideTabs'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$rootScope</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">restrict</span>: <span class="string">'A'</span>,</div><div class="line">      <span class="attr">link</span>: <span class="function"><span class="keyword">function</span> (<span class="params">scope, element, attributes</span>) </span>&#123;</div><div class="line">        scope.$on(<span class="string">'$ionicView.beforeEnter'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          scope.$watch(attributes.hideTabs, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">            $rootScope.hideTabs = <span class="string">'tabs-item-hide'</span>;</div><div class="line">          &#125;);</div><div class="line">        &#125;);</div><div class="line">        scope.$on(<span class="string">'$ionicView.beforeLeave'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          scope.$watch(attributes.hideTabs, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">            $rootScope.hideTabs = <span class="string">'tabs-item-hide'</span>;</div><div class="line">          &#125;);</div><div class="line">          scope.$watch(<span class="string">'$destroy'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $rootScope.hideTabs = <span class="literal">false</span>;</div><div class="line">          &#125;)</div><div class="line">        &#125;);</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="第二步：写hideTabs指令"><a href="#第二步：写hideTabs指令" class="headerlink" title="第二步：写hideTabs指令"></a>第二步：写<code>hideTabs</code>指令</h3><p>下面的指令监听了ionicView广播的<code>$ionicView.beforeEnter</code>、<code>$ionicView.beforeLeave</code>和<code>$destroy</code>，当View在进入之前和离开之前，监听<code>hideTabs</code>属性，并添加<code>.tabs-item-hide</code>。<br>并在View被销毁的时候即页面返回的时候，将<code>hideTabs</code>置为false。指令代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 隐藏tabs指令</div><div class="line">   *</div><div class="line">   */</div><div class="line">  .directive(<span class="string">'hideTabs'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$rootScope</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">restrict</span>: <span class="string">'A'</span>,</div><div class="line">      <span class="attr">link</span>: <span class="function"><span class="keyword">function</span> (<span class="params">scope, element, attributes</span>) </span>&#123;</div><div class="line">        scope.$on(<span class="string">'$ionicView.beforeEnter'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          scope.$watch(attributes.hideTabs, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">            $rootScope.hideTabs = <span class="string">'tabs-item-hide'</span>;</div><div class="line">          &#125;);</div><div class="line">        &#125;);</div><div class="line">        scope.$on(<span class="string">'$ionicView.beforeLeave'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          scope.$watch(attributes.hideTabs, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">            $rootScope.hideTabs = <span class="string">'tabs-item-hide'</span>;</div><div class="line">          &#125;);</div><div class="line">          scope.$watch(<span class="string">'$destroy'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $rootScope.hideTabs = <span class="literal">false</span>;</div><div class="line">          &#125;)</div><div class="line">        &#125;);</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure></p>
 <h3 id="第三步：在tab页面添加指令hide-tabs"><a href="#第三步：在tab页面添加指令hide-tabs" class="headerlink" title="第三步：在tab页面添加指令hide-tabs"></a>第三步：在tab页面添加指令<code>hide-tabs</code></h3><p>然后在需要隐藏菜单栏的页面加上·hide-tabs·指令，如下面代码:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ion-view</span> <span class="attr">hide-tabs</span>&gt;</span></div><div class="line">//页面内容</div><div class="line"><span class="tag">&lt;/<span class="name">ion-view</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>这样就可以实现了隐藏底部菜单栏。</p>
 
@@ -206,9 +206,9 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/06/16/ionic/ionic-hide-tabs/"
+                    data-thread-key="2016/11/16/ionic/ionic-hide-tabs/"
                     data-title="ionic隐藏底部菜单栏ion-tabs"
-                    data-url="http://wwww.iamsuperman.cn/2016/06/16/ionic/ionic-hide-tabs/"
+                    data-url="http://wwww.iamsuperman.cn/2016/11/16/ionic/ionic-hide-tabs/"
                     data-images=""
                     data-content="前言ionic中没有提供属性来控制底部菜单栏ion-tabs在页面中的显示与隐藏，只有一个类.... | 陈惠超的博客 | Superman&#39;s Blog " >
                     <div class="ds-share-inline">
@@ -229,12 +229,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/06/20/ionic/ionic-login-modal/" data-toggle="tooltip" data-placement="top" title="ionic登录拦截机制-使用Modal作为登录框">&larr; Previous Post</a>
+                            <a href="/2016/11/20/ionic/ionic-login-modal/" data-toggle="tooltip" data-placement="top" title="ionic登录拦截机制-使用Modal作为登录框">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/06/11/angular/angular-clipboard-directive/" data-toggle="tooltip" data-placement="top" title="复制内容到剪贴板——基于clipboard的AngularJS指令">Next Post &rarr;</a>
+                            <a href="/2016/11/14/ionic/ionic-umeng-channel/" data-toggle="tooltip" data-placement="top" title="【ionic App问题总结系列】ionic 集成友盟插件以及多渠道打包">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -243,9 +243,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/06/16/ionic/ionic-hide-tabs/"
+                        data-thread-key="2016/11/16/ionic/ionic-hide-tabs/"
                         data-title="ionic隐藏底部菜单栏ion-tabs"
-                        data-url="http://wwww.iamsuperman.cn/2016/06/16/ionic/ionic-hide-tabs/" >
+                        data-url="http://wwww.iamsuperman.cn/2016/11/16/ionic/ionic-hide-tabs/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

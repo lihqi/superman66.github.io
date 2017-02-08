@@ -184,20 +184,21 @@
 
 <div class="post-preview">
 
-    <a href="/2016/06/20/ionic/ionic-login-modal/">
+    <a href="/2016/07/10/css/webkit-line-clamp/">
         <h2 class="post-title">
-            ionic登录拦截机制-使用Modal作为登录框
+            多行文本溢出显示省略号
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            前言先来说说网页和App中交互的不同。在网页中，页面与页面之间的跳转过程较少会采用转场动画，直接就是页面切换。而在App的交互方式中，页面切换是有转场动画的。页面进入一般都是从右到左的动画切换。这种交互方式通常表示页面正常的切换。还有一种页面进入方式就是从下往上进入，这种交互方式一般用于登录拦截时，弹出登录框，表示得是非正常状态下的页面切换。如下图所示，就是登陆拦截情况下的从下往上的页面进入......
+            前言这两天在做移动端页面的时候发现，需要文本显示两行，且超出部分要显示省略号。如下图这种效果：
+解决办法利用-webkit-line-clamp、-webkit-box-orient和-display:-webkit-box三个属性就可以实现多行文本溢出显示省略号。代码如下：123456.line-clamp&#123;    display: -webkit-box;    overflo......
         </div>
     </a>
     <p class="post-meta">
         Posted by Superman on
-        2016-06-20
+        2016-07-10
     </p>
 
 </div>
@@ -205,22 +206,23 @@
 
 <div class="post-preview">
 
-    <a href="/2016/06/16/ionic/ionic-hide-tabs/">
+    <a href="/2016/06/28/essays/how-to-read-commercial-book/">
         <h2 class="post-title">
-            ionic隐藏底部菜单栏ion-tabs
+            【摘抄 | 读书方法】如何阅读商业图书
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            前言ionic中没有提供属性来控制底部菜单栏ion-tabs在页面中的显示与隐藏，只有一个类.tabs-item-hide可以控制，所以我们可以通过控制添加.tabs-item-hide来实现隐藏菜单栏的目的。
-实现方式三个步骤就可以实现了
-第一步，在ion-tabs指令上添加hideTabs12&lt;ion-tabs class="tabs-icon-top tabs-assertive......
+            前言这个礼拜把《稀缺》看了一遍，看到最后才发现了“湛庐文化”提供的彩蛋：如何阅读商业图书。所以整理下，分享出来了。
+阅读商业书的四大原则原则一：二八原则对于商业图书来说，80%的精华价值可能仅占20%的页码。要根据自己的阅读能力，进行阅读时间的分配。
+原则二：集中优势精力原则在一个特定的时间段内，集中突破20%的精华内容。也可以在一个时间段内，集中攻克一个主题的阅读。
+原则三：递进原则高效率......
         </div>
     </a>
     <p class="post-meta">
         Posted by Superman on
-        2016-06-16
+        2016-06-28
     </p>
 
 </div>
